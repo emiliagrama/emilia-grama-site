@@ -1,0 +1,13 @@
+:root{
+  --bg0:#070912;
+  --bg1:#0A1022;
+  --text:#F2F6FF;
+  --muted: rgba(242,246,255,.72);
+
+  --stroke: rgba(255,255,255,.12);
+  --panel: rgba(255,255,255,.06);
+
+  --radius: 18px;
+  --max: 1120px;
+  --pad: 24px;
+}

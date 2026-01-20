@@ -1,35 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-const navClass = ({ isActive }) =>
-  isActive ? "navLink navLinkActive" : "navLink";
-
 export default function SiteLayout() {
   return (
-    <div>
+    <div className="appShell">
       <header className="navbar">
-        <div className="container navbarInner">
-          <div className="brand">
-            <span style={{ color: "var(--accent)" }}>●</span>
-            <span>Emilia Grama</span>
-          </div>
+        <div className="container navInner">
+          <div className="brand">Emilia Grama</div>
 
           <nav className="navLinks">
-            <NavLink to="/" end className={navClass}>
-              Home
-            </NavLink>
-
-            <NavLink to="/components" className={navClass}>
-              Components
-            </NavLink>
-
-            <a
-              className="btn btnPrimary"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=emiliagrama@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Email me
-            </a>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/components">Components</NavLink>
+            <a href="mailto:YOUR_EMAIL_HERE">Email me</a>
           </nav>
         </div>
       </header>
