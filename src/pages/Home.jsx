@@ -14,8 +14,8 @@ export default function Home() {
           </p>
 
           <div className="heroActions">
-            <a className="btn btnGold" href="/components">Explore components</a>
-            <a className="btn" href="#projects">View work</a>
+            <a className="btn btnGold" href="/components">UI experiments</a>
+            <a className="btn" href="#projects"> View my work  </a>
           </div>
         </div>
       </section>
