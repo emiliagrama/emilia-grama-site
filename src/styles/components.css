@@ -156,3 +156,158 @@
 @media (max-width: 860px){
   .componentGrid{ grid-template-columns: 1fr; }
 }
+
+
+/* ===== Projects section ===== */
+.projectsSection {
+  padding: clamp(56px, 8vw, 92px) 0;
+}
+
+.sectionLead {
+  margin-top: 10px;
+  max-width: 60ch;
+  color: var(--muted);
+}
+
+/* Grid */
+.projectsGrid {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+/* 2 columns on desktop */
+@media (min-width: 900px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+/* Card */
+.projectCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 12, 18, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Subtle glow accent */
+.projectCard::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto -20%;
+  height: 220px;
+  background: radial-gradient(
+    closest-side,
+    rgba(110, 160, 255, 0.20),
+    rgba(140, 110, 255, 0.10),
+    transparent 70%
+  );
+  filter: blur(18px);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Media area (placeholder now) */
+.projectMedia {
+  padding: 16px 16px 8px;
+}
+
+.projectThumbPlaceholder {
+  height: 160px;
+  border-radius: 14px;
+  background:
+    radial-gradient(60% 80% at 30% 20%, rgba(120, 170, 255, 0.22), transparent 60%),
+    radial-gradient(70% 90% at 80% 40%, rgba(165, 120, 255, 0.16), transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Text content */
+.projectBody {
+  padding: 20px 20px 22px;
+}
+
+.projectKicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  opacity: 0.75;
+}
+
+.projectTitle {
+  margin: 0 0 10px;
+  font-size: 23px;
+  line-height: 1.15;
+}
+
+.projectDesc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  max-width: 55ch;
+}
+
+/* Link */
+.projectActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.projectLink {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+  font-size: 14px;
+}
+
+.projectLink:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+/* Note */
+.projectsNote {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+}
+ 
+.projectHotel::before {
+  background: radial-gradient(
+    closest-side,
+    rgba(140, 170, 255, 0.25),
+    transparent 70%
+  );
+}
+
+.projectMusic::before {
+  background: radial-gradient(
+    closest-side,
+    rgba(170, 120, 255, 0.25),
+    transparent 70%
+  );
+}
