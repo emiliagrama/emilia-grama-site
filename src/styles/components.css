@@ -35,6 +35,7 @@
 
 .hero{
   position: relative;
+  z-index: 3;
   padding: 110px 0 90px;
   overflow: hidden;
   min-height: 100vh;
@@ -55,12 +56,27 @@
     ),
 
     /* image */
-    url("/images/universe/hero-wave.png");
+    url("/images/universe/hero-wave.jpg");
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+.hero::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 9, 18, 0) 0%,
+    rgba(7, 9, 18, 0.45) 35%,
+    rgba(7, 9, 18, 0.90) 100%
+  );
+  pointer-events:none;
+  z-index: 2;
+}
+
 
 .heroMeta{
   font-size: 14px;
@@ -101,7 +117,6 @@
   transition: background-position .8s ease;
 }
 
-
 .heroDesc{
   font-size: 17px;
   max-width: 52ch;
@@ -131,28 +146,6 @@
   background: linear-gradient(90deg, rgba(107, 223, 244, 0.3), rgba(244,200,107,.10));
 }
 
-.framePlaceholder{
-  margin-top: 24px;
-  height: 240px;
-  border-radius: var(--radius);
-  border: 1px solid var(--stroke);
-  background: rgba(255,255,255,.03);
-}
-
-.componentGrid{
-  margin-top: 24px;
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.card{
-  padding: 18px;
-  border-radius: var(--radius);
-  background: var(--panel);
-  border: 1px solid var(--stroke);
-}
-
 @media (max-width: 860px){
   .componentGrid{ grid-template-columns: 1fr; }
 }
@@ -161,8 +154,38 @@
 /* ===== Projects section ===== */
 .projectsSection {
   padding: clamp(56px, 8vw, 92px) 0;
+   position: relative;
+   isolation: isolate;
+    background:
+    radial-gradient(700px 420px at 75% 25%, rgba(61,132,224,0.10), transparent 58%),
+    radial-gradient(
+      700px 420px at 30% 75%,
+      rgba(61, 162, 187, 0.103),
+      transparent 58%
+    );
 }
 
+/* Overlay haze that blends UP into the hero */
+.projectsSection::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:-1px;
+  height: 320px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(7, 9, 18, 0) 0%,
+      rgba(7, 9, 18, 0.55) 55%,
+      rgba(7, 9, 18, 0.95) 100%
+    ),
+    radial-gradient(
+      900px 520px at 24% 10%,
+      rgba(139, 123, 255, 0.14),
+      transparent 60%
+    );
+  pointer-events:none;
+  z-index: 0;
+}
 .sectionLead {
   margin-top: 10px;
   max-width: 60ch;
@@ -203,36 +226,54 @@
   border-color: rgba(255, 255, 255, 0.14);
 }
 
-/* Subtle glow accent */
-.projectCard::before {
-  content: "";
-  position: absolute;
-  inset: -40% -20% auto -20%;
-  height: 220px;
-  background: radial-gradient(
-    closest-side,
-    rgba(110, 160, 255, 0.20),
-    rgba(140, 110, 255, 0.10),
-    transparent 70%
-  );
-  filter: blur(18px);
-  pointer-events: none;
-  opacity: 0.9;
+/* Ensure content stays above overlay */
+.projectsSection > *{
+  position: relative;
+  z-index: 1;
 }
 
 /* Media area (placeholder now) */
 .projectMedia {
-  padding: 16px 16px 8px;
+  position: relative;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9; height: auto;
+}
+.projectMedia::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.05)
+  );
+  pointer-events:none;
+}
+/* shared image behavior */
+.projectThumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
 }
 
-.projectThumbPlaceholder {
-  height: 160px;
-  border-radius: 14px;
-  background:
-    radial-gradient(60% 80% at 30% 20%, rgba(120, 170, 255, 0.22), transparent 60%),
-    radial-gradient(70% 90% at 80% 40%, rgba(165, 120, 255, 0.16), transparent 65%),
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* individual projects */
+.projectHotel .projectThumbPlaceholder {
+  background-image: url("/images/universe/hotel-vacanta.jpg");
+   filter: saturate(0.85) contrast(1.05);
+}
+
+.projectMusic .projectThumbPlaceholder {
+  background-image: url("/images/universe/hugo-figuera.jpg");
+}
+
+/* subtle hover zoom */
+.projectCard:hover .projectThumbPlaceholder {
+  transform: scale(1.05);
 }
 
 /* Text content */
@@ -279,14 +320,14 @@
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(255, 255, 255, 0.04);
-  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   font-size: 14px;
 }
 
 .projectLink:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.16);
   transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(80,140,255,0.15);
+  border-color: rgba(120,170,255,0.35);
 }
 
 /* Note */
@@ -310,4 +351,123 @@
     rgba(170, 120, 255, 0.25),
     transparent 70%
   );
+}
+
+/* =========================
+   COMPONENTS SECTION
+   ========================= */
+.componentsSection{
+  position: relative;
+  height: auto;
+  padding: clamp(72px, 10vw, 120px) 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 0,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.025) 0,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    rgba(9, 11, 18, 0.95);
+}
+
+.componentsHeader{
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+.componentsHeader p{
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* =========================
+   SCROLL AREA
+   ========================= */
+.componentsScroll{
+  position: sticky;
+ top: 96px; /* adjust if your navbar is taller */
+  overflow: hidden;;
+  height: min(460px, 56vh);
+  display: flex;
+  align-items: center;
+}
+
+.componentsTrack{
+  display: flex;
+  gap: 18px;            
+  padding: 0 18px;      
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+.componentCard{
+  flex: 0 0 auto;       
+}
+
+
+/* =========================
+   COMPONENT CARD
+   ========================= */
+.componentCard{
+  min-width: 340px;   
+  height: 300px;      
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex: 0 0 auto;;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.componentCard img{
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.componentCard h3{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   CTA
+   ========================= */
+.componentsCTA{
+  position: static;      
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* =========================
+   MOBILE FALLBACK
+   ========================= */
+@media (max-width: 860px){
+  .componentsScroll{
+    height: auto;
+  }
+
+  .componentsTrack{
+    position: static;
+    flex-direction: column;
+  }
+
+  .componentCard{
+    min-width: auto;
+  }
 }
