@@ -1,3 +1,4 @@
+
 export default function Home() {
   return (
     <main>
@@ -147,12 +148,11 @@ export default function Home() {
     </div>
 
     <div className="componentsCTA">
-      <a href="/components" classNameName="btn">View all components →</a>
+      <a className="btn btnGold" href="/components">View all components →</a>
+      
     </div>
   </div>
 </section>
-
-  
     </main>
     
   );

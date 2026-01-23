@@ -186,6 +186,15 @@
   pointer-events:none;
   z-index: 0;
 }
+.projectsSection::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height: 110px;
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.014), rgba(0,0,0,0.55) 55%, rgba(0, 0, 0, 0.815) 100%);
+}
 .sectionLead {
   margin-top: 10px;
   max-width: 60ch;
@@ -359,7 +368,10 @@
 
 .componentsSection{
   position: relative;
+  isolation: isolate;
   padding: clamp(72px, 10vw, 120px) 0;
+   margin-top: -35px; /* pulls it slightly into the fade, feels “blended” */
+  padding-top: calc(clamp(72px, 10vw, 120px) + 20px);
   background:
     repeating-linear-gradient(
       90deg,
@@ -378,6 +390,21 @@
     rgba(9, 11, 18, 0.95);
 }
 
+.componentsSection::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(900px 520px at 18% 30%, rgba(61,132,224,0.10), transparent 60%),
+    radial-gradient(900px 520px at 82% 72%, rgba(255,199,89,0.06), transparent 62%),
+    radial-gradient(1200px 700px at 50% 100%, rgba(0,0,0,0.55), transparent 55%);
+}
+.componentsSection > .container{
+  position: relative;
+  z-index: 1;
+}
 .componentsHeader{
   max-width: 520px;
   margin-bottom: 36px;
@@ -427,34 +454,48 @@
   min-width: 340px;
   height: 300px;
   padding: 22px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  background: radial-gradient(140% 120% at 20% 0%, rgba(255,255,255,0.07), rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.06);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.componentCard:hover{
+  transform: translateY(-4px);
+  border-color: rgba(61,132,224,0.22);
+  box-shadow:
+    0 26px 85px rgba(0,0,0,0.62),
+    0 0 0 1px rgba(61,132,224,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .componentCard img{
   width: 100%;
-  height: 160px;
+  height: 175px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 14px;
   opacity: 0.95;
+   filter: saturate(1.05) contrast(1.05);
+  opacity: 0.92;
+  transition: opacity 200ms ease, transform 220ms ease;
 }
-
+.componentCard:hover img{
+  opacity: 1;
+  transform: scale(1.01);
+}
 .componentCard h3{
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
-/* CTA sits under the carousel (no absolute positioning) */
-.componentsCTA{
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-}
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
