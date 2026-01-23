@@ -354,11 +354,11 @@
 }
 
 /* =========================
-   COMPONENTS SECTION
+   COMPONENTS SECTION (Auto-glide)
    ========================= */
+
 .componentsSection{
   position: relative;
-  height: auto;
   padding: clamp(72px, 10vw, 120px) 0;
   background:
     repeating-linear-gradient(
@@ -380,52 +380,57 @@
 
 .componentsHeader{
   max-width: 520px;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
 }
 .componentsHeader p{
   color: var(--muted);
   margin-top: 10px;
 }
 
-/* =========================
-   SCROLL AREA
-   ========================= */
+/* The viewport for the moving tracks */
 .componentsScroll{
-  position: sticky;
- top: 96px; /* adjust if your navbar is taller */
-  overflow: hidden;;
-  height: min(460px, 56vh);
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0 8px;
   display: flex;
-  align-items: center;
+  gap: 24px;
+  align-items: stretch;
+
+  /* subtle “fade” on left/right edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
 
+/* One full set of cards */
 .componentsTrack{
   display: flex;
-  gap: 18px;            
-  padding: 0 18px;      
+  gap: 24px;
   width: max-content;
-  flex-wrap: nowrap;
+  align-items: stretch;
+
+  animation: componentsMarquee 26s linear infinite;
   will-change: transform;
-  transform: translate3d(0,0,0);
 }
 
-.componentCard{
-  flex: 0 0 auto;       
+/* pause when user hovers the carousel */
+.componentsScroll:hover .componentsTrack{
+  animation-play-state: paused;
 }
 
+@keyframes componentsMarquee{
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-100%,0,0); }
+}
 
-/* =========================
-   COMPONENT CARD
-   ========================= */
+/* Card sizing — looks intentional on desktop */
 .componentCard{
-  min-width: 340px;   
-  height: 300px;      
+  min-width: 340px;
+  height: 300px;
   padding: 22px;
   border-radius: 20px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   display: flex;
-  flex: 0 0 auto;;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -436,6 +441,7 @@
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 14px;
+  opacity: 0.95;
 }
 
 .componentCard h3{
@@ -443,31 +449,35 @@
   font-weight: 600;
 }
 
-/* =========================
-   CTA
-   ========================= */
+/* CTA sits under the carousel (no absolute positioning) */
 .componentsCTA{
-  position: static;      
-  margin-top: 28px;
   display: flex;
   justify-content: center;
+  margin-top: 22px;
 }
 
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .componentsTrack{ animation: none; }
+}
 
-/* =========================
-   MOBILE FALLBACK
-   ========================= */
+/* Mobile: make it a normal horizontal scroll row (swipe-friendly) */
 @media (max-width: 860px){
   .componentsScroll{
-    height: auto;
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
   }
 
   .componentsTrack{
-    position: static;
-    flex-direction: column;
+    animation: none;
   }
 
   .componentCard{
-    min-width: auto;
+    scroll-snap-align: start;
+    min-width: 78vw;
+    height: 280px;
   }
 }

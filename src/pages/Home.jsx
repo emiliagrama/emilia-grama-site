@@ -1,98 +1,4 @@
-import { useEffect, useRef } from "react";
-
 export default function Home() {
-  const componentsSectionRef = useRef(null);
-  const componentsTrackRef = useRef(null);
-
-  useEffect(() => {
-    const section = componentsSectionRef.current;
-    const track = componentsTrackRef.current;
-    if (!section || !track) return;
-
-    const scrollEl = section.querySelector(".componentsScroll");
-    if (!scrollEl) return;
-
-    let raf = 0;
-    let maxTranslate = 0;
-    let startY = 0;
-
-    const clamp01 = (n) => Math.max(0, Math.min(1, n));
-
-   const measure = () => {
-  const viewportWidth = scrollEl.clientWidth;
-  maxTranslate = Math.max(0, track.scrollWidth - viewportWidth);
-
-  startY = section.getBoundingClientRect().top + window.scrollY;
-
-  // how tall is the sticky “viewport” where cards are shown
-  const scrollH = scrollEl.getBoundingClientRect().height;
-
-  // header height (title + subtitle)
-  const headerEl = section.querySelector(".componentsHeader");
-  const headerH = headerEl ? headerEl.getBoundingClientRect().height : 0;
-
-  // section padding (top + bottom)
-  const cs = getComputedStyle(section);
-  const padTop = parseFloat(cs.paddingTop) || 0;
-  const padBot = parseFloat(cs.paddingBottom) || 0;
-
-  // small breathing room so it doesn’t snap tight
-  const extra = 24;
-
-  section.style.height = `${headerH + scrollH + maxTranslate + padTop + padBot + extra}px`;
-};
-
-
-    const update = () => {
-      raf = 0;
-
-      if (maxTranslate <= 0) {
-        track.style.transform = `translate3d(0,0,0)`;
-        return;
-      }
-
-      const y = window.scrollY - startY;
-      const progress = clamp01(y / maxTranslate);
-
-      const x = -(progress * maxTranslate);
-      track.style.transform = `translate3d(${x}px, 0, 0)`;
-    };
-
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(update);
-    };
-
-    const onResize = () => {
-      measure();
-      update();
-    };
-
-    // Re-measure when track/viewport changes (images loading, fonts, etc.)
-    const ro = new ResizeObserver(() => {
-      measure();
-      update();
-    });
-    ro.observe(track);
-    ro.observe(scrollEl);
-
-    // Initial measure after layout paints
-    requestAnimationFrame(() => {
-      measure();
-      update();
-    });
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      ro.disconnect();
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
     <main>
       <section className="hero">
@@ -164,19 +70,17 @@ export default function Home() {
   </div>
 </section>
 
-    <section className="componentsSection" ref={componentsSectionRef}>
+    {/*UI COMPONENTS SECTION */}
+<section className="componentsSection" aria-label="UI Components">
   <div className="container">
-
     <header className="componentsHeader">
       <h2>UI Components</h2>
       <p>Reusable interface elements and interaction patterns.</p>
     </header>
 
-    {/* Scroll-driven horizontal area */}
-    <div className="componentsScroll">
-      <div className="componentsTrack" ref={componentsTrackRef}>
-
-        {/* Component card */}
+    <div className="componentsScroll" aria-label="Component carousel">
+      {/* Track 1 (original set) */}
+      <div className="componentsTrack">
         <article className="componentCard">
           <img src="/images/components/button.jpg" alt="Button component" />
           <h3>Buttons</h3>
@@ -206,19 +110,48 @@ export default function Home() {
           <img src="/images/components/navigation.jpg" alt="Navigation" />
           <h3>Navigation</h3>
         </article>
+      </div>
 
+      {/* Track 2 (clone) for seamless infinite loop */}
+      <div className="componentsTrack" aria-hidden="true">
+        <article className="componentCard">
+          <img src="/images/components/button.jpg" alt="" />
+          <h3>Buttons</h3>
+        </article>
+
+        <article className="componentCard">
+          <img src="/images/components/cards.jpg" alt="" />
+          <h3>Cards</h3>
+        </article>
+
+        <article className="componentCard">
+          <img src="/images/components/forms.jpg" alt="" />
+          <h3>Inputs</h3>
+        </article>
+
+        <article className="componentCard">
+          <img src="/images/components/hover.jpg" alt="" />
+          <h3>Hover Effects</h3>
+        </article>
+
+        <article className="componentCard">
+          <img src="/images/components/animation.jpg" alt="" />
+          <h3>Animations</h3>
+        </article>
+
+        <article className="componentCard">
+          <img src="/images/components/navigation.jpg" alt="" />
+          <h3>Navigation</h3>
+        </article>
       </div>
     </div>
 
-    {/* CTA */}
     <div className="componentsCTA">
-      <a href="/components" className="btn">
-        View all components →
-      </a>
+      <a href="/components" classNameName="btn">View all components →</a>
     </div>
-
   </div>
 </section>
+
   
     </main>
     
