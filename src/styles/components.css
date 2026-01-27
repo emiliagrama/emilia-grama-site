@@ -20,13 +20,19 @@
   gap: 16px;
 }
 
-.brand{ font-weight: 800; letter-spacing: -0.01em; }
+.brand{ font-weight: 500; letter-spacing: 0.1em; color: #eaeff0;  text-shadow:
+  0 0 1px rgba(53, 138, 207, 0.945),
+  0 0 4px rgba(245, 240, 240, 0.205),
+  0 0 18px rgb(165, 186, 216);
+
+ }
 
 .navLinks{
   display:flex;
   gap: 18px;
   font-weight: 600;
   color: var(--muted);
+  
 }
 
 .navLinks a:hover{ color: var(--text); }
@@ -398,7 +404,7 @@
   z-index:0;
   background:
     radial-gradient(900px 520px at 18% 30%, rgba(61,132,224,0.10), transparent 60%),
-    radial-gradient(900px 520px at 82% 72%, rgba(255,199,89,0.06), transparent 62%),
+    radial-gradient(900px 520px at 82% 72%, rgba(39, 102, 128, 0.068), transparent 62%),
     radial-gradient(1200px 700px at 50% 100%, rgba(0,0,0,0.55), transparent 55%);
 }
 .componentsSection > .container{
@@ -419,35 +425,33 @@
   position: relative;
   overflow: hidden;
   padding: 18px 0 8px;
-  display: flex;
-  gap: 24px;
-  align-items: stretch;
 
-  /* subtle “fade” on left/right edges */
+  /* keep your fade mask if you like */
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
 
-/* One full set of cards */
 .componentsTrack{
   display: flex;
+  flex-wrap: nowrap;
   gap: 24px;
   width: max-content;
   align-items: stretch;
 
-  animation: componentsMarquee 26s linear infinite;
   will-change: transform;
-}
-
-/* pause when user hovers the carousel */
-.componentsScroll:hover .componentsTrack{
-  animation-play-state: paused;
+  animation: componentsMarquee 28s linear infinite;
 }
 
 @keyframes componentsMarquee{
   from { transform: translate3d(0,0,0); }
-  to   { transform: translate3d(-100%,0,0); }
+  to   { transform: translate3d(-50%,0,0); }
 }
+
+/* pause on hover */
+.componentsScroll:hover .componentsTrack{
+  animation-play-state: paused;
+}
+
 
 /* Card sizing — looks intentional on desktop */
 .componentCard{
@@ -522,3 +526,337 @@
     height: 280px;
   }
 }
+
+
+
+/* ========== Component Library Page ========== */
+.libPage{ min-height: 100vh; padding: 42px 0; }
+.libShell{
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 26px;
+}
+.libSidebar{
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+}
+.libTitle{ font-size: 18px; margin: 0 0 6px; }
+.libSubtitle{ margin: 0 0 16px; opacity: 0.75; font-size: 13px; line-height: 1.35; }
+
+.libNav{ display: grid; gap: 10px; }
+.libNav__link{
+  display:block;
+  padding: 10px 12px;
+  border-radius: 12px;
+   position: relative;
+  text-decoration:none;
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  transition: transform 160ms ease,
+   background 180ms ease, 
+   border-color 180ms ease;
+}
+
+.libNav__link:hover{
+  transform: translateY(-1px);
+  background: rgba(120,210,255,0.08);
+  border-color: rgba(120,210,255,0.35);
+  transform: translateX(2px);
+}
+
+.libContent{ display: grid; gap: 26px; }
+.libSection{
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+}
+.libSection__header h2{ margin: 0 0 6px; font-size: 18px; }
+.libSection__header p{ margin: 0 0 14px; opacity: 0.75; font-size: 13px; }
+
+.libPanel{
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.25);
+}
+.libPanel--placeholder{ opacity: 0.6; padding: 22px; }
+
+.libRow{ display:flex; flex-wrap:wrap; gap: 12px; }
+
+@media (max-width: 900px){
+  .libShell{ grid-template-columns: 1fr; }
+  .libSidebar{ position: relative; top: 0; }
+}
+
+/* =======================
+   UI Button (multi-variant)
+======================= */
+.uiBtn{
+  --r: 999px;
+  --px: 18px;
+  --py: 12px;
+
+  --fg: rgba(255,255,255,0.92);
+  --bd: rgba(255,255,255,0.16);
+  --bg: rgba(255,255,255,0.06);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--py) var(--px);
+  border-radius: var(--r);
+  border: 1px solid var(--bd);
+  background: var(--bg);
+  color: var(--fg);
+
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
+  transform: translateZ(0);
+  transition: transform 160ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease, color 220ms ease;
+}
+
+.uiBtn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity 220ms ease;
+}
+
+.uiBtn:hover{
+  transform: translateY(-1px);
+}
+
+.uiBtn:active{
+  transform: translateY(0px);
+}
+
+.uiBtn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(61,132,224,0.22);
+}
+
+/* sizes */
+.uiBtn--sm{ --px: 14px; --py: 9px; font-size: 13px; }
+.uiBtn--md{ --px: 18px; --py: 12px; font-size: 14px; }
+.uiBtn--lg{ --px: 22px; --py: 14px; font-size: 15px; }
+
+.uiBtn--full{ width: 100%; }
+
+/* disabled/loading */
+.uiBtn[disabled],
+.uiBtn[aria-disabled="true"]{
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.uiBtn__spinner{
+  position:absolute;
+  right: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: rgba(255,255,255,0.9);
+  animation: uiBtnSpin .7s linear infinite;
+}
+
+.libGroupLabel{
+  margin: 12px 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+@keyframes uiBtnSpin{ to { transform: rotate(360deg); } }
+
+/* ===== Variants ===== */
+
+/* 1) Minimal glass (classy default) */
+.uiBtn--glass{
+  --bg: rgba(255,255,255,0.06);
+  --bd: rgba(255,255,255,0.16);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+}
+.uiBtn--glass::before{
+  background: radial-gradient(120% 120% at 20% 0%, rgba(61,132,224,0.22), transparent 55%);
+}
+.uiBtn--glass:hover{
+  border-color: rgba(61,132,224,0.32);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.55);
+}
+.uiBtn--glass:hover::before{ opacity: 1; }
+
+/* 2) Neon sci-fi */
+.uiBtn--neon{
+  --bg: rgba(18, 28, 46, 0.55);
+  --bd: rgba(120, 210, 255, 0.35);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.uiBtn--neon::before{
+  opacity: 1;
+  background: radial-gradient(120% 140% at 50% 0%, rgba(120,210,255,0.35), transparent 60%);
+}
+.uiBtn--neon:hover{
+  border-color: rgba(120,210,255,0.65);
+  box-shadow: 0 0 22px rgba(120,210,255,0.22), 0 18px 55px rgba(0,0,0,0.55);
+}
+
+/* 3) Retro gold CTA */
+.uiBtn--gold{
+  --bg: linear-gradient(180deg, rgba(214,170,83,0.40), rgba(214,170,83,0.14));
+  --bd: rgba(214,170,83,0.55);
+  color: rgba(255,245,220,0.95);
+}
+.uiBtn--gold::before{
+  background: radial-gradient(120% 120% at 20% 0%, rgba(255,220,140,0.30), transparent 55%);
+}
+.uiBtn--gold:hover{
+  border-color: rgba(255,220,140,0.75);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.60);
+}
+.uiBtn--gold:hover::before{ opacity: 1; }
+
+/* 4) Flat modern */
+.uiBtn--flat{
+  --bg: rgba(255,255,255,0.10);
+  --bd: rgba(255,255,255,0.08);
+  box-shadow: none;
+}
+.uiBtn--flat:hover{
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.16);
+  box-shadow: none;
+}
+
+/* useful extras */
+.uiBtn--outline{
+  --bg: transparent;
+  --bd: rgba(255,255,255,0.25);
+}
+.uiBtn--outline:hover{
+  border-color: rgba(61,132,224,0.40);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+
+.uiBtn--ghost{
+  --bg: transparent;
+  --bd: transparent;
+}
+.uiBtn--ghost:hover{
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.10);
+}
+/* ===== Media / Photo button (parallax hover) ===== */
+.uiBtn--media{
+  overflow: hidden;
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+}
+
+.uiBtn--media::before{
+  content:"";
+  position:absolute;
+  inset:-16px;
+  border-radius: inherit;
+  background-image: var(--btn-bg);
+  background-size: cover;
+  background-position: var(--btn-bg-pos, 50% 50%);
+  filter: saturate(1.1) contrast(1.05);
+  transform: translate3d(0,0,0) scale(1.05);
+  transition: transform 420ms ease, filter 420ms ease;
+  opacity: 1;
+}
+.uiBtn--media:hover::before{
+  transform: translate3d(10px,-6px,0) scale(1.12);
+  filter: saturate(1.15) contrast(1.12);
+}
+.uiBtn--media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.12) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.uiBtn--media:hover::after{
+  opacity: 1;
+}
+
+
+.uiBtn--media .uiBtn__label{
+  position: relative;
+  z-index: 1;
+}
+/* =======================
+   Button Shapes
+======================= */
+
+/* Default (pill) */
+.uiBtn--pill{
+  border-radius: 999px;
+}
+
+/* Soft rounded (design-system friendly) */
+.uiBtn--soft{
+  border-radius: 16px;
+}
+
+/* Square / brutalist */
+.uiBtn--square{
+  border-radius: 6px;
+}
+
+/* Cut corner (tech / sci-fi) */
+.uiBtn--cut{
+  border-radius: 0;
+  clip-path: polygon(
+    12px 0%,
+    100% 0%,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    0% 100%,
+    0% 12px
+  );
+}
+
+/* Hex / futuristic */
+.uiBtn--hex{
+  border-radius: 0;
+  clip-path: polygon(
+    12% 0%,
+    88% 0%,
+    100% 50%,
+    88% 100%,
+    12% 100%,
+    0% 50%
+  );
+}
+

@@ -1,5 +1,14 @@
 
 export default function Home() {
+   const componentCards = [
+    { img: "/images/components/button.jpg", title: "Buttons", alt: "Button component" },
+    { img: "/images/components/cards.jpg", title: "Cards", alt: "Card component" },
+    { img: "/images/components/forms.jpg", title: "Inputs", alt: "Form fields" },
+    { img: "/images/components/hover.jpg", title: "Hover Effects", alt: "Hover effects" },
+    { img: "/images/components/animation.jpg", title: "Animations", alt: "Animations" },
+    { img: "/images/components/navigation.jpg", title: "Navigation", alt: "Navigation" },
+  ];
+  
   return (
     <main>
       <section className="hero">
@@ -15,8 +24,9 @@ export default function Home() {
           </p>
 
           <div className="heroActions">
-            <a className="btn btnGold" href="/components">UI experiments</a>
-            <a className="btn" href="#projects"> View my work  </a>
+            <a className="btn btnGold" href="#projects"> View my work</a>
+            <a className="btn" href="/components">UI experiments</a>
+            
           </div>
         </div>
       </section>
@@ -71,88 +81,34 @@ export default function Home() {
   </div>
 </section>
 
-    {/*UI COMPONENTS SECTION */}
-<section className="componentsSection" aria-label="UI Components">
-  <div className="container">
-    <header className="componentsHeader">
-      <h2>UI Components</h2>
-      <p>Reusable interface elements and interaction patterns.</p>
-    </header>
+   {/* UI COMPONENTS SECTION */}
+      <section className="componentsSection" aria-label="UI Components">
+        <div className="container">
+          <header className="componentsHeader">
+            <h2>UI Components</h2>
+            <p>Reusable interface elements and interaction patterns.</p>
+          </header>
 
-    <div className="componentsScroll" aria-label="Component carousel">
-      {/* Track 1 (original set) */}
-      <div className="componentsTrack">
-        <article className="componentCard">
-          <img src="/images/components/button.jpg" alt="Button component" />
-          <h3>Buttons</h3>
-        </article>
+          <div className="componentsScroll" aria-label="Component carousel">
+            <div className="componentsTrack">
+              {[...componentCards, ...componentCards].map((c, i) => (
+                <article
+                  className="componentCard"
+                  key={`${c.title}-${i}`}
+                  aria-hidden={i >= componentCards.length}
+                >
+                  <img src={c.img} alt={c.alt} />
+                  <h3>{c.title}</h3>
+                </article>
+              ))}
+            </div>
+          </div>
 
-        <article className="componentCard">
-          <img src="/images/components/cards.jpg" alt="Card component" />
-          <h3>Cards</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/forms.jpg" alt="Form fields" />
-          <h3>Inputs</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/hover.jpg" alt="Hover effects" />
-          <h3>Hover Effects</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/animation.jpg" alt="Animations" />
-          <h3>Animations</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/navigation.jpg" alt="Navigation" />
-          <h3>Navigation</h3>
-        </article>
-      </div>
-
-      {/* Track 2 (clone) for seamless infinite loop */}
-      <div className="componentsTrack" aria-hidden="true">
-        <article className="componentCard">
-          <img src="/images/components/button.jpg" alt="" />
-          <h3>Buttons</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/cards.jpg" alt="" />
-          <h3>Cards</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/forms.jpg" alt="" />
-          <h3>Inputs</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/hover.jpg" alt="" />
-          <h3>Hover Effects</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/animation.jpg" alt="" />
-          <h3>Animations</h3>
-        </article>
-
-        <article className="componentCard">
-          <img src="/images/components/navigation.jpg" alt="" />
-          <h3>Navigation</h3>
-        </article>
-      </div>
-    </div>
-
-    <div className="componentsCTA">
-      <a className="btn btnGold" href="/components">View all components →</a>
-      
-    </div>
-  </div>
-</section>
+          <div className="componentsCTA">
+            <a className="btn btnGold" href="/components">View all components →</a>
+          </div>
+        </div>
+      </section>
     </main>
     
   );

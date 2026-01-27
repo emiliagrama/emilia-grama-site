@@ -5,12 +5,12 @@ export default function SiteLayout() {
     <div className="appShell">
       <header className="navbar">
         <div className="container navInner">
-          <div className="brand">Emilia Grama</div>
+          <div className="brand"><NavLink to="/">EMILIA GRAMA</NavLink></div>
 
           <nav className="navLinks">
-            <NavLink to="/">Home</NavLink>
+            
             <NavLink to="/components">Components</NavLink>
-            <a href="mailto:YOUR_EMAIL_HERE">Email me</a>
+            <a href="mailto:emiliagrama@gmail.com">Email me</a>
           </nav>
         </div>
       </header>
