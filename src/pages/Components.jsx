@@ -46,10 +46,11 @@ export default function Components() {
               </div>  
                 <p className="libGroupLabel">Media</p>
               <div className="libRow">
-                <Button variant="media" bgImage="/images/white-tiger.jpg">
+                <Button variant="media" bgImage="/images/universe/tiger.jpg"
+                >
                   White Tiger
                 </Button>
-                <Button variant="media" bgImage="/images/hero-wave.jpg" bgPosition="50% 60%">
+                <Button variant="media" bgImage="/images/universe/hero-wave.jpg" bgPosition="50% 60%">
                   Parallax Texture
                 </Button>
               </div>
