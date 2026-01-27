@@ -1,0 +1,515 @@
+.container{
+  width: min(var(--max), calc(100% - 2*var(--pad)));
+  margin: 0 auto;
+}
+
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 16px 0;
+  backdrop-filter: blur(10px);
+  background: rgba(10,16,34,.55);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.navInner{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand{ font-weight: 500; letter-spacing: 0.1em; color: #eaeff0;  text-shadow:
+  0 0 1px rgba(53, 138, 207, 0.945),
+  0 0 4px rgba(245, 240, 240, 0.205),
+  0 0 18px rgb(165, 186, 216);
+
+ }
+
+.navLinks{
+  display:flex;
+  gap: 18px;
+  font-weight: 600;
+  color: var(--muted);
+  
+}
+
+.navLinks a:hover{ color: var(--text); }
+
+.section{ padding: 72px 0; }
+
+.hero{
+  position: relative;
+  z-index: 3;
+  padding: 110px 0 90px;
+  overflow: hidden;
+  min-height: 100vh;
+  background:
+    /* readability layer — LIGHTER than before */
+    linear-gradient(
+      180deg,
+      rgba(7, 9, 18, 0.103) 0%,
+      rgba(7, 9, 18, 0.164) 40%,
+      rgba(7, 9, 18, 0.192) 100%
+    ),
+
+    /* accent glow (keeps identity) */
+    radial-gradient(
+      900px 520px at 18% 20%,
+      rgba(139,123,255,.32),
+      transparent 55%
+    ),
+
+    /* image */
+    url("/images/universe/hero-wave.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 9, 18, 0.075) 0%,
+    rgba(7, 9, 18, 0.74) 35%,
+    rgb(6, 9, 20) 100%
+  );
+  pointer-events:none;
+  z-index: 2;
+}
+
+
+.heroMeta{
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.heroTitle{
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+  margin: 10;
+  letter-spacing: -0.02em;
+}
+
+.heroTitle span{
+  /* image fill */
+  background-image: url("/images/universe/intent-fill.jpg");
+  background-size: 220% 220%;
+  background-position: 55% 45%;
+  background-repeat: no-repeat;
+  background-size: 260% 260%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* legibility */
+  text-shadow:
+  0 0 1px rgba(255, 255, 255, 0.233),
+  0 0 4px rgba(255, 255, 255, 0),
+  0 0 18px rgba(61, 132, 224, 0.897);
+
+}
+
+.heroTitle span:hover{
+  background-position: 35% 55%;
+  transition: background-position .8s ease;
+}
+
+.heroDesc{
+  font-size: 17px;
+  max-width: 52ch;
+  margin-top: 20px;
+  color: var(--muted);
+}
+
+.heroActions{
+  display:flex;
+  gap: 14px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.04);
+  font-weight: 700;
+}
+
+.btnGold{
+  border-color: rgba(107, 182, 244, 0.55);
+  background: linear-gradient(90deg, rgba(107, 223, 244, 0.3), rgba(244,200,107,.10));
+}
+
+@media (max-width: 860px){
+  .componentGrid{ grid-template-columns: 1fr; }
+}
+
+
+/* ===== Projects section ===== */
+.projectsSection {
+  padding: clamp(56px, 8vw, 92px) 0;
+   position: relative;
+   isolation: isolate;
+    background:
+    radial-gradient(700px 420px at 75% 25%, rgba(9, 53, 110, 0.226), transparent 58%),
+    radial-gradient(700px 420px at 30% 75%,rgba(38, 133, 156, 0.089), transparent 58%); 
+}
+
+/* Overlay haze that blends UP into the hero */
+.projectsSection::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:-1px;
+  height: 320px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(3, 7, 24, 0.062) 0%,
+      rgba(7, 9, 18, 0.678) 55%,
+      rgba(7, 9, 18, 0.95) 100%
+    ),
+    radial-gradient(
+      900px 520px at 24% 10%,
+      rgba(139, 123, 255, 0.14),
+      transparent 60%
+    );
+  pointer-events:none;
+  z-index: 0;
+}
+.projectsSection::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height: 110px;
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.014), rgba(0,0,0,0.55) 55%, rgba(0, 0, 0, 0.815) 100%);
+}
+.sectionLead {
+  margin-top: 10px;
+  max-width: 60ch;
+  color: var(--muted);
+}
+
+/* Grid */
+.projectsGrid {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+/* 2 columns on desktop */
+@media (min-width: 900px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+/* Card */
+.projectCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 11, 17, 0.842);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Ensure content stays above overlay */
+.projectsSection > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Media area (placeholder now) */
+.projectMedia {
+  position: relative;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9; height: auto;
+}
+
+/* shared image behavior */
+.projectThumbPlaceholder {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+/* individual projects */
+.projectHotel .projectThumbPlaceholder {
+  background-image: url("/images/universe/hotel-vacanta.jpg");
+   filter: saturate(0.85) contrast(1.05);
+}
+
+.projectMusic .projectThumbPlaceholder {
+  background-image: url("/images/universe/hugo-figuera.jpg");
+}
+
+/* subtle hover zoom */
+.projectCard:hover .projectThumbPlaceholder {
+  transform: scale(1.05);
+}
+
+/* Text content */
+.projectBody {
+  padding: 20px 20px 22px;
+}
+
+.projectKicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  opacity: 0.75;
+}
+
+.projectTitle {
+  margin: 0 0 10px;
+  font-size: 23px;
+  line-height: 1.15;
+}
+
+.projectDesc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  max-width: 55ch;
+}
+
+/* Link */
+.projectActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.projectLink {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: rgba(50, 151, 177, 0.767);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(35, 149, 184, 0.11);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  font-size: 14px;
+}
+
+.projectLink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(80,140,255,0.15);
+  border-color: rgba(28, 93, 206, 0.35);
+}
+
+/* Note */
+.projectsNote {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+}
+ 
+
+/* =========================
+   COMPONENTS SECTION (Auto-glide)
+   ========================= */
+
+.componentsSection{
+  position: relative;
+  isolation: isolate;
+  padding: 80px;
+  margin-top: -35px; /* pulls it slightly into the fade, feels “blended” */
+  padding-top: 106px;
+  padding-bottom: 180px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 0,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.025) 0,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    rgba(9, 11, 18, 0.95);
+}
+
+.componentsSection::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(900px 520px at 18% 30%, rgba(61,132,224,0.10), transparent 60%),
+    radial-gradient(900px 520px at 82% 72%, rgba(39, 102, 128, 0.068), transparent 62%),
+    radial-gradient(1200px 700px at 50% 100%, rgba(0,0,0,0.55), transparent 55%);
+}
+.componentsSection > .container{
+  position: relative;
+  z-index: 1;
+}
+.componentsHeader{
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+.componentsHeader p{
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* The viewport for the moving tracks */
+.componentsScroll{
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0 108px;
+
+  /* keep your fade mask if you like */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
+
+.componentsTrack{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  width: max-content;
+  align-items: stretch;
+  will-change: transform;
+  animation: componentsMarquee 28s linear infinite;
+}
+
+@keyframes componentsMarquee{
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-50%,0,0); }
+}
+
+/* pause on hover */
+.componentsScroll:hover .componentsTrack{
+  animation-play-state: paused;
+}
+
+/* Card sizing — looks intentional on desktop */
+.componentCard{
+  min-width: 340px;
+  height: auto;
+  padding: 32px;
+  border-radius: 22px;
+  background: radial-gradient(140% 120% at 20% 0%, rgba(255,255,255,0.07), rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.041),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.componentCard:hover{
+  transform: translateY(-4px);
+  border-color: rgba(61,132,224,0.22);
+  box-shadow:
+    0 26px 85px rgba(0, 0, 0, 0.068),
+    0 0 0 1px rgba(61,132,224,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.componentCard img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  opacity: 0.95;
+   filter: saturate(1.05) contrast(1.05);
+  opacity: 0.92;
+  transition: opacity 200ms ease, transform 220ms ease;
+}
+
+.componentPreview{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;  
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.componentPreview img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.componentCard:hover img{
+  opacity: 1;
+  transform: scale(1.01);
+}
+.componentCard h3{
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .componentsTrack{ animation: none; }
+}
+
+/* Mobile: make it a normal horizontal scroll row (swipe-friendly) */
+@media (max-width: 860px){
+  .componentsScroll{
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+  }
+
+  .componentsTrack{
+    animation: none;
+  }
+
+  .componentCard{
+    scroll-snap-align: start;
+    min-width: 78vw;
+    height: 280px;
+  }
+}
+
+

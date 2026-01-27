@@ -1,12 +1,12 @@
 
 export default function Home() {
    const componentCards = [
-    { img: "/images/components/button.jpg", title: "Buttons", alt: "Button component" },
-    { img: "/images/components/cards.jpg", title: "Cards", alt: "Card component" },
-    { img: "/images/components/forms.jpg", title: "Inputs", alt: "Form fields" },
-    { img: "/images/components/hover.jpg", title: "Hover Effects", alt: "Hover effects" },
-    { img: "/images/components/animation.jpg", title: "Animations", alt: "Animations" },
-    { img: "/images/components/navigation.jpg", title: "Navigation", alt: "Navigation" },
+    { img: "/images/universe/button.jpg", title: "Buttons", alt: "Button component" },
+    { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card component" },
+    { img: "/images/universe/forms.jpg", title: "Inputs", alt: "Form fields" },
+    { img: "/images/universe/hover.jpg", title: "Hover Effects", alt: "Hover effects" },
+    { img: "/images/universe/animation.jpg", title: "Animations", alt: "Animations" },
+    { img: "/images/universe/navigation.jpg", title: "Navigation", alt: "Navigation" },
   ];
   
   return (
@@ -85,7 +85,7 @@ export default function Home() {
       <section className="componentsSection" aria-label="UI Components">
         <div className="container">
           <header className="componentsHeader">
-            <h2>UI Components</h2>
+            <h2>UI Experiments</h2>
             <p>Reusable interface elements and interaction patterns.</p>
           </header>
 
@@ -93,19 +93,22 @@ export default function Home() {
             <div className="componentsTrack">
               {[...componentCards, ...componentCards].map((c, i) => (
                 <article
-                  className="componentCard"
-                  key={`${c.title}-${i}`}
-                  aria-hidden={i >= componentCards.length}
-                >
-                  <img src={c.img} alt={c.alt} />
-                  <h3>{c.title}</h3>
-                </article>
+  className="componentCard"
+  key={`${c.title}-${i}`}
+  aria-hidden={i >= componentCards.length}
+>
+  <div className="componentPreview">
+    <img src={c.img} alt={c.alt} />
+  </div>
+  <h3>{c.title}</h3>
+</article>
+
               ))}
             </div>
           </div>
 
           <div className="componentsCTA">
-            <a className="btn btnGold" href="/components">View all components →</a>
+            <a className="btn btnGold" href="/components">View all experiments →</a>
           </div>
         </div>
       </section>

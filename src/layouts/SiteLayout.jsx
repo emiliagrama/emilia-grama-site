@@ -9,7 +9,7 @@ export default function SiteLayout() {
 
           <nav className="navLinks">
             
-            <NavLink to="/components">Components</NavLink>
+            <NavLink to="/components">UI experiments</NavLink>
             <a href="mailto:emiliagrama@gmail.com">Email me</a>
           </nav>
         </div>
