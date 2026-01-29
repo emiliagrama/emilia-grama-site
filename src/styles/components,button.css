@@ -44,8 +44,10 @@
   transform: translateX(2px);
 }
 
-.libContent { display: grid; gap: 26px; }
+.libContent { display: grid;
+   gap: 35px; }
 .libSection{
+  margin-top: 36px;
   padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.10);
@@ -74,6 +76,7 @@
    UI Button (multi-variant)
 ======================= */
 .uiBtn{
+  
   --r: 999px;
   --px: 18px;
   --py: 12px;

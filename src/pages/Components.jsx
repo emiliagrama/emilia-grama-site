@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import Card from "../components/Card";
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
@@ -28,6 +29,7 @@ export default function Components() {
         </aside>
 
         <section className="libContent">
+
           <div className="libSection" id="buttons">
             <header className="libSection__header">
               <h2>Buttons</h2>
@@ -46,9 +48,9 @@ export default function Components() {
               </div>  
                 <p className="libGroupLabel">Media</p>
               <div className="libRow">
-                <Button variant="media" bgImage="/images/universe/tiger.jpg"
+                <Button variant="media" bgImage="/images/universe/leopard.png"
                 >
-                  White Tiger
+                  Patterns
                 </Button>
                 <Button variant="media" bgImage="/images/universe/intent-fill.jpg" bgPosition="50% 60%">
                   Parallax Texture
@@ -66,8 +68,91 @@ export default function Components() {
             </div>
           </div>
 
-          {/* placeholders */}
-          <div className="libSection" id="cards"><header className="libSection__header"><h2>Cards</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="cards">
+            <header className="libSection__header">
+              <h2>Cards</h2>
+              <p>Layouts, media cards, hover states, and a flip interaction.</p>
+            </header>
+
+            <div className="libPanel">
+              <p className="libGroupLabel">Styles</p>
+
+              <div className="cardsGrid">
+                <Card
+                  variant="default"
+                  eyebrow="Default"
+                  title="Project card"
+                  subtitle="Clean structure with CTA + hover lift."
+                  href="#"
+                  ctaLabel="Open"
+                >
+                  Perfect for services, project previews, or feature highlights.
+                </Card>
+
+                <Card
+                  variant="glass"
+                  eyebrow="Glass"
+                  title="Frosted panel"
+                  subtitle="Soft blur, subtle border, premium feel."
+                  href="#"
+                  ctaLabel="Explore"
+                >
+                  Great for testimonials, metrics, or secondary content blocks.
+                </Card>
+
+                <Card
+                  variant="glow"
+                  eyebrow="Glow"
+                  title="Featured card"
+                  subtitle="Controlled neon aura (still classy)."
+                  href="#"
+                  ctaLabel="See more"
+                >
+                  Use this sparingly to highlight one key item.
+                </Card>
+              </div>
+
+              <p className="libGroupLabel" style={{ marginTop: 18 }}>Media</p>
+
+              <div className="cardsGrid">
+                <Card
+                  variant="media"
+                  eyebrow="Media"
+                  title="Universe card"
+                  subtitle="Image header + overlay text."
+                  image="/images/universe/universe-card.jpg"
+                  href="#"
+                  ctaLabel="Visit"
+                >
+                  Perfect for “worlds”, galleries, and visual portfolio items.
+                </Card>
+
+                <Card
+                  variant="media"
+                  eyebrow="Media"
+                  title="Parallax texture"
+                  subtitle="Works with any image you drop in."
+                  image="/images/universe/intent-fill.jpg"
+                  href="#"
+                  ctaLabel="Open"
+                >
+                  This gives you instant personality without heavy design work.
+                </Card>
+
+                <Card
+                  variant="flip"
+                  eyebrow="Flip"
+                  title="Reveal on hover"
+                  subtitle="Front → back in 3D."
+                  image="/images/universe/tiger.jpg"
+                  href="#"
+                  ctaLabel="Details"
+                >
+                  Back side can hold extra info, tags, or a mini CTA area.
+                </Card>
+              </div>
+            </div>
+          </div>
           <div className="libSection" id="forms"><header className="libSection__header"><h2>Form fields</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="nav"><header className="libSection__header"><h2>Navbars</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
