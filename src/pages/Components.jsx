@@ -50,7 +50,7 @@ export default function Components() {
                 >
                   White Tiger
                 </Button>
-                <Button variant="media" bgImage="/images/universe/hero-wave.jpg" bgPosition="50% 60%">
+                <Button variant="media" bgImage="/images/universe/intent-fill.jpg" bgPosition="50% 60%">
                   Parallax Texture
                 </Button>
               </div>

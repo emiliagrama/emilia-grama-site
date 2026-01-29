@@ -1,15 +1,17 @@
 /* ========== Component Library Page ========== */
-.libPage{ min-height: 100vh; padding: 42px 0; }
+.libPage{ min-height: 100vh; padding-bottom: 30vh; }
 .libShell{
   width: min(1200px, 92vw);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 270px 1fr;
   gap: 26px;
+   overflow: visible;
 }
+
 .libSidebar{
   position: sticky;
-  top: 18px;
+  top: 88px;
   align-self: start;
   padding: 18px;
   border-radius: 18px;
@@ -42,12 +44,13 @@
   transform: translateX(2px);
 }
 
-.libContent{ display: grid; gap: 26px; }
+.libContent { display: grid; gap: 26px; }
 .libSection{
   padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.03);
+  scroll-margin-top: 110px;
 }
 .libSection__header h2{ margin: 0 0 6px; font-size: 18px; }
 .libSection__header p{ margin: 0 0 14px; opacity: 0.75; font-size: 13px; }
@@ -241,7 +244,7 @@
   border-color: rgba(15, 2, 2, 0.22);
   background: rgba(143, 18, 18, 0.05);
   box-shadow: 0 18px 55px rgba(0,0,0,0.55);
-  
+  border-color: rgba(133, 136, 138, 0.555);
 }
 
 .uiBtn--media::before{
