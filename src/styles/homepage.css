@@ -499,6 +499,7 @@
     mask-image: none;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
+    
   }
 
   .componentsTrack{
@@ -507,8 +508,25 @@
 
   .componentCard{
     scroll-snap-align: start;
-    min-width: 78vw;
-    height: 280px;
+    min-width: 86vw;
+    height: 240px;
+
+  }
+
+   .componentsSection .container {
+    width: 100%;
+    max-width: 100%;
+   
+  }
+
+  /* optional: prevent any horizontal weirdness */
+  .componentsSection {
+    overflow-x: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-inline: 16px !important;
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 }
 

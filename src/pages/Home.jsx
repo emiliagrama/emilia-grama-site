@@ -93,15 +93,15 @@ export default function Home() {
             <div className="componentsTrack">
               {[...componentCards, ...componentCards].map((c, i) => (
                 <article
-  className="componentCard"
-  key={`${c.title}-${i}`}
-  aria-hidden={i >= componentCards.length}
->
-  <div className="componentPreview">
-    <img src={c.img} alt={c.alt} />
-  </div>
-  <h3>{c.title}</h3>
-</article>
+                  className="componentCard"
+                  key={`${c.title}-${i}`}
+                  aria-hidden={i >= componentCards.length}
+                >
+                  <div className="componentPreview">
+                    <img src={c.img} alt={c.alt} />
+                  </div>
+                  <h3>{c.title}</h3>
+                </article>
 
               ))}
             </div>
