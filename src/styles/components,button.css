@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 270px 1fr;
   gap: 26px;
-   overflow: visible;
+  overflow: visible;
 }
 
 .libSidebar{
@@ -45,14 +45,15 @@
 }
 
 .libContent { display: grid;
-   gap: 35px; }
+  gap: 36px;  
+  align-content: start;}
 .libSection{
-  margin-top: 36px;
+  margin-top: 0;
   padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.03);
-  scroll-margin-top: 110px;
+  scroll-margin-top: 90px;
 }
 .libSection__header h2{ margin: 0 0 6px; font-size: 18px; }
 .libSection__header p{ margin: 0 0 14px; opacity: 0.75; font-size: 13px; }
@@ -75,8 +76,11 @@
 /* =======================
    UI Button (multi-variant)
 ======================= */
+#buttons{
+  margin-top: 36px;
+}
+
 .uiBtn{
-  
   --r: 999px;
   --px: 18px;
   --py: 12px;
@@ -131,7 +135,6 @@
 .uiBtn--sm{ --px: 14px; --py: 9px; font-size: 13px; }
 .uiBtn--md{ --px: 18px; --py: 12px; font-size: 14px; }
 .uiBtn--lg{ --px: 22px; --py: 14px; font-size: 15px; }
-
 .uiBtn--full{ width: 100%; }
 
 /* disabled/loading */
@@ -165,7 +168,6 @@
 @keyframes uiBtnSpin{ to { transform: rotate(360deg); } }
 
 /* ===== Variants ===== */
-
 /* 1) Minimal glass (classy default) */
 .uiBtn--glass{
   --bg: rgba(255,255,255,0.06);

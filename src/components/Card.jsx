@@ -13,13 +13,9 @@ export default function Card({
   align = "left", // left | center
   className = "",
 }) {
-  const isLink = Boolean(href);
+const Root = "div";
+const baseProps = {};
 
-  const Root = isLink ? "a" : "div";
-
-  const baseProps = isLink
-    ? { href, className: "card__linkWrap", "aria-label": title || "Card link" }
-    : {};
 
   const cardClass = [
     "card",
@@ -117,15 +113,14 @@ export default function Card({
 
           {children ? <div className="card__body">{children}</div> : null}
 
-          {(href || ctaLabel) && (
+          {ctaLabel && (
             <div className="card__ctaRow">
-              {href ? (
-                <span className="card__cta">
-                  {ctaLabel} →
-                </span>
-              ) : null}
+              <button type="button" className="card__cta">
+                {ctaLabel} →
+              </button>
             </div>
           )}
+
         </div>
       </Root>
     </div>

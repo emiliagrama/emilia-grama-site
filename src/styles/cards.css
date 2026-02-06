@@ -52,7 +52,6 @@
   height: 100%;
 }
 
-/* inner highlight ring like your panels */
 .card::before {
   content: "";
   position: absolute;
@@ -81,7 +80,6 @@
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
@@ -126,29 +124,37 @@
   margin-top: 14px;
 }
 
-.card__cta {
+.card__cta{
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
-  opacity: .9;
-
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.05);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
-  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
 }
 
-.card:hover .card__cta {
+button.card__cta{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255,255,255,0.14);
+  font: inherit;
+  line-height: 1;
+  font-size: 13px; 
+}
+
+/* hover */
+.card:hover .card__cta{
   transform: translateY(-1px);
-  border-color: rgba(255,255,255,.16);
-  background: rgba(255,255,255,.07);
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(120,210,255,0.35);
 }
 
 /* VARIANTS */
-
 .card--glass {
  background: rgba(20, 24, 34, 0.35) !important;
   backdrop-filter: blur(14px);
@@ -156,7 +162,6 @@
   border: 1px solid rgba(255,255,255,.12);
   position: relative;
   overflow: hidden;
-  
 }
 
 .card--glass::before {
@@ -189,7 +194,6 @@
   inset: -1px;
   border-radius: 18px;
   pointer-events: none;
-
   background: radial-gradient(500px 180px at 10% 0%, rgba(38, 141, 201, 0.616), transparent 40%),
               radial-gradient(500px 180px at 90% 100%, rgba(83, 168, 161, 0.589), transparent 40%);
   opacity: .55;
@@ -201,7 +205,7 @@
   padding: 0;
 }
 .card--media .card__content {
-  padding-top: 160px; /* makes room for image */
+  padding-top: 160px; 
 }
 
 .cardMedia {
