@@ -47,7 +47,9 @@ export default function Components() {
                 <Button variant="flat">Flat</Button>
                 <Button variant="outline">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
-              </div>  
+                <Button variant="pulse" className="uiBtn--pulse">Pulse</Button>
+              </div> 
+
                 <p className="libGroupLabel">Media</p>
               <div className="libRow">
                 <Button variant="media" bgImage="/images/universe/leopard.png"
