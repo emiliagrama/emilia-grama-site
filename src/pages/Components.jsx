@@ -32,7 +32,9 @@ export default function Components() {
 
           <div className="libSection" id="buttons">
             <header className="libSection__header">
-              <h2>Buttons</h2>
+              <h2>Buttons
+              <span className="libPulse" aria-hidden="true" />
+              </h2>
               <p>All button styles, sizes, and states.</p>
             </header>
 
@@ -70,7 +72,9 @@ export default function Components() {
 
           <div className="libSection" id="cards">
             <header className="libSection__header">
-              <h2>Cards</h2>
+              <h2>Cards
+              <span className="libPulse" aria-hidden="true" />
+              </h2>
               <p>Layouts, media cards, hover states, and a flip interaction.</p>
             </header>
 
@@ -153,11 +157,11 @@ export default function Components() {
               </div>
             </div>
           </div>
-          <div className="libSection" id="forms"><header className="libSection__header"><h2>Form fields</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="nav"><header className="libSection__header"><h2>Navbars</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="player"><header className="libSection__header"><h2>Players</h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="forms"><header className="libSection__header"><h2>Form fields<span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="nav"><header className="libSection__header"><h2>Navbars <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects <span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
         </section>
       </div>
     </main>
