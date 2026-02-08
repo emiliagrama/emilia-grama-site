@@ -341,26 +341,93 @@ background: linear-gradient(
 
 /* 4) Flat modern */
 .uiBtn--flat{
-  --bg: rgba(255,255,255,0.10);
-  --bd: rgba(255,255,255,0.08);
+  --bg: rgba(5, 40, 44, 0.459);
+  --bd: rgba(57, 60, 235, 0.08);
   box-shadow: none;
 }
 .uiBtn--flat:hover{
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.16);
+  background: rgba(9, 19, 112, 0.14);
+  border-color: rgba(47, 34, 241, 0.16);
   box-shadow: none;
 }
-
 /* useful extras */
 .uiBtn--outline{
   --bg: transparent;
-  --bd: rgba(255,255,255,0.25);
+  --bd: rgba(255, 255, 255, 0.103);
+  border-color: transparent;
 }
 .uiBtn--outline:hover{
-  border-color: rgba(61,132,224,0.40);
   box-shadow: 0 18px 45px rgba(0,0,0,0.45);
 }
+/* Make sure the button itself is positioned */
+.uiBtn--ring {
+  position: relative;
+  overflow: hidden;            
+}
 
+/* The animated border layer */
+.uiBtn--ring::before {
+  content: "";
+  position: absolute;
+  inset: -3px;                 /* thickness control (slightly outside) */
+  border-radius: 999px;        /* match your pill buttons */
+  padding: 1.5px;                /* ring thickness */
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 80, 80, 0.0),
+    rgba(255, 80, 80, 0.55),
+    rgba(255, 80, 240, 0.45),
+    rgba(120, 210, 255, 0.45),
+    rgba(255, 80, 180, 0.45),
+    rgba(80, 214, 255, 0.55),
+    rgba(240, 80, 255, 0)
+  );
+  animation: ring-spin 3.2s linear infinite;
+
+  /* Mask so ONLY the ring shows (not covering the inside) */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Optional: make it stronger on hover, calmer otherwise */
+.uiBtn--ring:hover::before {
+  opacity: 1;
+  animation-duration: 2.2s;
+}
+
+/* Optional: if you want a little glow aura */
+.uiBtn--ring::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 80, 80, 0.18), transparent 60%);
+  filter: blur(10px);
+  opacity: 0.0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+.uiBtn--ring:hover::after {
+  opacity: 1;
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .uiBtn--ring::before { animation: none; }
+}
+
+
+/* Gost Button */
 .uiBtn--ghost{
   --bg: transparent;
   --bd: transparent;
@@ -369,6 +436,8 @@ background: linear-gradient(
   background: rgba(255,255,255,0.06);
   border-color: rgba(255,255,255,0.10);
 }
+
+/* Pulse Button */
 .uiBtn--pulse {
   
   background: rgba(89, 60, 220, 0.08);
@@ -406,7 +475,6 @@ background: linear-gradient(
     animation: none;
   }
 }
-
 
 /* ===== Media / Photo button (parallax hover) ===== */
 .uiBtn--media{

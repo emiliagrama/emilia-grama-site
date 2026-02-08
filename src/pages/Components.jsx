@@ -45,7 +45,7 @@ export default function Components() {
                 <Button variant="neon">Neon</Button>
                 <Button variant="gold">Gold</Button>
                 <Button variant="flat">Flat</Button>
-                <Button variant="outline">Outline</Button>
+                <Button variant="outline"className="uiBtn--ring">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="pulse" className="uiBtn--pulse">Pulse</Button>
               </div> 
