@@ -53,7 +53,7 @@ const baseProps = {};
                 </div>
               ) : null}
 
-              
+              <div className="cardFlip_hint">Hover to reveal →</div>
             </div>
 
             <div className="cardFlip__face cardFlip__back">
@@ -67,17 +67,7 @@ const baseProps = {};
 
               <div className="card__body">
                 {children}
-                <div className="card__ctaRow">
-                  {href ? (
-                    <a className="card__cta" href={href}>
-                      {ctaLabel} →
-                    </a>
-                  ) : (
-                    <button className="card__cta" type="button">
-                      {ctaLabel} →
-                    </button>
-                  )}
-                </div>
+                
               </div>
             </div>
           </div>
