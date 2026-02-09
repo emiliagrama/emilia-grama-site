@@ -29,7 +29,6 @@ export default function Components() {
         </aside>
 
         <section className="libContent">
-
           <div className="libSection" id="buttons">
             <header className="libSection__header">
               <h2>Buttons
@@ -41,19 +40,16 @@ export default function Components() {
             <div className="libPanel">
               <p className="libGroupLabel">Styles</p>
               <div className="libRow">
-                <Button variant="glass">Glass</Button>
                 <Button variant="neon">Neon</Button>
-                <Button variant="gold">Gold</Button>
-                <Button variant="flat">Flat</Button>
                 <Button variant="outline"className="uiBtn--ring">Outline</Button>
+                <Button variant="gold">Gold</Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="pulse" className="uiBtn--pulse">Pulse</Button>
               </div> 
 
                 <p className="libGroupLabel">Media</p>
               <div className="libRow">
-                <Button variant="media" bgImage="/images/universe/leopard.png"
-                >
+                <Button variant="media" bgImage="/images/universe/leopard.png">
                   Patterns
                 </Button>
                 <Button variant="media" bgImage="/images/universe/intent-fill.jpg" bgPosition="50% 60%">
@@ -62,7 +58,6 @@ export default function Components() {
               </div>
                 <p className="libGroupLabel">Shapes</p>
               <div className="libRow" style={{ marginTop: 16 }}>
-                <Button shape="pill">Pill</Button>
                 <Button shape="soft">Soft</Button>
                 <Button shape="square">Square</Button>
                 <Button shape="cut">Cut</Button>
@@ -119,14 +114,13 @@ export default function Components() {
               </div>
 
               <p className="libGroupLabel" style={{ marginTop: 18 }}>Media</p>
-
               <div className="cardsGrid">
                 <Card
                   variant="media"
                   eyebrow="Media"
                   title="Universe card"
-                  subtitle="Image header + overlay text."
-                  image="/images/universe/universe-card.jpg"
+                  subtitle="Video header + overlay text."
+                  video="/images/universe/homepage-bg.mp4"
                   href="#"
                   ctaLabel="Visit"
                 >
@@ -134,7 +128,7 @@ export default function Components() {
                 </Card>
 
                 <Card
-                  variant="media"
+                  variant="media_img"
                   eyebrow="Media"
                   title="Parallax texture"
                   subtitle="Works with any image you drop in."

@@ -339,17 +339,6 @@ background: linear-gradient(
 }
 .uiBtn--gold:hover::before{ opacity: 1; }
 
-/* 4) Flat modern */
-.uiBtn--flat{
-  --bg: rgba(5, 40, 44, 0.459);
-  --bd: rgba(57, 60, 235, 0.08);
-  box-shadow: none;
-}
-.uiBtn--flat:hover{
-  background: rgba(9, 19, 112, 0.14);
-  border-color: rgba(47, 34, 241, 0.16);
-  box-shadow: none;
-}
 /* useful extras */
 .uiBtn--outline{
   --bg: transparent;
@@ -528,11 +517,6 @@ background: linear-gradient(
 /* =======================
    Button Shapes
 ======================= */
-
-/* Default (pill) */
-.uiBtn--pill{
-  border-radius: 999px;
-}
 
 /* Soft rounded (design-system friendly) */
 .uiBtn--soft{

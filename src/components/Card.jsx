@@ -8,6 +8,7 @@ export default function Card({
   children,
   icon,
   image,
+  video,
   href,
   ctaLabel = "View",
   align = "left", // left | center
@@ -15,7 +16,6 @@ export default function Card({
 }) {
 const Root = "div";
 const baseProps = {};
-
 
   const cardClass = [
     "card",
@@ -45,15 +45,15 @@ const baseProps = {};
               {image ? (
                 <div className="cardMedia">
                   <div
-                    className="cardMedia__img"
+                    className="cardMedia_img"
                     style={{ backgroundImage: `url(${image})` }}
                     aria-hidden="true"
                   />
-                  <div className="cardMedia__overlay" aria-hidden="true" />
+                  <div className="cardMedia_overlay" aria-hidden="true" />
                 </div>
               ) : null}
 
-              <div className="card__body">{children}</div>
+              
             </div>
 
             <div className="cardFlip__face cardFlip__back">
@@ -87,19 +87,34 @@ const baseProps = {};
   }
 
   // ALL other variants
+  
   return (
     <div className={cardClass}>
       <Root {...baseProps}>
-        {variant === "media" && image ? (
-          <div className="cardMedia">
-            <div
-              className="cardMedia__img"
-              style={{ backgroundImage: `url(${image})` }}
-              aria-hidden="true"
-            />
-            <div className="cardMedia__overlay" aria-hidden="true" />
-          </div>
-        ) : null}
+        {
+  (variant === "media" || variant === "media_img") && (image || video) && (
+    <div className="cardMedia">
+      {video ? (
+        <video
+          className="cardMedia_video"
+          src={video}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        />
+      ) : (
+        <div
+          className="cardMedia_img"
+          style={{ backgroundImage: `url(${image})` }}
+          aria-hidden="true"
+        />
+      )}
+      <div className="cardMedia_overlay" aria-hidden="true" />
+    </div>
+  )
+}
 
         <div className="card__content">
           <div className="card__top">
