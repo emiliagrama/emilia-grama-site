@@ -82,28 +82,28 @@ const baseProps = {};
     <div className={cardClass}>
       <Root {...baseProps}>
         {
-  (variant === "media" || variant === "media_img") && (image || video) && (
-    <div className="cardMedia">
-      {video ? (
-        <video
-          className="cardMedia_video"
-          src={video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        />
-      ) : (
-        <div
-          className="cardMedia_img"
-          style={{ backgroundImage: `url(${image})` }}
-          aria-hidden="true"
-        />
-      )}
-      <div className="cardMedia_overlay" aria-hidden="true" />
-    </div>
-  )
+        (variant === "media" || variant === "media_img") && (image || video) && (
+          <div className="cardMedia">
+            {video ? (
+              <video
+                className="cardMedia_video"
+                src={video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+              />
+            ) : (
+              <div
+                className="cardMedia_img"
+                style={{ backgroundImage: `url(${image})` }}
+                aria-hidden="true"
+              />
+            )}
+            <div className="cardMedia_overlay" aria-hidden="true" />
+          </div>
+        )
 }
 
         <div className="card__content">

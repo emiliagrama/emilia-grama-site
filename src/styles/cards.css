@@ -4,7 +4,7 @@
 
 .cardsGrid {
   display: grid;
-  gap: 16px;
+  gap: 24px;
   grid-template-columns: repeat(12, 1fr);
 }
 
@@ -275,15 +275,15 @@ button.card__cta{
 }
 
 /* MEDIA CARD */
-.card--media_img .card__content, .card--media .card__content{
-  padding-top: 160px; 
-}
-
 .cardMedia {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
+}
+
+.card--media_img .card__content, .card--media .card__content{
+  padding-top: 160px; 
 }
 
 .cardMedia_img {

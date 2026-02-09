@@ -1,5 +1,7 @@
 import Button from "../components/Button";
 import Card from "../components/Card";
+import Form from "../components/Form";
+
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
@@ -153,7 +155,20 @@ export default function Components() {
               </div>
             </div>
           </div>
-          <div className="libSection" id="forms"><header className="libSection__header"><h2>Form fields<span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          
+          <div className="libSection" id="forms">
+            <header className="libSection__header">
+              <h2>
+                Form fields
+                <span className="libPulse" aria-hidden="true" />
+              </h2>
+              <p>Inputs, states, validation, and helpers.</p>
+            </header>
+
+            <div className="libPanel">
+              <Form />
+            </div>
+          </div>
           <div className="libSection" id="nav"><header className="libSection__header"><h2>Navbars <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects <span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
