@@ -8,7 +8,6 @@ const SECTIONS = [
   { id: "cards", label: "Cards" },
   { id: "forms", label: "Form fields" },
   { id: "nav", label: "Navbars" },
-  { id: "hover", label: "Hover effects" },
   { id: "animations", label: "Animations" },
   { id: "player", label: "Players" },
 ];
@@ -206,7 +205,6 @@ export default function Components() {
 
             </div>
           </div>
-          <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects <span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
         </section>
