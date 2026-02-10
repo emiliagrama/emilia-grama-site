@@ -81,7 +81,6 @@
   padding-bottom: 110px; /* room for dropdown */
 }
 
-
 /* Variants */
 /* BASE = your current "default app navbar" */
 .navb--base {
@@ -149,7 +148,6 @@
 .navb--transparent .navb__link:hover {
   color: rgba(28, 212, 212, 0.5); /* soft blue highlight */
 }
-
 
 .demoRow {
   display: grid;
@@ -262,5 +260,62 @@
   border-radius: 22px;
   padding: 26px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+
+/* Always allow flex children to shrink */
+.navb__brand,
+.navb__links,
+.navb__actions {
+  min-width: 0;
+}
+
+/* Mid-small phones (when links are still visible) */
+@media (max-width: 520px) {
+  .navb {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .navb__links {
+    min-width: 0;
+    gap: 10px;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .navb__link {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .navb__brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* iPhone 12/14 widths + Fold narrow modes */
+@media (max-width: 430px) {
+  .navb--base .navb__links,
+  .navb--transparent .navb__links {
+    display: none !important;
+  }
+
+  .navb__brand {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navb__cta {
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
 }
 

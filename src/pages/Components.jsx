@@ -191,7 +191,7 @@ export default function Components() {
                   <Navbar variant="transparent"
                   brand="EMILIA / LAB"
                   links={["Experiments", "Notes", "Studio"]}
-                  ctaLabel="Let’s talk" />
+                  ctaLabel="Let's talk" />
                 </div>
 
                 <div className="demoRow demoRow--menu">
@@ -205,8 +205,8 @@ export default function Components() {
 
             </div>
           </div>
-          <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+          <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
         </section>
       </div>
     </main>

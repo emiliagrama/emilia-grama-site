@@ -8,6 +8,34 @@
   gap: 26px;
   overflow: visible;
 }
+@media (max-width: 900px) {
+  .libShell {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .libSidebar {
+    position: static;
+    top: auto;
+  }
+
+  /* 🔥 THIS is the missing piece */
+ .libContent .libSection {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+}
 
 .libSidebar{
   position: sticky;
