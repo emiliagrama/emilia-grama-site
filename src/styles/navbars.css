@@ -1,0 +1,266 @@
+/* Navbars demo stack inside libPanel */
+.navDemoStack {
+  display: grid;
+  gap: 16px;
+}
+
+/* Base navbar styles */
+.navb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 14px 18px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(97, 152, 216, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.navb__brand {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+.navb__links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.navb__link {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.navb__link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.navb__cta {
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border 160ms ease;
+  white-space: nowrap;
+}
+
+.navb__cta:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.navb__brand,
+.navb__actions {
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+}
+
+.navb__actions {
+  position: relative; /* 🔥 this is the key */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.demoRow--menu {
+  padding-bottom: 110px; /* room for dropdown */
+}
+
+
+/* Variants */
+/* BASE = your current "default app navbar" */
+.navb--base {
+  background: rgba(5, 110, 128, 0.164);
+  border: 1px solid rgba(93, 207, 188, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  
+}
+/* Base underline on hover */
+.navb--base .navb__link {
+  position: relative;
+}
+
+.navb--base .navb__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.22);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms ease;
+}
+
+.navb--base .navb__link:hover::after {
+  transform: scaleX(1);
+}
+
+/* TRANSPARENT = hero-style glass, lighter border, more blur */
+.navb--transparent {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.096),
+    rgba(77, 75, 75, 0.015)
+  );
+  border: 1px solid rgba(18, 196, 157, 0.089);
+  backdrop-filter: blur(16px);
+}
+
+/* MINIMAL = flatter, tighter, less “card”, more utilitarian */
+.navb--minimal {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(13, 92, 165, 0.164);
+  box-shadow: none;
+  padding: 12px 16px;
+  border-radius: 14px;
+}
+
+/* CTA changes so variants read instantly */
+.navb__cta--base {
+  background: rgba(31, 113, 138, 0.205);
+}
+
+.navb__cta--transparent {
+  background: rgba(20, 59, 109, 0.322);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+/* Transparent navbar – link hover color */
+.navb--transparent .navb__link {
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.navb--transparent .navb__link:hover {
+  color: rgba(28, 212, 212, 0.5); /* soft blue highlight */
+}
+
+
+.demoRow {
+  display: grid;
+  gap: 10px;
+}
+
+.demoTag {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  text-transform: uppercase;
+  padding-left: 6px;
+}
+
+/* Spacer when links are hidden */
+.navb__spacer {
+  flex: 1;
+}
+
+/* Menu button (burger) */
+.navb__menuBtn {
+  width: 42px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(11, 116, 158, 0.12);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  padding: 0;
+  position: relative;
+  transition: transform 160ms ease, background 160ms ease, border 160ms ease;
+}
+
+.navb__menuBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(7, 85, 116, 0.315);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.navb__menuBtn span {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(16, 76, 145, 0.404);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+/* Animate into X when open */
+.navb__menuBtn.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navb__menuBtn.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.navb__menuBtn.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Dropdown */
+.navb__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 190px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(10, 12, 18, 0.92);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+  z-index: 50;
+}
+
+.navb__menuItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: rgba(38, 110, 110, 0.88);
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.navb__menuItem:hover {
+  background: rgba(19, 68, 175, 0.06);
+}
+
+.navb__menuDivider {
+  height: 1px;
+  margin: 8px 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navb__menuItem--cta {
+  background: rgba(16, 162, 172, 0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.navContainer {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.35)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+

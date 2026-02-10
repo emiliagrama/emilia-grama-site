@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Form from "../components/Form";
-
+import Navbar from "../components/Navbar";
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
@@ -36,7 +36,7 @@ export default function Components() {
               <h2>Buttons
               <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>All button styles, sizes, and states.</p>
+              <p>Button styles, sizes, and states.</p>
             </header>
 
             <div className="libPanel">
@@ -169,7 +169,43 @@ export default function Components() {
               <Form />
             </div>
           </div>
-          <div className="libSection" id="nav"><header className="libSection__header"><h2>Navbars <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+
+          <div className="libSection" id="nav">
+            <header className="libSection__header">
+              <h2>Navbars
+              <span className="libPulse" aria-hidden="true" />
+              </h2>
+              <p>Variants of reusable component.</p>
+            </header>
+            <div className="navContainer">
+              <div className="navDemoStack">
+                <div className="demoRow">
+                  <span className="demoTag">Base</span>
+                  <Navbar variant="base"
+                  brand="EMILIA GRAMA"
+                  links={["Work", "Components", "About"]}
+                  ctaLabel="Contact" />
+                </div>
+
+                <div className="demoRow">
+                  <span className="demoTag">Transparent</span>
+                  <Navbar variant="transparent"
+                  brand="EMILIA / LAB"
+                  links={["Experiments", "Notes", "Studio"]}
+                  ctaLabel="Let’s talk" />
+                </div>
+
+                <div className="demoRow demoRow--menu">
+                  <span className="demoTag">Minimal (menu)</span>
+                  <Navbar variant="minimal" withMenu
+                  brand="EG"
+                  links={["Menu", "Work"]}
+                  ctaLabel="Send email" />
+                </div>
+              </div>
+
+            </div>
+          </div>
           <div className="libSection" id="hover"><header className="libSection__header"><h2>Hover effects <span className="libPulse" aria-hidden="true" /> </h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
           <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming next.</p></header><div className="libPanel libPanel--placeholder">—</div></div>

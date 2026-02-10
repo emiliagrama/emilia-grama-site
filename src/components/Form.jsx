@@ -84,16 +84,16 @@ export default function Form() {
           </div>
 
           <div className="formLibRow">
-            <label className="formLibCheck">
-              <input
-                type="checkbox"
-                checked={state.agree}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, agree: e.target.checked, error: "" }))
-                }
-              />
-              <span>I agree to the terms</span>
-            </label>
+           <label className="formLibCheck">
+  <input
+    type="checkbox"
+    checked={state.agree}
+    onChange={(e) => setState((s) => ({ ...s, agree: e.target.checked, error: "" }))}
+  />
+  <span className="formLibCheckBox" aria-hidden="true" />
+  <span>I agree to the terms</span>
+</label>
+
 
             <div className="formLibActions">
               <button
