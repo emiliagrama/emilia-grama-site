@@ -1,0 +1,616 @@
+/* =========================================
+   SHOWREEL – HUGO FIGUERA
+   (main player + background + 3 style blocks)
+========================================= */
+
+/* Overall Showreel section */
+.hf-player {
+  max-width: 1040px;
+  margin: 0 auto 2rem;
+  padding: 2rem 1.5rem 0;
+}
+
+/* Title area inside Showreel */
+.hf-player .hf-section-title {
+  margin-bottom: 1.2rem;
+}
+
+/* Subtitle text under SHOWREEL */
+.hf-player-text {
+  font-size: 1rem;
+  opacity: 0.68;
+  max-width: 640px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+
+/* Background photo behind the glass deck */
+.hf-showreel-bg {
+  margin-top: 2.5rem;
+  padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
+  border-radius: 28px;
+
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+    url("/images/universe/studio-background.jpg");
+  background-size: cover;
+  background-position: center 45%;
+  background-repeat: no-repeat;
+
+  min-height: 360px;
+}
+
+@media (min-width: 1200px) {
+  .hf-showreel-bg {
+    padding: 4rem 4rem;
+    min-height: 480px;
+    background-position: center 48%;
+  }
+}
+
+/* Glass console deck that wraps main player + style groups */
+.hf-player-deck {
+  margin: 0 auto;
+  padding: 1.9rem 2.1rem 2.1rem;
+  border-radius: 26px;
+  background: radial-gradient(
+      circle at top,
+      rgba(20, 32, 80, 0.35) 0%,
+      rgba(5, 7, 15, 0.98) 55%,
+      rgba(5, 7, 15, 1) 100%
+    );
+  border: 1px solid rgba(120, 170, 255, 0.18);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.9),
+    0 0 22px rgba(40, 120, 220, 0.25);
+}
+
+/* Entrance animation – “coming out of the screen” */
+.hf-player-anim {
+  opacity: 0;
+  transform: scale(0.85) translateY(24px);
+  transform-origin: center top;
+  transition:
+    transform 750ms cubic-bezier(0.18, 0.86, 0.32, 1.02),
+    opacity 750ms ease-out;
+}
+
+.hf-player-anim.is-visible {
+  animation: hf-player-grow 2.4s ease-out forwards;
+}
+
+@keyframes hf-player-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* -----------------------------------
+   MAIN PLAYER (top of deck)
+----------------------------------- */
+
+/* Play / pause button */
+.hf-player-play {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(40, 80, 130, 0.15); /* blue tint */
+  border: 1px solid rgba(80, 130, 200, 0.35);
+  box-shadow: 0 0 12px rgba(30, 80, 150, 0.25);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: rgba(49, 119, 146, 0.767);
+
+  
+   cursor: pointer;
+  transition: all 0.28s ease;
+}
+
+.hf-player-play:hover {
+  background: rgba(80,120,180,0.25);            /* brighter blue on hover */
+  border-color: rgba(120,160,220,0.45);         /* sharpens the edge */
+  box-shadow: 
+    0 0 16px rgba(60,130,220,0.35),             /* more glow */
+    0 0 32px rgba(60,130,220,0.20);             /* outer halo */
+  transform: scale(1.04);                        /* tiny lift */
+}
+
+.hf-player-play.is-playing {
+  /* keep the dark sci-fi look, just a bit stronger than hover */
+  background: rgba(41, 99, 165, 0.3);          /* brighter blue than idle */
+  border-color: rgba(42, 91, 155, 0.7);       /* stronger edge */
+  box-shadow:
+    0 0 20px rgba(43, 99, 172, 0.55),           /* main glow */
+    0 0 40px rgba(25, 64, 114, 0.28);           /* outer halo */
+
+  transform: scale(1.03);                        /* tiny “energised” bump */
+}
+.hf-player-play.is-playing .hf-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.hf-player-play.is-playing .hf-icon::before,
+.hf-player-play.is-playing .hf-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 4px;           /* bar thickness */
+  height: 16px;         /* bar height (matches icon size) */
+  background: rgba(67, 97, 122, 0.95); /* light blue/white */
+  border-radius: 2px;
+}
+
+.hf-player-play.is-playing .hf-icon::before {
+  left: 0;
+}
+
+.hf-player-play.is-playing .hf-icon::after {
+  right: 0;
+}
+
+
+/* Track info (title + style) */
+/* Main track name inside the player */
+.hf-player-info h3 {
+  font-family: inherit;           /* same as SHOWREEL */
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;         /* give it that spaced, showreel vibe */
+  text-transform: uppercase;      /* optional: comment this out if you prefer “Noir tension” case */
+  color: #81838a;
+  margin: 0 0 0.15;
+  margin-top: 10;
+}
+
+
+.hf-player-info p {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  opacity: 0.35;
+}
+
+.hf-player-style {
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;          /* very close to SHOWREEL look */
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(238, 238, 243, 0.87);
+}
+
+
+/* Progress bar under the main player */
+.hf-player-progress {
+  margin-top: 1.5rem;
+}
+
+.hf-progress-time {
+  font-family: inherit;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  opacity: 0.72;
+  margin-bottom: 0.35rem;
+  color: rgba(202, 202, 207, 0.87);
+}
+
+.hf-progress-track {
+  position: relative;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hf-progress-bar {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: linear-gradient(90deg, #2875ff, #57e0ff);
+  border-radius: inherit;
+}
+
+.hf-progress-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e6f3ff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  pointer-events: none; /* clicks go to the track */
+}
+
+/* -----------------------------------
+   STYLE GROUPS (Scoring / Trailers / Video game)
+----------------------------------- */
+
+.hf-style-groups {
+  margin-top: 1.8rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+/* Style card */
+.hf-style-group {
+  padding: 0.9rem 1rem 0.8rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 18, 35, 0.95),
+    rgba(5, 7, 18, 0.97)
+  );
+  border: 1px solid rgba(80, 116, 182, 0.55);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(2, 5, 18, 0.75);
+}
+
+/* Header inside each style card */
+.hf-style-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.hf-style-title {
+  font-family: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(52, 102, 150, 0.78);
+  margin-bottom: 0.75rem;
+}
+
+/* WaveSurfer container for the style bar */
+.hf-style-wave {
+  height: 24px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+}
+
+/* Make sure the canvas fills the strip */
+.hf-style-wave canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  
+}
+.hf-progress-wave {
+  width: 100%;
+  height: 80px;            /* match JS height */
+  padding: 20px 0;         /* squeeze waveform vertically */
+  position: relative;
+  overflow: hidden;        /* hide edges of the canvas */
+  border-radius: 999px;    /* soft pill shape for the whole bar */
+}
+
+/* optional: a faint center line, like in your reference */
+.hf-progress-wave::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* make the actual canvas take full width */
+.hf-progress-wave canvas {
+  width: 100% !important;
+  height: 100% !important;
+  
+}
+
+/* Track list inside each style */
+.hf-style-tracklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hf-style-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    box-shadow 0.18s ease,
+    transform 0.12s ease;
+}
+
+.hf-style-track + .hf-style-track {
+  margin-top: 0.12rem;
+}
+
+/* Hover state */
+.hf-style-track:hover {
+  background: radial-gradient(circle at left, rgba(65, 110, 225, 0.35), transparent 60%);
+  box-shadow: 0 0 0 1px rgba(80, 125, 240, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Active (current) track */
+/* Active (current) track */
+.hf-style-track.is-active {
+  background: linear-gradient(
+    90deg,
+    rgba(7, 46, 70, 0.548),
+    rgba(70, 139, 200, 0.432)
+  );
+  border: 1px solid rgba(70, 140, 200, 0.35); /* MATCH CARD BORDER */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.55);          /* softer than before */
+  color: #e8f1ff;
+  
+}
+
+.hf-style-track-title {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 100;
+  letter-spacing: 0.06em;      /* a little spacing, but less than labels */
+  color: rgba(210, 211, 214, 0.9);
+  
+}
+.hf-player-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hf-style-track-length {
+  font-family: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  color: rgba(86, 175, 211, 0.9);
+}
+
+/* -----------------------------------
+   FOOTER
+----------------------------------- */
+
+.hf-footer {
+  text-align: center;
+  padding: 0.1rem 0.5rem 2rem;
+  font-size: 1rem;
+  opacity: 0.65;
+}
+.hf-footer-email {
+  display: block;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  color: #8eb5e9;
+  font-weight: 200;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+/* NEW: align email + button nicely without changing your email block spacing */
+.hf-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.8rem; /* matches your current .hf-footer-email margin-top */
+  margin-bottom: 0.9rem;
+}
+
+/* Your link is currently display:block + margin-top; inside flex it should be inline */
+.hf-footer-contact .hf-footer-email {
+  display: inline-block;
+  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
+}
+
+.footer-legal {
+  font-variant: all-small-caps;
+   font-weight: 100;
+}
+
+/* Mobile: keep it clean (stack) */
+@media (max-width: 420px) {
+  .hf-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* -----------------------------------
+   RESPONSIVE
+----------------------------------- */
+@media (min-width: 900px) {
+  .hf-style-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hf-style-group:last-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 768px) {
+  .hf-section-shell {
+    padding: 1.8rem 1.6rem;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hf-hero {
+    height: 80vh;
+  }
+}
+@media (max-width: 1028px){
+  .hf-player-title{
+    white-space: normal;          /* allow wrapping */
+    
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;        /* max 2 lines */
+    overflow: hidden;
+
+    line-height: 1.25;
+    min-height: calc(1.25em * 2); /* reserve space → no jumping */
+
+    font-size: 0.9rem;            /* optional, tweak to taste */
+  }
+}
+
+/* Center the showreel player perfectly on small screens */
+@media (max-width: 640px) {
+  #showreel .hf-section-shell {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+
+  /* Background block that holds the card */
+  #showreel .hf-showreel-bg {
+    width: 100%;
+    box-sizing: border-box;        /* width includes padding */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 3.2rem 0.7rem 3.6rem;   /* top 3.2rem, sides 1rem, bottom 3.6rem */
+  }
+
+  /* The actual player card */
+  #showreel .hf-player-deck {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;              /* 380 / 400 / 420 – tweak to taste */
+  }
+
+  /* Playlist width matches the card */
+  #showreel .hf-playlist {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+  .hf-progress-track{
+    margin:0.8rem ;
+  }
+}
+
+/* ============================================= */
+/* TABLETS / SURFACE / NEST HUB – TEXT BOOST     */
+/* 900px – 1400px width                          */
+/* ============================================= */
+@media (min-width:820px) and (max-width: 1040px) {
+  .hf-hero-subletter {
+    font-size: 1.25rem !important;  /* ~23px — guaranteed visible */
+    font-weight: 350;
+  }
+
+  .hf-hero-tagline {
+    font-size: 1.2rem !important;   /* ~19px — balanced */
+    letter-spacing: 0.22em;
+  }
+  .hf-player-text {
+    font-size: 1.2rem !important;
+  }
+}
+
+.hf-track-title-main{
+  font-weight: 650;
+  opacity: 0.95;
+}
+
+.hf-track-title-pipe{
+  color: rgba(18, 93, 112, 0.699);
+  text-shadow: 0 0 12px rgba(90, 160, 255, 0.25);
+}
+
+.hf-track-title-rest{
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* fading underline (same idea as About section) */
+.hf-title-underline-fade{
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+
+/* soften pipe ONLY inside track cards */
+.hf-style-track-title .hf-track-title-pipe{
+  color: rgba(140, 190, 255, 0.75);   /* slightly dimmer */
+  text-shadow: 0 0 6px rgba(90, 160, 255, 0.15);
+}
+.hf-style-track-title .hf-track-title-rest{
+  opacity: 0.75; /* slightly closer to title */
+}
+
+/* Cards/list rows: restore the old lighter look */
+.hf-style-track-title .hf-track-title-main{
+  font-weight: 500;   /* or 450/400 depending on your font */
+  opacity: 0.9;
+}
+
+/* Cards: keep the right side close to the old look too */
+.hf-style-track-title .hf-track-title-rest{
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+/* Optional: soften the pipe in cards */
+.hf-style-track-title .hf-track-title-pipe{
+  color: rgba(140, 190, 255, 0.75);
+  text-shadow: 0 0 6px rgba(90, 160, 255, 0.12);
+}
+
+/* Tablet portrait-ish widths: iPad Air / iPad Pro 11" */
+@media (min-width: 800px) and (max-width: 1100px) {
+
+  /* global reading comfort */
+  body { font-size: 16px; } /* or 17px if you like */
+
+  /* the ALL CAPS headings / labels need help on tablets */
+  .hf-player-title,
+  .hf-style-title,
+  .hf-style-track-title,
+  .hf-player-style {
+    letter-spacing: 0.06em; /* reduce if it was 0.08–0.12 */
+  }
+
+  /* make the showreel text easier to scan */
+  .hf-player-title { font-size: 1.05rem; line-height: 1.25; }
+  .hf-style-track-title { font-size: 0.95rem; line-height: 1.35; }
+
+  /* less “ghost text” on tablet */
+  .hf-track-title-rest { opacity: 0.78; }
+  .hf-player-style { opacity: 0.78; }
+}

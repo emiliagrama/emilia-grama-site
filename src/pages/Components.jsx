@@ -211,9 +211,10 @@ export default function Components() {
           <div className="libSection" id="player">
             <header className="libSection__header">
               <h2>
-                Players <span className="libPulse" aria-hidden="true" />
+                Players
+                 <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Real project demo: WaveSurfer player built for Hugo.</p>
+              <p> WaveSurfer player.</p>
             </header>
 
             <div className="libPanel libPlayerDemo">

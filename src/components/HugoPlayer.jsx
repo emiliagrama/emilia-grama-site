@@ -11,7 +11,13 @@ const tracks = [
     length: "1:09",
     src: "/audio/Dark Sci-fi Demo01.mp3",
   },
-  
+  {
+    id: 2,
+    style: "Video game",
+    title: "Neural Drift | Hybrid Cinematic Underscore (Dark, Ominous, Tense)",
+    length: "1:02",
+    src: "/audio/Dark Sci-fi Demo02.mp3",
+  },
   // STYLE 1 – Scoring
   {
     id: 3,
@@ -20,15 +26,35 @@ const tracks = [
     length: "2:54",
     src: "/audio/Faith.mp3",
   },
-  
- 
+  {
+    id: 4,
+    style: "Scoring",
+    title: "The Second Sun | Dark Orchestral (Revelation, Cosmic, Tense)",
+    length: "0:51",
+    src: "/audio/The Second Sun (dark orchestral polychords).mp3",
+  },
+  // STYLE 2 – Trailers
+  {
+    id: 5,
+    style: "Trailers",
+    title: "Imminent Lockdown | Dark Hybrid Sci-Fi (Ominous, Relentless, Rising)",
+    length: "2:42",
+    src: "/audio/Imminent Lockdown (dark hyrbid scifi trailer).mp3",
+  },
+  {
+    id: 6,
+    style: "Trailers",
+    title: "Rage Rising | Horror Hybrid Orchestral (Menacing, Unstable, Escalating)",
+    length: "2:51",
+    src: "/audio/Rage rising (horror scifi trailer).mp3",
+  },
 ];
 
 // give each track its global index (0–5)
 const tracksWithIndex = tracks.map((track, index) => ({ ...track, index }));
 
 // order of the 3 sections
-const STYLES = ["Video game", "Scoring"];
+const STYLES = ["Video game", "Scoring", "Trailers"];
 
 const groupedTracks = STYLES.map((style) => ({
   style,
@@ -87,7 +113,7 @@ const ShowreelSection = () => {
   url: currentTrack.src,
 
   // HEIGHT
-  height: 80,              
+  height: 80,              // try 70–90 until you like it
 
   // IMPORTANT: continuous waveform, not bars
   barWidth: 0,             // <– remove bars
@@ -171,12 +197,11 @@ ws.on("error", (error) => {
   setCurrentIndex(index);
 };
 
+
+
   return (
     <section className="hf-player" id="showreel">
-      <div className="hf-section-title">
-        <h2>Showreel</h2>
-        <div className="hf-title-glow"></div>
-      </div>
+     
 
       <p className="hf-player-text">
         Short selection of dark sci-fi demos for cinematic and interactive
