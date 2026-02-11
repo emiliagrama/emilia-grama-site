@@ -2,14 +2,16 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
+import HugoPlayer from "../components/HugoPlayer";
+
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
   { id: "cards", label: "Cards" },
   { id: "forms", label: "Form fields" },
   { id: "nav", label: "Navbars" },
-  { id: "animations", label: "Animations" },
   { id: "player", label: "Players" },
+  { id: "animations", label: "Animations" },
 ];
 
 export default function Components() {
@@ -205,18 +207,32 @@ export default function Components() {
 
             </div>
           </div>
+
+          <div className="libSection" id="player">
+            <header className="libSection__header">
+              <h2>
+                Players <span className="libPulse" aria-hidden="true" />
+              </h2>
+              <p>Real project demo: WaveSurfer player built for Hugo.</p>
+            </header>
+
+            <div className="libPanel libPlayerDemo">
+              <HugoPlayer />
+              <p className="libFinePrint">
+                Music © Hugo Figuera (used with permission). Built by Emilia Grama.
+              </p>
+            </div>
+          </div>
           <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
-          <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
         </section>
       </div>
-      <a
-  href="#components-menu"
-  className="mobileToMenu"
-  aria-label="Back to components menu"
->
-  ↑
-</a>
-
+        <a
+          href="#components-menu"
+          className="mobileToMenu"
+          aria-label="Back to components menu"
+        >
+          ↑
+        </a>
     </main>
   );
 }
