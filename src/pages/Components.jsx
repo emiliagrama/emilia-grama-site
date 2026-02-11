@@ -16,9 +16,9 @@ export default function Components() {
   return (
     <main className="libPage">
       <div className="libShell">
-        <aside className="libSidebar">
+        <aside className="libSidebar" id="components-menu">
           <h1 className="libTitle">Component Library</h1>
-          <p className="libSubtitle">Showcase of reusable UI parts used across the site.</p>
+          <p className="libSubtitle">Showcase of reusable UI parts used across the sites.</p>
 
           <nav className="libNav">
             {SECTIONS.map(s => (
@@ -198,7 +198,7 @@ export default function Components() {
                   <span className="demoTag">Minimal (menu)</span>
                   <Navbar variant="minimal" withMenu
                   brand="EG"
-                  links={["Menu", "Work"]}
+                  links={["Offers", "Work"]}
                   ctaLabel="Send email" />
                 </div>
               </div>
@@ -209,6 +209,14 @@ export default function Components() {
           <div className="libSection" id="player"><header className="libSection__header"><h2>Players <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
         </section>
       </div>
+      <a
+  href="#components-menu"
+  className="mobileToMenu"
+  aria-label="Back to components menu"
+>
+  ↑
+</a>
+
     </main>
   );
 }
