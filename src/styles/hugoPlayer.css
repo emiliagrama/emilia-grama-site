@@ -394,53 +394,11 @@
   color: rgba(86, 175, 211, 0.9);
 }
 
-/* -----------------------------------
-   FOOTER
------------------------------------ */
-
-.hf-footer {
-  text-align: center;
-  padding: 0.1rem 0.5rem 2rem;
-  font-size: 1rem;
-  opacity: 0.65;
-}
-.hf-footer-email {
-  display: block;
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
-  color: #8eb5e9;
-  font-weight: 200;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-/* NEW: align email + button nicely without changing your email block spacing */
-.hf-footer-contact {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 0.8rem; /* matches your current .hf-footer-email margin-top */
-  margin-bottom: 0.9rem;
-}
-
-/* Your link is currently display:block + margin-top; inside flex it should be inline */
-.hf-footer-contact .hf-footer-email {
-  display: inline-block;
-  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
-}
-
-.footer-legal {
-  font-variant: all-small-caps;
-   font-weight: 100;
-}
-
-/* Mobile: keep it clean (stack) */
-@media (max-width: 420px) {
-  .hf-footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+h4 {
+  margin-top: 1.2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  color: rgba(130, 134, 141, 0.95);
 }
 /* -----------------------------------
    RESPONSIVE
@@ -461,11 +419,6 @@
   }
 }
 
-@media (max-width: 640px) {
-  .hf-hero {
-    height: 80vh;
-  }
-}
 @media (max-width: 1028px){
   .hf-player-title{
     white-space: normal;          /* allow wrapping */
@@ -491,7 +444,6 @@
     flex-direction: column;
     align-items: center;
   }
- 
 
   /* Background block that holds the card */
   #showreel .hf-showreel-bg {
@@ -526,15 +478,6 @@
 /* 900px – 1400px width                          */
 /* ============================================= */
 @media (min-width:820px) and (max-width: 1040px) {
-  .hf-hero-subletter {
-    font-size: 1.25rem !important;  /* ~23px — guaranteed visible */
-    font-weight: 350;
-  }
-
-  .hf-hero-tagline {
-    font-size: 1.2rem !important;   /* ~19px — balanced */
-    letter-spacing: 0.22em;
-  }
   .hf-player-text {
     font-size: 1.2rem !important;
   }
@@ -561,7 +504,6 @@
   display: inline-block;
   padding-bottom: 0.2rem;
 }
-
 
 /* soften pipe ONLY inside track cards */
 .hf-style-track-title .hf-track-title-pipe{

@@ -220,8 +220,12 @@ export default function Components() {
             <div className="libPanel libPlayerDemo">
               <HugoPlayer />
               <p className="libFinePrint">
-                Music © Hugo Figuera (used with permission). Built by Emilia Grama.
-              </p>
+                Music © <a className="projectLink" href="https://www.hugofigueramusic.com/" target="_blank" rel="noreferrer">
+              Hugo Figuera <span aria-hidden="true">→</span>
+            </a>
+            </p>
+            <h4> This is a custom audio player built with React and WaveSurfer.js, showcasing a unique design and interactive features. It demonstrates how to create a visually engaging and user-friendly music player interface. The player includes a waveform progress bar, track information display, and a grouped tracklist by style. It serves as an example of how to integrate audio playback functionality with a custom UI for an immersive listening experience.
+            </h4>  
             </div>
           </div>
           <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
