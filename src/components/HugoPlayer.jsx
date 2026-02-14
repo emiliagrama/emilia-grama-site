@@ -122,7 +122,7 @@ const ShowreelSection = () => {
 
   // COLORS – tweak to taste
   waveColor: "rgba(10, 55, 115, 0.45)",      // soft navy/teal blend
-progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
+  progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
                  // played part (bright)
   normalize: true,
   interact: true,
@@ -197,12 +197,9 @@ ws.on("error", (error) => {
   setCurrentIndex(index);
 };
 
-
-
   return (
     <section className="hf-player" id="showreel">
-     
-
+  
       <p className="hf-player-text">
         Short selection of dark sci-fi demos for cinematic and interactive
         projects.

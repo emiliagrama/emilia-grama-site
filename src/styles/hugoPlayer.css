@@ -96,7 +96,6 @@
 /* -----------------------------------
    MAIN PLAYER (top of deck)
 ----------------------------------- */
-
 /* Play / pause button */
 .hf-player-play {
   width: 56px;
@@ -305,6 +304,7 @@
   position: relative;
   overflow: hidden;        /* hide edges of the canvas */
   border-radius: 999px;    /* soft pill shape for the whole bar */
+   padding: 0;
 }
 
 /* optional: a faint center line, like in your reference */
@@ -324,7 +324,6 @@
 .hf-progress-wave canvas {
   width: 100% !important;
   height: 100% !important;
-  
 }
 
 /* Track list inside each style */
@@ -382,7 +381,6 @@
   
 }
 .hf-player-title{
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }

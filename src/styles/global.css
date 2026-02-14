@@ -11,6 +11,11 @@ a { color: inherit; text-decoration: none; }
 html{
   scroll-behavior: smooth !important;
 }
+
+.mobileToMenu {
+  display: none !important;
+}
+
 @media (max-width: 900px) {
   .mobileToMenu {
     position: fixed;

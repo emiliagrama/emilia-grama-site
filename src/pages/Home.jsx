@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+  
      <section id="projects" className="section projectsSection">
   <div className="container">
     <h2 className="h2">Selected projects</h2>
