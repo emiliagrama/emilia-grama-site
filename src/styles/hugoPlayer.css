@@ -27,7 +27,7 @@
 /* Background photo behind the glass deck */
 .hf-showreel-bg {
   margin-top: 2.5rem;
-  padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
+  padding: 1.2rem 0.6rem 1.6rem;   /* more top & bottom space */
   border-radius: 28px;
 
   background:

@@ -194,6 +194,7 @@ background: linear-gradient(
   animation: libGlowPulse 3.6s ease-in-out infinite;
 }
 
+
 @keyframes libGlowPulse{
   0%{
     transform: scaleX(0.85);
@@ -208,6 +209,42 @@ background: linear-gradient(
     opacity: 0.45;
   }
 }
+
+.libInlineLink{
+  color: rgb(23, 113, 129);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+.libInlineLink::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0;
+  height:1px;
+  background: rgba(12, 70, 114, 0.9);
+  transition: width 240ms ease;
+  opacity: .9;
+}
+
+.libInlineLink:hover{
+  color: rgba(20, 81, 114, 0.98);
+}
+
+.libInlineLink:hover::after{
+  width: 100%;
+}
+
+.libFinePrint{
+  font-size: 0.9rem;
+  color: rgba(180, 200, 220, 0.6); /* softer */
+  margin-bottom: 0.75rem;
+}
+
 
 @media (prefers-reduced-motion: reduce){
   .libPulse{ animation: none; opacity: 0.65; }
