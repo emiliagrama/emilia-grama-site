@@ -20,7 +20,7 @@ export default function Components() {
       <div className="libShell">
         <aside className="libSidebar" id="components-menu">
           <h1 className="libTitle">Component Library</h1>
-          <p className="libSubtitle">Showcase of reusable UI parts used across the sites.</p>
+          <p className="libSubtitle">A library of reusable UI patterns and components.</p>
 
           <nav className="libNav">
             {SECTIONS.map(s => (
