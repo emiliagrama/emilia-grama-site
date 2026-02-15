@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function SiteLayout() {
   return (
@@ -10,12 +11,16 @@ export default function SiteLayout() {
           <nav className="navLinks">
             
             <NavLink to="/components">UI experiments</NavLink>
-            <a href="mailto:emiliagrama@gmail.com">Email me</a>
+            
           </nav>
         </div>
       </header>
 
-      <Outlet />
+      <main className="mainContent">
+        <Outlet />
+      </main>
+
+      <Footer /> 
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Navbar({
   variant = "base",
   brand = "EMILIA GRAMA",
-  links = ["UI experiments", "Email me"],
+  links = ["UI experiments"],
   ctaLabel = "Contact",
   withMenu = false, // ✅ new
 }) {
