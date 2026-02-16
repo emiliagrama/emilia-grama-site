@@ -97,6 +97,7 @@
   line-height: 1.05;
   margin: 10;
   letter-spacing: -0.02em;
+  
 }
 
 .heroTitle span{
@@ -128,6 +129,7 @@
   max-width: 52ch;
   margin-top: 20px;
   color: var(--muted);
+  
 }
 
 .heroActions{
@@ -527,6 +529,53 @@
     padding-inline: 16px !important;
     margin-inline: auto;
     box-sizing: border-box;
+  }
+}
+/* =========================
+   HERO TITLE ANIMATION
+   ========================= */
+.heroDesc{
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-top: 22px;
+
+  min-height: 1.6em; /* prevent layout shift */
+
+  color: rgba(255,255,255,0.92);
+
+  text-shadow:
+    0 4px 18px rgba(0,0,0,0.65),
+    0 0 12px rgba(120,200,255,0.25);
+
+  animation: none;
+}
+
+@media (max-width: 520px){
+  .heroDesc{
+    min-height: calc(1.6em * 2);
+    color: rgb(255, 255, 255);
+
+    text-shadow:
+      0 6px 26px rgba(0,0,0,0.9),
+      0 0 20px rgba(160,190,255,0.4);
+  }
+}
+
+.heroDescLetter{
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.heroDesc--ready .heroDescLetter{
+  animation: heroDescType 600ms ease-out forwards;
+}
+
+@keyframes heroDescType{
+  to{
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

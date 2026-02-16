@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 export default function Home() {
    const componentCards = [
@@ -8,7 +9,13 @@ export default function Home() {
     { img: "/images/universe/animation.jpg", title: "Animations", alt: "Animations" },
     { img: "/images/universe/navigation.jpg", title: "Navigation", alt: "Navigation" },
   ];
-  
+  const heroDescText = "From idea to production. Clear decisions. No noise.";
+  useEffect(() => {
+      requestAnimationFrame(() => {
+        const el = document.querySelector(".heroDesc");
+        if (el) el.classList.add("heroDesc--ready");
+      });
+    }, []);
   return (
     <main>
       <section className="hero">
@@ -19,9 +26,38 @@ export default function Home() {
             Design and code  <span>- end to end</span>
           </h1>
 
-          <p className="heroDesc">
-            From idea to production. Clear decisions. No noise.
+          <p className="heroDesc" aria-label={heroDescText}>
+            {(() => {
+              const words = heroDescText.split(" ");
+              let globalIndex = 0;
+              const baseDelay = 0.12;
+              const step = 0.03;
+
+              return words.map((word, wIndex) => (
+                <span
+                  key={wIndex}
+                  className="heroDescWord"
+                  style={{ marginRight: wIndex === words.length - 1 ? 0 : "0.35em" }}
+                >
+                  {Array.from(word).map((char, cIndex) => {
+                    const delay = baseDelay + globalIndex * step;
+                    globalIndex += 1;
+
+                    return (
+                      <span
+                        key={`${wIndex}-${cIndex}`}
+                        className="heroDescLetter"
+                        style={{ animationDelay: `${delay}s` }}
+                      >
+                        {char}
+                      </span>
+                    );
+                  })}
+                </span>
+              ));
+            })()}
           </p>
+
 
           <div className="heroActions">
             <a className="btn btnGold" href="#projects"> View my work</a>
