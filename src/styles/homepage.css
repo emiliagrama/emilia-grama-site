@@ -337,7 +337,6 @@
   color: rgba(255, 255, 255, 0.55);
   font-size: 13px;
 }
- 
 
 /* =========================
    COMPONENTS SECTION (Auto-glide)
@@ -346,10 +345,9 @@
 .componentsSection{
   position: relative;
   isolation: isolate;
-  padding: 80px;
-  margin-top: -35px; /* pulls it slightly into the fade, feels “blended” */
-  padding-top: 106px;
-  padding-bottom: 180px;
+  
+  margin-top: 0; 
+  padding: clamp(56px, 6vw, 96px) 0 clamp(70px, 8vw, 140px);
   background:
     repeating-linear-gradient(
       90deg,
@@ -360,8 +358,8 @@
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.025) 0,
-      rgba(255,255,255,0.025) 1px,
+      rgba(255,255,255,0.015) 0,
+      rgba(255,255,255,0.015) 1px,
       transparent 1px,
       transparent 80px
     ),
@@ -396,11 +394,19 @@
 .componentsScroll{
   position: relative;
   overflow: hidden;
-  padding: 18px 0 108px;
+  padding: 18px 0 32px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+}
 
-  /* keep your fade mask if you like */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+/* spotlight behind cards */
+.componentsScroll::before{
+  content:"";
+  position:absolute;
+  inset:-40px 0 -60px 0;
+  pointer-events:none;
+  background: radial-gradient(900px 280px at 50% 55%, rgba(61,132,224,.10), transparent 65%);
+  z-index: 0;
 }
 
 .componentsTrack{
@@ -408,9 +414,11 @@
   flex-wrap: nowrap;
   gap: 24px;
   width: max-content;
-  align-items: stretch;
   will-change: transform;
   animation: componentsMarquee 28s linear infinite;
+   transform: translateZ(0);
+    position: relative; 
+    z-index: 1; 
 }
 
 @keyframes componentsMarquee{
@@ -425,28 +433,31 @@
 
 /* Card sizing — looks intentional on desktop */
 .componentCard{
-  min-width: 340px;
+  min-width: 380px;
   height: auto;
-  padding: 32px;
-  border-radius: 22px;
-  background: radial-gradient(140% 120% at 20% 0%, rgba(255,255,255,0.07), rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
-  border: 1px solid rgba(255,255,255,0.09);
-  box-shadow:
-    0 22px 70px rgba(0, 0, 0, 0.041),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+  padding: 0px;
+  border-radius: 15px;
+  background: radial-gradient(140% 120% at 20% 0%, rgba(10, 10, 10, 0.07), rgba(14, 13, 13, 0.035) 55%, rgba(255,255,255,0.02) 100%);
+  border: 1px; 
+   opacity: .85;              /* was effectively lower via overlays */
+  border-color: rgba(255,255,255,.10);
+  box-shadow: 0 18px 60px rgba(0,0,0,.50);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
+.componentCard:nth-child(2) {
+  opacity: 1;
+  transform: scale(1.02);
+}
 
-.componentCard:hover{
-  transform: translateY(-4px);
-  border-color: rgba(61,132,224,0.22);
-  box-shadow:
-    0 26px 85px rgba(0, 0, 0, 0.068),
-    0 0 0 1px rgba(61,132,224,0.16),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+.componentCard:hover,
+.componentCard:focus-within{
+  opacity: 1;
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(61,132,224,.28);
+  box-shadow: 0 26px 85px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .componentCard img{
@@ -463,10 +474,22 @@
 .componentPreview{
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 1;  
+  height: 300px;
   overflow: hidden;
-  border-radius: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 0;
+}
+
+.componentPreview::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(2, 4, 8, 0.986) 0%,
+    rgba(5, 10, 20, 0.007) 35%,
+    rgba(5,10,20,0.10) 70%,
+    rgba(5,10,20,0.00) 100%
+  );
 }
 
 .componentPreview img{
@@ -481,12 +504,22 @@
   opacity: 1;
   transform: scale(1.01);
 }
-.componentCard h3{
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-}
 
+.componentCard h3{
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  margin: 16px 10px 10px 10px;
+  color: #edf1f352;
+}
+.componentCardContent {
+  padding: 1px 10px;
+   background: linear-gradient(
+    to top,
+    rgba(7, 22, 53, 0.205),
+    rgb(2, 3, 7)
+  );
+}
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
@@ -495,24 +528,17 @@
 
 /* Mobile: make it a normal horizontal scroll row (swipe-friendly) */
 @media (max-width: 860px){
-  .componentsScroll{
+    .componentsScroll{
     overflow-x: auto;
-    -webkit-mask-image: none;
-    mask-image: none;
+    -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    
+    padding-bottom: 18px;
   }
-
   .componentsTrack{
     animation: none;
   }
-
   .componentCard{
     scroll-snap-align: start;
-    min-width: 86vw;
-    height: 240px;
-
   }
 
    .componentsSection .container {

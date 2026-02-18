@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 export default function Home() {
    const componentCards = [
-    { img: "/images/universe/button.jpg", title: "Buttons", alt: "Button component" },
-    { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card component" },
-    { img: "/images/universe/forms.jpg", title: "Inputs", alt: "Form fields" },
-    { img: "/images/universe/hover.jpg", title: "Hover Effects", alt: "Hover effects" },
-    { img: "/images/universe/animation.jpg", title: "Animations", alt: "Animations" },
-    { img: "/images/universe/navigation.jpg", title: "Navigation", alt: "Navigation" },
+    { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button components" },
+    { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card components" },
+    { img: "/images/universe/forms.jpg", title: "Forms", alt: "Form fields" },
+    { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar components" },
+    { img: "/images/universe/players.jpg", title: "Players", alt: "Players" },
+    { img: "/images/universe/animations.jpg", title: "Animations", alt: "Animations" },
   ];
   const heroDescText = "From idea to production. Clear decisions. No noise.";
   useEffect(() => {
@@ -136,7 +136,9 @@ export default function Home() {
                   <div className="componentPreview">
                     <img src={c.img} alt={c.alt} />
                   </div>
-                  <h3>{c.title}</h3>
+                    <div className="componentCardContent">
+                      <h3>{c.title}</h3>
+                    </div>
                 </article>
 
               ))}
