@@ -24,7 +24,6 @@
   0 0 1px rgba(53, 138, 207, 0.945),
   0 0 4px rgba(245, 240, 240, 0.205),
   0 0 18px rgb(165, 186, 216);
-
  }
 
 .navLinks{
@@ -32,7 +31,6 @@
   gap: 18px;
   font-weight: 400;
   color: var(--muted);
-  
 }
 
 .navLinks a:hover{ color: var(--text); }
@@ -44,7 +42,7 @@
   z-index: 3;
   padding: 110px 0 90px;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 100svh;
   background:
     /* readability layer — LIGHTER than before */
     linear-gradient(
@@ -68,6 +66,11 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+.hero .container{
+  position: relative;
+  z-index: 3;
+}
+
 .hero::after{
   content:"";
   position:absolute;
@@ -95,7 +98,7 @@
 .heroTitle{
   font-size: clamp(42px, 5vw, 64px);
   line-height: 1.05;
-  margin: 10;
+  margin: 10px 0 0;
   letter-spacing: -0.02em;
   
 }
@@ -103,14 +106,13 @@
 .heroTitle span{
   /* image fill */
   background-image: url("/images/universe/intent-fill.jpg");
-  background-size: 220% 220%;
   background-position: 55% 45%;
   background-repeat: no-repeat;
   background-size: 260% 260%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-
+  transition: background-position .8s ease;
   /* legibility */
   text-shadow:
   0 0 1px rgba(255, 255, 255, 0.233),
@@ -121,15 +123,6 @@
 
 .heroTitle span:hover{
   background-position: 35% 55%;
-  transition: background-position .8s ease;
-}
-
-.heroDesc{
-  font-size: 17px;
-  max-width: 52ch;
-  margin-top: 20px;
-  color: var(--muted);
-  
 }
 
 .heroActions{
@@ -154,19 +147,14 @@
   background: linear-gradient(90deg, rgba(107, 223, 244, 0.3), rgba(244,200,107,.10));
 }
 
-@media (max-width: 860px){
-  .componentGrid{ grid-template-columns: 1fr; }
-}
-
-
 /* ===== Projects section ===== */
 .projectsSection {
   padding: clamp(56px, 8vw, 92px) 0;
-   position: relative;
-   isolation: isolate;
-    background:
-    radial-gradient(700px 420px at 75% 25%, rgba(9, 53, 110, 0.226), transparent 58%),
-    radial-gradient(700px 420px at 30% 75%,rgba(38, 133, 156, 0.089), transparent 58%); 
+  position: relative;
+  isolation: isolate;
+  background:
+  radial-gradient(700px 420px at 75% 25%, rgba(9, 53, 110, 0.226), transparent 58%),
+  radial-gradient(700px 420px at 30% 75%,rgba(38, 133, 156, 0.089), transparent 58%); 
 }
 
 /* Overlay haze that blends UP into the hero */
@@ -174,7 +162,7 @@
   content:"";
   position:absolute;
   left:0; right:0; top:-1px;
-  height: 320px;
+  height: clamp(220px, 24vw, 360px);
   background:
     linear-gradient(
       to top,
@@ -239,7 +227,7 @@
 }
 
 /* Ensure content stays above overlay */
-.projectsSection > *{
+.projectsSection .container{
   position: relative;
   z-index: 1;
 }
@@ -247,10 +235,10 @@
 /* Media area (placeholder now) */
 .projectMedia {
   position: relative;
-  height: 260px;
   border-radius: 18px;
   overflow: hidden;
-  aspect-ratio: 16 / 9; height: auto;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
 /* shared image behavior */
@@ -438,18 +426,13 @@
   padding: 0px;
   border-radius: 15px;
   background: radial-gradient(140% 120% at 20% 0%, rgba(10, 10, 10, 0.07), rgba(14, 13, 13, 0.035) 55%, rgba(255,255,255,0.02) 100%);
-  border: 1px; 
-   opacity: .85;              /* was effectively lower via overlays */
-  border-color: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.10);
+  opacity: .85; 
   box-shadow: 0 18px 60px rgba(0,0,0,.50);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-}
-.componentCard:nth-child(2) {
-  opacity: 1;
-  transform: scale(1.02);
 }
 
 .componentCard:hover,
@@ -462,11 +445,9 @@
 
 .componentCard img{
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  opacity: 0.95;
-   filter: saturate(1.05) contrast(1.05);
+  filter: saturate(1.05) contrast(1.05);
   opacity: 0.92;
   transition: opacity 200ms ease, transform 220ms ease;
 }
@@ -476,7 +457,7 @@
   width: 100%;
   height: 300px;
   overflow: hidden;
-  margin-bottom: 0;
+ border-radius: 12px;
 }
 
 .componentPreview::after{
@@ -594,7 +575,7 @@
   transform: translateY(4px);
 }
 
-.heroDesc--ready .heroDescLetter{
+.heroDesc.heroDesc--ready .heroDescLetter{
   animation: heroDescType 600ms ease-out forwards;
 }
 
