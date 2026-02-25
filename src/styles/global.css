@@ -9,6 +9,20 @@ body{
 
 a { color: inherit; text-decoration: none; }
 html{
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth;
+}
+
+/* ===============================
+   Global Typography System
+================================= */
+
+h1, h2, h3, h4 {
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-heading);
+  
+}
+
+p {
+  line-height: var(--lh-body);
 }
 
