@@ -156,7 +156,7 @@ useEffect(() => {
             <a className="btn btnBlue" href="#projects">
               View my work
             </a>
-            <a className="btn" href="/components">
+            <a className="btn" href="/components" style={{ border: "1px solid rgba(255, 255, 255, 0.03)" }}>
               UI experiments
             </a>
           </div>
