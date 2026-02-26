@@ -695,7 +695,6 @@ background: linear-gradient(
   flex: 1;
 }
 .footer{
-  margin-top: 80px;
   padding: 26px 16px;
   border-top: 1px solid rgba(255,255,255,0.06);
   background: rgba(6, 10, 20, 0.78);

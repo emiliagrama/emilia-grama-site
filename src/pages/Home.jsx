@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useRef } from "react";
 
 export default function Home() {
+  /* ===============================
+     DATA
+  =============================== */
+
   const componentCards = [
     { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button components" },
     { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card components" },
@@ -12,7 +16,10 @@ export default function Home() {
 
   const heroDescText = "From idea to production. Clear decisions. No noise.";
 
-  // ✅ scoped element, no global querySelector
+  /* ===============================
+     HERO ANIMATION
+  =============================== */
+
   const heroDescRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +29,6 @@ export default function Home() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // ✅ precompute animated spans once
   const heroDescAnimated = useMemo(() => {
     const words = heroDescText.split(" ");
     let globalIndex = 0;
@@ -53,24 +59,101 @@ export default function Home() {
     ));
   }, [heroDescText]);
 
+  /* ===============================
+     COMPONENTS MARQUEE (NO JUMP)
+  =============================== */
+const componentsScrollRef = useRef(null);
+const componentsTrackRef = useRef(null);
+const componentsSetRef = useRef(null);
+
+const rafId = useRef(null);
+const offsetPx = useRef(0);
+const pausedRef = useRef(false);
+const startedRef = useRef(false);
+
+useEffect(() => {
+  // Avoid double-start in dev / hot reload / StrictMode weirdness
+  if (startedRef.current) return;
+  startedRef.current = true;
+
+  const scrollEl = componentsScrollRef.current;
+  const trackEl = componentsTrackRef.current;
+  const setEl = componentsSetRef.current;
+  if (!scrollEl || !trackEl || !setEl) return;
+
+  // Mobile: let native horizontal scroll handle it
+  if (window.matchMedia("(max-width: 860px)").matches) return;
+
+  const prefersReducedMotion =
+    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (prefersReducedMotion) return;
+
+  const speed = 40; // px/sec
+  let distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
+  let last = performance.now();
+
+  const onEnter = () => { pausedRef.current = true; };
+  const onLeave = () => { pausedRef.current = false; last = performance.now(); };
+
+  scrollEl.addEventListener("mouseenter", onEnter);
+  scrollEl.addEventListener("mouseleave", onLeave);
+
+  const setDistanceSafely = () => {
+    distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
+    offsetPx.current = offsetPx.current % distance;
+  };
+
+  const ro = new ResizeObserver(() => requestAnimationFrame(setDistanceSafely));
+  ro.observe(setEl);
+
+  const tick = (t) => {
+    const dt = t - last;
+    last = t;
+
+    if (!pausedRef.current) {
+      offsetPx.current += (speed * dt) / 1000;
+      if (offsetPx.current >= distance) offsetPx.current -= distance;
+      trackEl.style.transform = `translate3d(${-Math.round(offsetPx.current)}px,0,0)`;
+    }
+
+    rafId.current = requestAnimationFrame(tick);
+  };
+
+  rafId.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    ro.disconnect();
+    scrollEl.removeEventListener("mouseenter", onEnter);
+    scrollEl.removeEventListener("mouseleave", onLeave);
+    startedRef.current = false;
+  };
+}, []);
+
+  /* ===============================
+     RENDER
+  =============================== */
+
   return (
     <main>
+
+      {/* ================= HERO ================= */}
       <section className="hero">
         <div className="container">
-          <p className="heroMeta">Full-Stack Web Developer — Modern web applications</p>
+          <p className="heroMeta">
+            Full-Stack Web Developer — Modern web applications
+          </p>
 
           <h1 className="heroTitle">
             Design and code <span>- end to end</span>
           </h1>
 
-          {/* ✅ class name unchanged */}
           <p ref={heroDescRef} className="heroDesc">
             {heroDescAnimated}
           </p>
 
           <div className="heroActions">
             <a className="btn btnGold" href="#projects">
-              {" "}
               View my work
             </a>
             <a className="btn" href="/components">
@@ -80,6 +163,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ================= PROJECTS ================= */}
       <section id="projects" className="section projectsSection">
         <div className="container">
           <h2 className="h2">Selected projects</h2>
@@ -88,6 +172,7 @@ export default function Home() {
           </p>
 
           <div className="projectsGrid">
+
             <article className="projectCard projectHotel">
               <div className="projectMedia">
                 <div className="projectThumbPlaceholder" />
@@ -97,7 +182,8 @@ export default function Home() {
                 <p className="projectKicker">Hotel & Spa Website</p>
                 <h3 className="projectTitle">Hotel Vacanța</h3>
                 <p className="projectDesc">
-                  Modern-retro hotel & spa website designed for clarity, performance, and direct enquiries.
+                  Modern-retro hotel & spa website designed for clarity,
+                  performance, and direct enquiries.
                 </p>
 
                 <div className="projectActions">
@@ -122,7 +208,8 @@ export default function Home() {
                 <p className="projectKicker">Cinematic Music Portfolio</p>
                 <h3 className="projectTitle">Hugo Figuera</h3>
                 <p className="projectDesc">
-                  Sci-fi inspired cinematic music portfolio blending immersive visuals with interactive audio
+                  Sci-fi inspired cinematic music portfolio blending immersive visuals
+                  with interactive audio.
                 </p>
 
                 <div className="projectActions">
@@ -137,38 +224,63 @@ export default function Home() {
                 </div>
               </div>
             </article>
+
           </div>
 
-          <p className="projectsNote">More projects available on request.</p>
+          <p className="projectsNote">
+            More projects available on request.
+          </p>
         </div>
       </section>
 
-      {/* UI COMPONENTS SECTION */}
+      {/* ================= COMPONENTS ================= */}
       <section className="componentsSection" aria-label="UI Components">
         <div className="container">
+
           <header className="componentsHeader">
             <h2>UI Experiments</h2>
             <p>Reusable interface elements and interaction patterns.</p>
           </header>
 
-          <div className="componentsScroll" aria-label="Component carousel">
-            <div className="componentsTrack">
-              {componentCards.map((c) => (
-                <article className="componentCard" key={c.title}>
-                  <div className="componentPreview">
-                    <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
-                  </div>
-                  <div className="componentCardContent">
-                    <h3>{c.title}</h3>
-                  </div>
-                </article>
-              ))}
-
-              <div aria-hidden="true" style={{ display: "contents" }}>
+          <div
+            ref={componentsScrollRef}
+            className="componentsScroll"
+            aria-label="Component carousel"
+          >
+            <div ref={componentsTrackRef} className="componentsTrack">
+              <div ref={componentsSetRef} className="componentsSet">
+                {/* ORIGINAL SET */}
                 {componentCards.map((c) => (
-                  <article className="componentCard" key={`${c.title}-dup`}>
+                  <article className="componentCard" key={c.title}>
                     <div className="componentPreview">
-                      <img src={c.img} alt="" loading="lazy" decoding="async" />
+                      <img
+                        src={c.img}
+                        alt={c.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="componentCardContent">
+                      <h3>{c.title}</h3>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="componentsSet" aria-hidden="true">
+                {/* DUPLICATE SET (aria hidden) */}
+                {componentCards.map((c, idx) => (
+                  <article
+                    className="componentCard"
+                    key={`${c.title}-dup-${idx}`}
+                    aria-hidden="true"
+                  >
+                    <div className="componentPreview">
+                      <img
+                        src={c.img}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <div className="componentCardContent">
                       <h3>{c.title}</h3>
@@ -177,13 +289,19 @@ export default function Home() {
                 ))}
               </div>
             </div>
+              {/* 🔥 THIS MUST BE HERE */}
+  <div className="componentsFog" aria-hidden="true" />
           </div>
 
           <div className="componentsCTA">
-            <a className="btn btnGold" href="/components">View all experiments →</a>
+            <a className="btn btnGold" href="/components">
+              View all experiments →
+            </a>
           </div>
+
         </div>
       </section>
+
     </main>
   );
 }

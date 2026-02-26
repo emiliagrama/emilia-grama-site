@@ -367,12 +367,13 @@
 .componentsSection{
   position: relative;
   isolation: isolate;
-  margin-top: 0; 
+  overflow-x: hidden;
+  margin-top: 0;
   padding: clamp(56px, 6vw, 96px) 0 clamp(70px, 8vw, 140px);
   background:
-  repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 90px),
-  repeating-linear-gradient(0deg,  rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 90px),
-  rgba(9, 11, 18, 0.95);
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 90px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 90px),
+    rgba(9, 11, 18, 0.95);
 }
 
 .componentsSection::before{
@@ -382,18 +383,18 @@
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(900px 520px at 18% 30%, rgba(61,132,224,0.10), transparent 60%),
-    radial-gradient(900px 520px at 82% 72%, rgba(39, 102, 128, 0.068), transparent 62%),
-    radial-gradient(1200px 700px at 50% 100%, rgba(0,0,0,0.55), transparent 55%);
+    radial-gradient(900px 520px at 28% 35%, rgba(24,55,95,0.09), transparent 60%),
+    radial-gradient(900px 520px at 82% 72%, rgba(20,60,75,0.06), transparent 62%),
+    radial-gradient(1200px 700px at 50% 100%, rgba(0,0,0,0.26), transparent 55%);
 }
+
 .componentsSection::after{
   content:"";
   position:absolute;
   left:0; right:0; top:-1px;
   height: 220px;
   pointer-events:none;
-  z-index: 0; /* same layer as ::before */
-  /* this is the "receiver" blend from the projects section */
+  z-index: 0;
   background: linear-gradient(
     to bottom,
     rgba(0,0,0,0.85) 0%,
@@ -417,56 +418,90 @@
   margin-top: 10px;
 }
 
-/* The viewport for the moving tracks */
+/* viewport */
 .componentsScroll{
   position: relative;
   overflow: hidden;
   padding: 18px 0 32px;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
 }
 
 /* spotlight behind cards */
-.componentsScroll::before{
-  content:"";
-  position:absolute;
-  inset:-40px 0 -60px 0;
-  pointer-events:none;
-  background: radial-gradient(900px 280px at 50% 55%, rgba(61,132,224,.10), transparent 65%);
+.componentsScroll::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px 260px at 50% 55%,
+    rgba(61,132,224,0.06),
+    transparent 70%
+  );
   z-index: 0;
 }
 
+/* rAF owns transform; keep track clean */
 .componentsTrack{
   display: flex;
-  flex-wrap: nowrap;
-  gap: 24px;
   width: max-content;
+  gap: 0; /* IMPORTANT: seam is handled by set padding */
   will-change: transform;
-  animation: componentsMarquee 28s linear infinite;
-  transform: translateZ(0);
-  position: relative; 
-  z-index: 1; 
+  transform: translate3d(0,0,0);
+  animation: none !important;
+  transition: none !important;
+  position: relative;
+  z-index: 1;
+}
+/* keep the carousel clean */
+.componentsScroll {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes componentsMarquee{
-  from { transform: translate3d(0,0,0); }
-  to   { transform: translate3d(-50%,0,0); }
+/* fog overlay (no mask-image, no layout impact) */
+.componentsFog{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5; /* above cards */
+  background:
+    linear-gradient(to right,
+      rgba(9,11,18,0.95) 0%,
+      rgba(9,11,18,0.65) 6%,
+      rgba(9,11,18,0.00) 16%,
+      rgba(9,11,18,0.00) 84%,
+      rgba(9,11,18,0.65) 94%,
+      rgba(9,11,18,0.95) 100%
+    );
 }
 
-/* pause on hover */
-.componentsScroll:hover .componentsTrack{
-  animation-play-state: paused;
+/* optional: add a soft vignette glow so it feels intentional */
+.componentsFog::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background: radial-gradient(70% 90% at 50% 50%, rgba(61,132,224,0.06), transparent 60%);
+  filter: blur(10px);
+  opacity: 0.8;
+}
+/* spacing model */
+.componentsSet{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;           /* spacing between cards */
+  padding-right: 24px; /* seam spacing between last and first */
+  box-sizing: content-box;
 }
 
-/* Card sizing — looks intentional on desktop */
+/* card sizing */
 .componentCard{
-  min-width: 380px;
-  height: auto;
-  padding: 0px;
-  border-radius: 15px;
-  background: radial-gradient(140% 120% at 20% 0%, rgba(10, 10, 10, 0.07), rgba(14, 13, 13, 0.035) 55%, rgba(255,255,255,0.02) 100%);
+  flex: 0 0 380px;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
   border: 1px solid rgba(255,255,255,.10);
-  opacity: .85; 
+  background: radial-gradient(140% 120% at 20% 0%, rgba(10, 10, 10, 0.07), rgba(14, 13, 13, 0.035) 55%, rgba(255,255,255,0.02) 100%);
   box-shadow: 0 18px 60px rgba(0,0,0,.50);
   display: flex;
   flex-direction: column;
@@ -474,41 +509,24 @@
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
-.componentCard:hover,
-.componentCard:focus-within{
-  opacity: 1;
-  transform: translateY(-4px) scale(1.02);
-  border-color: rgba(61,132,224,.28);
-  box-shadow: 0 26px 85px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-.componentCard img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(1.05) contrast(1.05);
-  opacity: 0.92;
-  transition: opacity 200ms ease, transform 220ms ease;
-}
-
+/* preview */
 .componentPreview{
   position: relative;
   width: 100%;
   height: 300px;
   overflow: hidden;
- border-radius: 12px;
 }
 
 .componentPreview::after{
-  content: "";
-  position: absolute;
-  inset: 0;
+  content:"";
+  position:absolute;
+  inset:0;
   background: linear-gradient(
     to top,
-    rgba(2, 4, 8, 0.986) 0%,
-    rgba(5, 10, 20, 0.007) 35%,
-    rgba(5,10,20,0.10) 70%,
-    rgba(5,10,20,0.00) 100%
+    rgba(2, 4, 10, .82) 0%,
+    rgba(2, 4, 10, .35) 30%,
+    rgba(2, 4, 10, .10) 60%,
+    rgba(2, 4, 10, 0) 100%
   );
 }
 
@@ -518,64 +536,73 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  opacity: .85;
+  filter: saturate(1.05) contrast(1.05);
+  transition: transform 220ms ease, opacity 200ms ease, filter 200ms ease;
 }
 
-.componentCard:hover img{
+.componentCard:hover .componentPreview img{
   opacity: 1;
-  transform: scale(1.01);
+  filter: saturate(1.15) contrast(1.12);
+  transform: scale(1.02);
 }
+
+.componentCardContent{
+  padding: 1px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(7, 22, 53, 0.14),
+    rgba(2, 3, 7, 0.92)
+  );}
 
 .componentCard h3{
+  color: rgba(237,241,243,0.88);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.4px;
-  margin: 16px 10px 10px 10px;
-  color: #edf1f352;
-}
-.componentCardContent {
-  padding: 1px 10px;
-   background: linear-gradient(
-    to top,
-    rgba(7, 22, 53, 0.205),
-    rgb(2, 3, 7)
-  );
+  letter-spacing: .3px;
+  margin: 14px 14px 12px;
 }
 
-/* Respect reduced motion */
+.componentCard:hover,
+.componentCard:focus-within{
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(61,132,224,.28);
+  box-shadow: 0 26px 85px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .componentsTrack{ animation: none; }
+  .componentsTrack{ transform: none !important; }
 }
 
-/* Mobile: make it a normal horizontal scroll row (swipe-friendly) */
+/* Mobile: native swipe (disable rAF in JS too) */
 @media (max-width: 860px){
-    .componentsScroll{
+  .componentsScroll{
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     padding-bottom: 18px;
   }
-  .componentsTrack{
-    animation: none;
-  }
-  .componentCard{
-    scroll-snap-align: start;
-  }
 
-   .componentsSection .container {
-    width: 100%;
-    max-width: 100%;
-   
-  }
+  .componentsTrack{ transform: none !important; }
 
-  /* optional: prevent any horizontal weirdness */
-  .componentsSection {
-    overflow-x: hidden;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-inline: 16px !important;
-    margin-inline: auto;
-    box-sizing: border-box;
-  }
+  .componentCard{ scroll-snap-align: start; }
+  .componentsCTA{ justify-content: center; }
+}
+
+.componentsCTA{
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.componentsCTA .btn{
+  box-shadow: 0 0 42px rgba(61,132,224,0.14);
+}
+
+.componentsCTA .btn:hover{
+  box-shadow: 0 0 52px rgba(61,132,224,0.20);
 }
 /* =========================
    HERO TITLE ANIMATION
@@ -621,5 +648,3 @@
     transform: translateY(0);
   }
 }
-
-
