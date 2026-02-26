@@ -153,7 +153,7 @@ useEffect(() => {
           </p>
 
           <div className="heroActions">
-            <a className="btn btnGold" href="#projects">
+            <a className="btn btnBlue" href="#projects">
               View my work
             </a>
             <a className="btn" href="/components">
@@ -182,8 +182,10 @@ useEffect(() => {
                 <p className="projectKicker">Hotel & Spa Website</p>
                 <h3 className="projectTitle">Hotel Vacanța</h3>
                 <p className="projectDesc">
-                  Modern-retro hotel & spa website designed for clarity,
-                  performance, and direct enquiries.
+                  Modern-retro hotel & spa website designed for clarity and
+                  performance.
+                </p>
+                <p className="projectDesc2"> Rails application with dynamic offer filtering, structured DB logic, and analytics tracking.
                 </p>
 
                 <div className="projectActions">
@@ -208,8 +210,9 @@ useEffect(() => {
                 <p className="projectKicker">Cinematic Music Portfolio</p>
                 <h3 className="projectTitle">Hugo Figuera</h3>
                 <p className="projectDesc">
-                  Sci-fi inspired cinematic music portfolio blending immersive visuals
-                  with interactive audio.
+                  Sci-fi inspired cinematic music portfolio blending immersive visuals. 
+                </p> 
+                <p className="projectDesc2">React + Vite portfolio with custom audio player, performance tuning, and interactive UI system.
                 </p>
 
                 <div className="projectActions">
@@ -239,7 +242,8 @@ useEffect(() => {
 
           <header className="componentsHeader">
             <h2>UI Experiments</h2>
-            <p>Reusable interface elements and interaction patterns.</p>
+            <p className="sectionLead">
+              Reusable UI system built in React. Component-driven architecture and interaction patterns.</p>
           </header>
 
           <div
@@ -290,11 +294,10 @@ useEffect(() => {
               </div>
             </div>
               {/* 🔥 THIS MUST BE HERE */}
-  <div className="componentsFog" aria-hidden="true" />
-          </div>
-
+            <div className="componentsFog" aria-hidden="true" />
+            </div>
           <div className="componentsCTA">
-            <a className="btn btnGold" href="/components">
+            <a className="btn btnBlue" href="/components">
               View all experiments →
             </a>
           </div>
