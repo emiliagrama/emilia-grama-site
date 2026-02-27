@@ -59,76 +59,76 @@ export default function Home() {
     ));
   }, [heroDescText]);
 
-  /* ===============================
-     COMPONENTS MARQUEE (NO JUMP)
-  =============================== */
-const componentsScrollRef = useRef(null);
-const componentsTrackRef = useRef(null);
-const componentsSetRef = useRef(null);
+    /* ===============================
+      COMPONENTS MARQUEE (NO JUMP)
+    =============================== */
+  const componentsScrollRef = useRef(null);
+  const componentsTrackRef = useRef(null);
+  const componentsSetRef = useRef(null);
 
-const rafId = useRef(null);
-const offsetPx = useRef(0);
-const pausedRef = useRef(false);
-const startedRef = useRef(false);
+  const rafId = useRef(null);
+  const offsetPx = useRef(0);
+  const pausedRef = useRef(false);
+  const startedRef = useRef(false);
 
-useEffect(() => {
-  // Avoid double-start in dev / hot reload / StrictMode weirdness
-  if (startedRef.current) return;
-  startedRef.current = true;
+  useEffect(() => {
+    // Avoid double-start in dev / hot reload / StrictMode weirdness
+    if (startedRef.current) return;
+    startedRef.current = true;
 
-  const scrollEl = componentsScrollRef.current;
-  const trackEl = componentsTrackRef.current;
-  const setEl = componentsSetRef.current;
-  if (!scrollEl || !trackEl || !setEl) return;
+    const scrollEl = componentsScrollRef.current;
+    const trackEl = componentsTrackRef.current;
+    const setEl = componentsSetRef.current;
+    if (!scrollEl || !trackEl || !setEl) return;
 
-  // Mobile: let native horizontal scroll handle it
-  if (window.matchMedia("(max-width: 860px)").matches) return;
+    // Mobile: let native horizontal scroll handle it
+    if (window.matchMedia("(max-width: 860px)").matches) return;
 
-  const prefersReducedMotion =
-    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-  if (prefersReducedMotion) return;
+    const prefersReducedMotion =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReducedMotion) return;
 
-  const speed = 40; // px/sec
-  let distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
-  let last = performance.now();
+    const speed = 40; // px/sec
+    let distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
+    let last = performance.now();
 
-  const onEnter = () => { pausedRef.current = true; };
-  const onLeave = () => { pausedRef.current = false; last = performance.now(); };
+    const onEnter = () => { pausedRef.current = true; };
+    const onLeave = () => { pausedRef.current = false; last = performance.now(); };
 
-  scrollEl.addEventListener("mouseenter", onEnter);
-  scrollEl.addEventListener("mouseleave", onLeave);
+    scrollEl.addEventListener("mouseenter", onEnter);
+    scrollEl.addEventListener("mouseleave", onLeave);
 
-  const setDistanceSafely = () => {
-    distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
-    offsetPx.current = offsetPx.current % distance;
-  };
+    const setDistanceSafely = () => {
+      distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
+      offsetPx.current = offsetPx.current % distance;
+    };
 
-  const ro = new ResizeObserver(() => requestAnimationFrame(setDistanceSafely));
-  ro.observe(setEl);
+    const ro = new ResizeObserver(() => requestAnimationFrame(setDistanceSafely));
+    ro.observe(setEl);
 
-  const tick = (t) => {
-    const dt = t - last;
-    last = t;
+    const tick = (t) => {
+      const dt = t - last;
+      last = t;
 
-    if (!pausedRef.current) {
-      offsetPx.current += (speed * dt) / 1000;
-      if (offsetPx.current >= distance) offsetPx.current -= distance;
-      trackEl.style.transform = `translate3d(${-Math.round(offsetPx.current)}px,0,0)`;
-    }
+      if (!pausedRef.current) {
+        offsetPx.current += (speed * dt) / 1000;
+        if (offsetPx.current >= distance) offsetPx.current -= distance;
+        trackEl.style.transform = `translate3d(${-Math.round(offsetPx.current)}px,0,0)`;
+      }
+
+      rafId.current = requestAnimationFrame(tick);
+    };
 
     rafId.current = requestAnimationFrame(tick);
-  };
 
-  rafId.current = requestAnimationFrame(tick);
-
-  return () => {
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-    ro.disconnect();
-    scrollEl.removeEventListener("mouseenter", onEnter);
-    scrollEl.removeEventListener("mouseleave", onLeave);
-    startedRef.current = false;
-  };
-}, []);
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      ro.disconnect();
+      scrollEl.removeEventListener("mouseenter", onEnter);
+      scrollEl.removeEventListener("mouseleave", onLeave);
+      startedRef.current = false;
+    };
+  }, []);
 
   /* ===============================
      RENDER
@@ -301,7 +301,6 @@ useEffect(() => {
               View all experiments →
             </a>
           </div>
-
         </div>
       </section>
 

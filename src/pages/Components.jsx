@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
 import HugoPlayer from "../components/HugoPlayer";
-
+import Lab from "../components/Lab";
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
@@ -11,7 +11,9 @@ const SECTIONS = [
   { id: "forms", label: "Form fields" },
   { id: "nav", label: "Navbars" },
   { id: "player", label: "Players" },
-  { id: "animations", label: "Animations" },
+];
+const LAB_SECTIONS = [
+  { id: "lab", label: "Experimental Lab" },
 ];
 
 export default function Components() {
@@ -23,10 +25,16 @@ export default function Components() {
           <p className="libSubtitle">A library of reusable UI patterns and components.</p>
 
           <nav className="libNav">
+            <p className="libNavLabel">System</p>
             {SECTIONS.map(s => (
-              <a key={s.id} className="libNav__link" href={`#${s.id}`}>
-                {s.label}
-              </a>
+              <a key={s.id} className="libNav__link" href={`#${s.id}`}>{s.label}</a>
+            ))}
+
+            <div className="libNavDivider" />
+
+            <p className="libNavLabel">Lab</p>
+            {LAB_SECTIONS.map(s => (
+              <a key={s.id} className="libNav__link libNav__link--lab" href={`#${s.id}`}>{s.label}</a>
             ))}
           </nav>
         </aside>
@@ -240,7 +248,7 @@ export default function Components() {
               </h4>
             </div>
           </div>
-          <div className="libSection" id="animations"><header className="libSection__header"><h2>Animations <span className="libPulse" aria-hidden="true" /></h2><p>Coming soon.</p></header><div className="libPanel libPanel--placeholder">—</div></div>
+            <Lab />     
         </section>
       </div>
         <a
