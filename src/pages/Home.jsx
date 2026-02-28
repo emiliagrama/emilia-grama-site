@@ -6,12 +6,12 @@ export default function Home() {
   =============================== */
 
   const componentCards = [
-    { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button components" },
-    { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card components" },
-    { img: "/images/universe/forms.jpg", title: "Forms", alt: "Form fields" },
-    { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar components" },
-    { img: "/images/universe/players.jpg", title: "Players", alt: "Players" },
-    { img: "/images/universe/animations.jpg", title: "Animations", alt: "Animations" },
+    { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button experiments" },
+    { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card experiments" },
+    { img: "/images/universe/forms.jpg", title: "Forms", alt: "Form experiments" },
+    { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar experiments" },
+    { img: "/images/universe/players.jpg", title: "Players", alt: "Player experiments" },
+    { img: "/images/universe/animations.jpg", title: "Animations", alt: "Animation experiments" },
   ];
 
   const heroDescText = "From idea to production. Clear decisions. No noise.";
@@ -60,11 +60,11 @@ export default function Home() {
   }, [heroDescText]);
 
     /* ===============================
-      COMPONENTS MARQUEE (NO JUMP)
+      EXPERIMENTS MARQUEE (NO JUMP)
     =============================== */
-  const componentsScrollRef = useRef(null);
-  const componentsTrackRef = useRef(null);
-  const componentsSetRef = useRef(null);
+  const experimentsScrollRef = useRef(null);
+  const experimentsTrackRef = useRef(null);
+  const experimentsSetRef = useRef(null);
 
   const rafId = useRef(null);
   const offsetPx = useRef(0);
@@ -76,9 +76,9 @@ export default function Home() {
     if (startedRef.current) return;
     startedRef.current = true;
 
-    const scrollEl = componentsScrollRef.current;
-    const trackEl = componentsTrackRef.current;
-    const setEl = componentsSetRef.current;
+    const scrollEl = experimentsScrollRef.current;
+    const trackEl = experimentsTrackRef.current;
+    const setEl = experimentsSetRef.current;
     if (!scrollEl || !trackEl || !setEl) return;
 
     // Mobile: let native horizontal scroll handle it
@@ -156,7 +156,7 @@ export default function Home() {
             <a className="btn btnBlue" href="#projects">
               View my work
             </a>
-            <a className="btn" href="/components" style={{ border: "1px solid rgba(255, 255, 255, 0.03)" }}>
+            <a className="btn" href="/experiments" style={{ border: "1px solid rgba(255, 255, 255, 0.03)" }}>
               UI experiments
             </a>
           </div>
@@ -236,23 +236,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= COMPONENTS ================= */}
-      <section className="componentsSection" aria-label="UI Components">
+      {/* ================= EXPERIMENTS ================= */}
+      <section className="experimentsSection" aria-label="UI Experiments">
         <div className="container">
 
-          <header className="componentsHeader">
+          <header className="experimentsHeader">
             <h2>UI Experiments</h2>
             <p className="sectionLead">
               Reusable UI system built in React. Component-driven architecture and interaction patterns.</p>
           </header>
 
           <div
-            ref={componentsScrollRef}
-            className="componentsScroll"
-            aria-label="Component carousel"
+            ref={experimentsScrollRef}
+            className="experimentsScroll"
+            aria-label="Experiment carousel"
           >
-            <div ref={componentsTrackRef} className="componentsTrack">
-              <div ref={componentsSetRef} className="componentsSet">
+            <div ref={experimentsTrackRef} className="experimentsTrack">
+              <div ref={experimentsSetRef} className="experimentsSet">
                 {/* ORIGINAL SET */}
                 {componentCards.map((c) => (
                   <article className="componentCard" key={c.title}>
@@ -270,7 +270,7 @@ export default function Home() {
                   </article>
                 ))}
               </div>
-              <div className="componentsSet" aria-hidden="true">
+              <div className="experimentsSet" aria-hidden="true">
                 {/* DUPLICATE SET (aria hidden) */}
                 {componentCards.map((c, idx) => (
                   <article
@@ -294,10 +294,10 @@ export default function Home() {
               </div>
             </div>
               {/* 🔥 THIS MUST BE HERE */}
-            <div className="componentsFog" aria-hidden="true" />
+            <div className="experimentsFog" aria-hidden="true" />
             </div>
-          <div className="componentsCTA">
-            <a className="btn btnBlue" href="/components">
+          <div className="experimentsCTA">
+            <a className="btn btnBlue" href="/experiments">
               View all experiments →
             </a>
           </div>

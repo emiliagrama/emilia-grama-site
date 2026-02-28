@@ -1,3 +1,5 @@
+import { useEffect, useMemo } from "react";
+
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Form from "../components/Form";
@@ -12,38 +14,106 @@ const SECTIONS = [
   { id: "nav", label: "Navbars" },
   { id: "player", label: "Players" },
 ];
-const LAB_SECTIONS = [
-  { id: "lab", label: "Experimental Lab" },
-];
 
-export default function Components() {
+const LAB_SECTIONS = [{ id: "lab", label: "Experimental Lab" }];
+
+export default function Experiments() {
+  const ids = useMemo(
+    () => [...SECTIONS, ...LAB_SECTIONS].map((s) => s.id),
+    []
+  );
+
+  useEffect(() => {
+    const setActive = (id) => {
+      document.querySelectorAll(".libNav__link").forEach((el) => {
+        el.classList.remove("is-active");
+      });
+      document
+        .querySelector(`.libNav a[href="#${id}"]`)
+        ?.classList.add("is-active");
+    };
+
+    const getActive = () => {
+      const marker = window.innerHeight * 0.35; // "reading line"
+      let current = ids[0];
+
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= marker) current = id;
+      }
+      return current;
+    };
+
+    const onScroll = () => setActive(getActive());
+
+    // initial
+    const initial = window.location.hash?.replace("#", "");
+    if (initial && ids.includes(initial)) setActive(initial);
+    else onScroll();
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("hashchange", onScroll);
+
+    // late reflow (player/font/media)
+    const t = setTimeout(onScroll, 80);
+
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", onScroll);
+    };
+  }, [ids]);
+
   return (
     <main className="libPage">
       <div className="libShell">
-        <aside className="libSidebar" id="components-menu">
-          <h1 className="libTitle">Component Library</h1>
-          <p className="libSubtitle">A library of reusable UI patterns and components.</p>
-
+        <aside className="libSidebar" id="experiments-menu">
           <nav className="libNav">
             <p className="libNavLabel">System</p>
-            {SECTIONS.map(s => (
-              <a key={s.id} className="libNav__link" href={`#${s.id}`}>{s.label}</a>
+
+            {SECTIONS.map((s) => (
+              <a key={s.id} className="libNav__link" href={`#${s.id}`}>
+                {s.label}
+              </a>
             ))}
 
             <div className="libNavDivider" />
 
             <p className="libNavLabel">Lab</p>
-            {LAB_SECTIONS.map(s => (
-              <a key={s.id} className="libNav__link libNav__link--lab" href={`#${s.id}`}>{s.label}</a>
+
+            {LAB_SECTIONS.map((s) => (
+              <a
+                key={s.id}
+                className="libNav__link libNav__link--lab"
+                href={`#${s.id}`}
+              >
+                {s.label}
+              </a>
             ))}
           </nav>
         </aside>
 
         <section className="libContent">
+          <header className="expIntro">
+            <div className="expIntro__kicker">UI SYSTEM + LAB</div>
+            <h2 className="expIntro__title">
+              Controlled structure.{" "}
+              <span className="expIntro__edge">Unstable edge.</span>
+            </h2>
+            <p className="expIntro__lead">
+              A reusable UI system built in React — extended with experimental
+              interaction layers.
+            </p>
+          </header>
+
+          {/* Buttons */}
           <div className="libSection" id="buttons">
             <header className="libSection__header">
-              <h2>Buttons
-              <span className="libPulse" aria-hidden="true" />
+              <h2>
+                Buttons <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>Button styles, sizes, and states.</p>
             </header>
@@ -52,36 +122,45 @@ export default function Components() {
               <p className="libGroupLabel">Styles</p>
               <div className="libRow">
                 <Button variant="neon">Neon</Button>
-                <Button variant="outline"className="uiBtn--ring">Outline</Button>
+                <Button variant="outline" className="uiBtn--ring">
+                  Outline
+                </Button>
                 <Button variant="gold">Gold</Button>
                 <Button variant="ghost">Ghost</Button>
-                <Button variant="pulse" className="uiBtn--pulse">Pulse</Button>
-              </div> 
+                <Button variant="pulse" className="uiBtn--pulse">
+                  Pulse
+                </Button>
+              </div>
 
-                <p className="libGroupLabel">Media</p>
+              <p className="libGroupLabel">Media</p>
               <div className="libRow">
                 <Button variant="media" bgImage="/images/universe/leopard.png">
                   Patterns
                 </Button>
-                <Button variant="media" bgImage="/images/universe/intent-fill.jpg" bgPosition="50% 60%">
+                <Button
+                  variant="media"
+                  bgImage="/images/universe/intent-fill.jpg"
+                  bgPosition="50% 60%"
+                >
                   Parallax Texture
                 </Button>
               </div>
-                <p className="libGroupLabel">Shapes</p>
+
+              <p className="libGroupLabel">Shapes</p>
               <div className="libRow" style={{ marginTop: 16 }}>
                 <Button shape="soft">Soft</Button>
                 <Button shape="square">Square</Button>
                 <Button shape="cut">Cut</Button>
                 <Button shape="hex">Hex</Button>
               </div>
-
             </div>
           </div>
 
+          {/* Cards */}
           <div className="libSection" id="cards">
             <header className="libSection__header">
-              <h2>Cards
-              <span className="libPulse" aria-hidden="true" />
+              <h2>
+                Cards <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>Layouts, media cards, hover states, and a flip interaction.</p>
             </header>
@@ -124,7 +203,10 @@ export default function Components() {
                 </Card>
               </div>
 
-              <p className="libGroupLabel" style={{ marginTop: 18 }}>Media</p>
+              <p className="libGroupLabel" style={{ marginTop: 18 }}>
+                Media
+              </p>
+
               <div className="cardsGrid">
                 <Card
                   variant="media"
@@ -164,12 +246,12 @@ export default function Components() {
               </div>
             </div>
           </div>
-          
+
+          {/* Forms */}
           <div className="libSection" id="forms">
             <header className="libSection__header">
               <h2>
-                Form fields
-                <span className="libPulse" aria-hidden="true" />
+                Form fields <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>Inputs, states, validation, and helpers.</p>
             </header>
@@ -179,54 +261,63 @@ export default function Components() {
             </div>
           </div>
 
+          {/* Nav */}
           <div className="libSection" id="nav">
             <header className="libSection__header">
-              <h2>Navbars
-              <span className="libPulse" aria-hidden="true" />
+              <h2>
+                Navbars <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>Variants of reusable component.</p>
             </header>
+
             <div className="navContainer">
               <div className="navDemoStack">
                 <div className="demoRow">
                   <span className="demoTag">Base</span>
-                  <Navbar variant="base"
-                  brand="EMILIA GRAMA"
-                  links={["Work", "Components", "About"]}
-                  ctaLabel="Contact" />
+                  <Navbar
+                    variant="base"
+                    brand="EMILIA GRAMA"
+                    links={["Work", "Experiments", "About"]}
+                    ctaLabel="Contact"
+                  />
                 </div>
 
                 <div className="demoRow">
                   <span className="demoTag">Transparent</span>
-                  <Navbar variant="transparent"
-                  brand="EMILIA / LAB"
-                  links={["Experiments", "Notes", "Studio"]}
-                  ctaLabel="Let's talk" />
+                  <Navbar
+                    variant="transparent"
+                    brand="EMILIA / LAB"
+                    links={["Experiments", "Notes", "Studio"]}
+                    ctaLabel="Let's talk"
+                  />
                 </div>
 
                 <div className="demoRow demoRow--menu">
                   <span className="demoTag">Minimal (menu)</span>
-                  <Navbar variant="minimal" withMenu
-                  brand="EG"
-                  links={["Offers", "Work"]}
-                  ctaLabel="Send email" />
+                  <Navbar
+                    variant="minimal"
+                    withMenu
+                    brand="EG"
+                    links={["Offers", "Work"]}
+                    ctaLabel="Send email"
+                  />
                 </div>
               </div>
-
             </div>
           </div>
 
+          {/* Player */}
           <div className="libSection" id="player">
             <header className="libSection__header">
               <h2>
-                Players
-                 <span className="libPulse" aria-hidden="true" />
+                Players <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p> WaveSurfer player.</p>
+              <p>WaveSurfer player.</p>
             </header>
 
             <div className="libPanel libPlayerDemo">
               <HugoPlayer />
+
               <p className="libFinePrint">
                 Original score by{" "}
                 <a
@@ -238,26 +329,30 @@ export default function Components() {
                   Hugo Figuera ↗
                 </a>
               </p>
+
               <h4>
-                Custom audio player built with React and WaveSurfer.js, featuring a
-                bespoke UI and waveform-based progress visualization. The component
-                includes dynamic track information, grouped playlist structure, and
-                responsive playback controls. Designed to demonstrate advanced UI
-                composition and interactive audio integration within a modern
-                frontend architecture.
+                Custom audio player built with React and WaveSurfer.js, featuring
+                a bespoke UI and waveform-based progress visualization. The
+                component includes dynamic track information, grouped playlist
+                structure, and responsive playback controls. Designed to
+                demonstrate advanced UI composition and interactive audio
+                integration within a modern frontend architecture.
               </h4>
             </div>
           </div>
-            <Lab />     
+
+          {/* Lab */}
+          <Lab />
         </section>
       </div>
-        <a
-          href="#components-menu"
-          className="mobileToMenu"
-          aria-label="Back to components menu"
-        >
-          ↑
-        </a>
+
+      <a
+        href="#experiments-menu"
+        className="mobileToMenu"
+        aria-label="Back to experiments menu"
+      >
+        ↑
+      </a>
     </main>
   );
 }

@@ -10,7 +10,7 @@ export default function SiteLayout() {
 
           <nav className="navLinks">
             
-            <NavLink to="/components">UI experiments</NavLink>
+            <NavLink to="/experiments">UI experiments</NavLink>
             
           </nav>
         </div>

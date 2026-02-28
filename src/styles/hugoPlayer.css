@@ -7,7 +7,7 @@
 .hf-player {
   max-width: 1040px;
   margin: 0 auto 2rem;
-  padding: 2rem 1.5rem 0;
+  padding: 1.5rem 0.5rem 0;
 }
 
 /* Title area inside Showreel */
@@ -26,8 +26,8 @@
 
 /* Background photo behind the glass deck */
 .hf-showreel-bg {
-  margin-top: 2.5rem;
-  padding: 1.2rem 0.6rem 1.6rem;   /* more top & bottom space */
+  margin-top: 0.9rem;
+  padding: 1.2rem 0.6rem 1.6rem; 
   border-radius: 28px;
 
   background:
@@ -42,7 +42,7 @@
 
 @media (min-width: 1200px) {
   .hf-showreel-bg {
-    padding: 4rem 4rem;
+   
     min-height: 480px;
     background-position: center 48%;
   }
@@ -51,7 +51,7 @@
 /* Glass console deck that wraps main player + style groups */
 .hf-player-deck {
   margin: 0 auto;
-  padding: 1.9rem 2.1rem 2.1rem;
+  padding: 1.2rem 1.4rem 2.1rem;
   border-radius: 26px;
   background: radial-gradient(
       circle at top,

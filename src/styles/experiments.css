@@ -1,4 +1,33 @@
 /* ========== Component Library Page ========== */
+.expIntro{
+  margin: 8px 0 28px;
+  max-width: 900px;
+}
+
+.expIntro__kicker{
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 12px;
+}
+
+.expIntro__title{
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+
+.expIntro__edge{
+  color: rgba(0,200,255,0.9);
+}
+
+.expIntro__lead{
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  max-width: 60ch;
+}
 .libPage{ min-height: 100vh; padding-bottom: 30vh; }
 .libShell{
   width: min(1200px, 92vw);
@@ -20,7 +49,6 @@
     top: auto;
   }
 
-  /* 🔥 THIS is the missing piece */
  .libContent .libSection {
     display: block;
     width: 100% !important;
@@ -302,26 +330,6 @@ background: linear-gradient(
   pointer-events:none;
 }
 
-.libNavLabel--lab{
-  position: relative;
-}
-
-.libNavLabel--lab::after{
-  content:"";
-  position:absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0,200,255,0.9), transparent);
-  opacity: 0;
-  filter: blur(0.4px);
-  transform: scaleX(0.2);
-  transform-origin: left;
-  animation: labScan 7.5s infinite;
-  pointer-events:none;
-}
-
 @keyframes labScan{
   0%, 86%, 100% { opacity: 0; transform: scaleX(0.15); }
   88% { opacity: 1; transform: scaleX(1); }
@@ -430,3 +438,8 @@ background: linear-gradient(
   opacity: 0.55;
 }
 
+.libNav__link.is-active{
+  background: rgba(0, 200, 255, 0.062);
+  border-color: rgba(0, 200, 255, 0.164);
+ 
+}
