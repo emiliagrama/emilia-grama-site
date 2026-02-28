@@ -72,7 +72,7 @@ export default function Experiments() {
       <div className="libShell">
         <aside className="libSidebar" id="experiments-menu">
           <nav className="libNav">
-            <p className="libNavLabel">System</p>
+            <p className="libNavLabel uiLabel">System</p>
 
             {SECTIONS.map((s) => (
               <a key={s.id} className="libNav__link" href={`#${s.id}`}>
@@ -82,7 +82,7 @@ export default function Experiments() {
 
             <div className="libNavDivider" />
 
-            <p className="libNavLabel">Lab</p>
+            <p className="libNavLabel uiLabel ">Lab</p>
 
             {LAB_SECTIONS.map((s) => (
               <a
@@ -98,7 +98,7 @@ export default function Experiments() {
 
         <section className="libContent">
           <header className="expIntro">
-            <div className="expIntro__kicker">UI SYSTEM + LAB</div>
+            <div className="expIntro__kicker uiLabel">UI SYSTEM + LAB</div>
             <h2 className="expIntro__title">
               Controlled structure.{" "}
               <span className="expIntro__edge">Unstable edge.</span>

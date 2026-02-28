@@ -1,32 +1,53 @@
 /* ========== Component Library Page ========== */
+/* ========== Component Library Page ========== */
+/* =========================
+   EXP INTRO (make it feel "part of the page")
+   ========================= */
+
 .expIntro{
-  margin: 8px 0 28px;
-  max-width: 900px;
+  /* anchor it to the same visual language as your panels */
+  position: relative;
+  padding: clamp(18px, 2vw, 28px) clamp(18px, 2.4vw, 34px);
+  margin: 0 0 clamp(18px, 3vw, 28px);
+  border-radius: 22px;
+  margin-top: 32px;
+  background:
+    radial-gradient(800px 420px at 18% 30%,rgba(99, 22, 9, 0.103) , transparent 60%),
+    radial-gradient(700px 360px at 88% 20%, rgba(70, 200, 255, 0.034), transparent 55%),
+    rgba(10, 12, 20, 0.55);
+  border-bottom: 1px solid rgba(182, 12, 12, 0.068);
 }
 
-.expIntro__kicker{
-  font-size: 12px;
+/* Kicker: tighter, more “system label” */
+.uiLabel{
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 12px;
+  font-size: 14px;
+  opacity: 0.55;
+  margin-bottom: 10px; 
 }
-
+/* Title: slightly less huge so it matches the doc vibe */
 .expIntro__title{
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 600;
-  line-height: 1.15;
-  margin: 0 0 14px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.08;
+  margin: 0 0 12px;
+  font-weight: 620;
+  text-wrap: balance; /* modern browsers */
 }
 
+/* The blue part was shouting — make it “designed”, not “promo” */
 .expIntro__edge{
-  color: rgba(0,200,255,0.9);
+  color: rgba(13, 101, 112, 0.82);
+  text-shadow: 0 0 18px rgba(158, 220, 247, 0.274);
 }
 
+/* Lead: a bit tighter and less “hero copy” */
 .expIntro__lead{
-  font-size: 16px;
-  color: rgba(255,255,255,0.65);
-  max-width: 60ch;
+  max-width: 56ch;
+  margin: 0;
+  opacity: 0.62;
+  font-size: 15px;
+  line-height: 1.55;
 }
 .libPage{ min-height: 100vh; padding-bottom: 30vh; }
 .libShell{
@@ -72,15 +93,11 @@
   align-self: start;
   padding: 18px;
   border-radius: 18px;
-
   background:
     radial-gradient(circle at top, rgba(126, 31, 31, 0.103), transparent 60%),
     rgba(10,10,10,0.075);
-
-  
   box-shadow: 0 18px 50px rgba(0,0,0,0.45);
 }
-
 
 /* top line */
 .libSidebar::before {
@@ -93,7 +110,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 120, 127, 0.4),
+    rgba(255, 120, 127, 0.233),
     transparent
   );
   opacity: 0.7;
@@ -110,7 +127,7 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(255, 120, 120, 0.349),
+    rgba(255, 120, 120, 0.144),
     transparent
   );
   opacity: 0.7;
@@ -154,83 +171,59 @@
 
 .libSection{
   margin-top: 0;
-  padding: 18px;
+  padding: 35px;
   border-radius: 18px;
   border: none;
   background: transparent;
-
   scroll-margin-top: 90px;
-   position: relative;
-  padding-top: 28px;
+  position: relative;
+  padding-top: 0;
 }
-
-.libSection::before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 1px;
-  height: 100%;
-
-  background: linear-gradient(
-    180deg,
-    rgba(124, 18, 18, 0.5),
-    rgba(202, 66, 66, 0.233),
-    transparent
-  );
-
-  opacity: 0.6;
+.libPanel{
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.027);
+  background: rgba(0, 0, 0, 0.103);
 }
+.libPanel--placeholder{ opacity: 0.6; padding: 22px; }
 
-.libSection::after{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 24px;
-  right: 24px;
-  height: 1px;
+.libRow{ display:flex; flex-wrap:wrap; gap: 12px; }
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,80,80,0.35),
-    transparent
-  );
-
-  opacity: 0.6;
-}
-
-.libSection__header{
-  text-align: center;
-  margin-bottom: 32px; /* instead of ~40 */
-}
 
 .libSection__header h2{
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 12px;
 }
-
+.libSection__header p{
+  margin: 0;
+  font-size: 16px;
+  color: rgba(192, 190, 190, 0.76);
+  max-width: 60ch;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
 .libPulse{
   display: block;
-  width: 300px;
+  width: 100px;
   height: 2px;
   margin-top: 10px;
-background: linear-gradient(
-  90deg,
-  rgba(220,40,40,0.04),
-  rgba(220,40,40,0.4),
-  rgba(255,90,90,1),
-  rgba(220, 40, 40, 0.466),
-  rgba(220,40,40,0.04)
-);
+  background: linear-gradient(
+    90deg,
+    rgba(220,40,40,0.04),
+    rgba(220, 40, 40, 0.219),
+    rgba(255, 90, 90, 0.288),
+    rgba(220, 40, 40, 0.171),
+    rgba(220,40,40,0.04)
+  );
 
-  filter: blur(3px);
-  opacity: 0.8;
+  filter: blur(1px);
+  opacity: 0.6;
   border-radius: 999px;
-
   transform-origin: center;
   animation: libGlowPulse 3.6s ease-in-out infinite;
 }
@@ -291,15 +284,6 @@ background: linear-gradient(
   .libPulse{ animation: none; opacity: 0.65; }
 }
 
-.libPanel{
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.25);
-}
-.libPanel--placeholder{ opacity: 0.6; padding: 22px; }
-
-.libRow{ display:flex; flex-wrap:wrap; gap: 12px; }
 
 @media (max-width: 900px){
   .libShell{ grid-template-columns: 1fr; }
