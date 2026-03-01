@@ -85,11 +85,6 @@
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
 }
 
-.card__titles {
-  min-width: 0;
-  
-}
-
 .card__eyebrow {
   font-size: 12px;
   letter-spacing: .12em;
@@ -109,7 +104,7 @@
   margin: 8px 0 0;
   opacity: .75;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.30;
 }
 
 .card__body {
@@ -133,8 +128,8 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(70, 164, 201, 0.116);
-  border: 1px solid rgba(175, 15, 15, 0.048);
+  background: rgba(70,164,201,0.10);
+  border: 1px solid rgba(120,210,255,0.28);
   color: var(--text);
   text-decoration: none;
   cursor: pointer;
@@ -160,7 +155,7 @@ button.card__cta{
 /* DEFAULT card text treatment */
 
 .card--default .card__title {
-  color: rgba(57, 192, 233, 0.479);
+  color: rgba(57, 192, 233, 0.603);
   font-weight: 500;
 }
 
@@ -206,7 +201,7 @@ button.card__cta{
 
 .card--glass::before {
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
-  background: linear-gradient(135deg, rgba(209, 40, 40, 0.863), transparent 40%);
+  background: linear-gradient(135deg, rgba(228, 23, 23, 0.349), transparent 40%);
 }
 .card--glass::after {
   content: "";
@@ -236,7 +231,7 @@ button.card__cta{
 }
 
 .card--glow .card__title {
-  color: #2bc3f19c;
+  color: #2bf1e09c;
   animation: glow-breathe 4.2s ease-in-out infinite;
 }
 
@@ -318,6 +313,7 @@ button.card__cta{
 }
 
 /* FLIP CARD */
+
 .card--flip {
   perspective: 1000px;
   background: transparent;
@@ -355,10 +351,10 @@ button.card__cta{
   position: absolute;
   right: 16px;
   bottom: 14px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.65;
+  opacity: 0.50;
   pointer-events: none;
 }
 

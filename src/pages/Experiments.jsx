@@ -15,7 +15,7 @@ const SECTIONS = [
   { id: "player", label: "Players" },
 ];
 
-const LAB_SECTIONS = [{ id: "lab", label: "Experimental Lab" }];
+const LAB_SECTIONS = [{ id: "lab", label: "Controlled chaos" }];
 
 export default function Experiments() {
   const ids = useMemo(
@@ -121,28 +121,11 @@ export default function Experiments() {
               <p className="libGroupLabel">Styles</p>
               <div className="libRow">
                 <Button variant="neon">Neon</Button>
+                <Button variant="gold">Gold</Button>
                 <Button variant="outline" className="uiBtn--ring">
                   Outline
                 </Button>
-                <Button variant="gold">Gold</Button>
                 <Button variant="ghost">Ghost</Button>
-                <Button variant="pulse" className="uiBtn--pulse">
-                  Pulse
-                </Button>
-              </div>
-
-              <p className="libGroupLabel">Media</p>
-              <div className="libRow">
-                <Button variant="media" bgImage="/images/universe/leopard.png">
-                  Patterns
-                </Button>
-                <Button
-                  variant="media"
-                  bgImage="/images/universe/intent-fill.jpg"
-                  bgPosition="50% 60%"
-                >
-                  Parallax Texture
-                </Button>
               </div>
 
               <p className="libGroupLabel">Shapes</p>
@@ -151,6 +134,23 @@ export default function Experiments() {
                 <Button shape="square">Square</Button>
                 <Button shape="cut">Cut</Button>
                 <Button shape="hex">Hex</Button>
+              </div>
+
+              <p className="libGroupLabel__lab">Lab</p>
+              <div className="libRow">
+                <Button variant="media" bgImage="/images/universe/leopard.png">
+                  Noise Pattern
+                </Button>
+                <Button
+                  variant="media"
+                  bgImage="/images/universe/intent-fill.jpg"
+                  bgPosition="50% 60%">
+                  Parallax Texture
+                </Button>
+                <Button variant="pulse" className="uiBtn--pulse">
+                  Pulse Motion
+                </Button>
+
               </div>
             </div>
           </div>
