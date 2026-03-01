@@ -11,7 +11,7 @@ export default function Home() {
     { img: "/images/universe/forms.jpg", title: "Forms", alt: "Form experiments" },
     { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar experiments" },
     { img: "/images/universe/players.jpg", title: "Players", alt: "Player experiments" },
-    { img: "/images/universe/animations.jpg", title: "Animations", alt: "Animation experiments" },
+    { img: "/images/universe/lab.jpg", title: "Lab", alt: "Lab" },
   ];
 
   const heroDescText = "From idea to production. Clear decisions. No noise.";

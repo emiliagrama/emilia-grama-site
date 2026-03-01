@@ -104,8 +104,7 @@ export default function Experiments() {
               <span className="expIntro__edge">Unstable edge.</span>
             </h2>
             <p className="expIntro__lead">
-              A reusable UI system built in React — extended with experimental
-              interaction layers.
+              A reusable UI system in React — extended with experimental motion and interaction.
             </p>
           </header>
 
@@ -162,7 +161,7 @@ export default function Experiments() {
               <h2>
                 Cards <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Layouts, media cards, hover states, and a flip interaction.</p>
+              <p>Layouts, media cards, hover states, and flip.</p>
             </header>
 
             <div className="libPanel">
@@ -177,7 +176,7 @@ export default function Experiments() {
                   href="#"
                   ctaLabel="Open"
                 >
-                  Perfect for services, project previews, or feature highlights.
+                  Designed for services, previews, and feature highlights.
                 </Card>
 
                 <Card
@@ -267,7 +266,7 @@ export default function Experiments() {
               <h2>
                 Navbars <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Variants of reusable component.</p>
+              <p>Variants of a reusable component.</p>
             </header>
 
             <div className="navContainer">
@@ -312,7 +311,7 @@ export default function Experiments() {
               <h2>
                 Players <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>WaveSurfer player.</p>
+              <p>WaveSurfer UI player.</p>
             </header>
 
             <div className="libPanel libPlayerDemo">
@@ -331,12 +330,7 @@ export default function Experiments() {
               </p>
 
               <h4>
-                Custom audio player built with React and WaveSurfer.js, featuring
-                a bespoke UI and waveform-based progress visualization. The
-                component includes dynamic track information, grouped playlist
-                structure, and responsive playback controls. Designed to
-                demonstrate advanced UI composition and interactive audio
-                integration within a modern frontend architecture.
+                Custom audio player built with React and WaveSurfer.js, featuring waveform-based progress, grouped playlists, and responsive playback controls. Designed to demonstrate advanced UI composition and interactive audio integration in a modern frontend architecture.
               </h4>
             </div>
           </div>

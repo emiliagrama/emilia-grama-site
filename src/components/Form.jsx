@@ -24,7 +24,7 @@ export default function Form() {
             <div className="formLibKicker">FORM</div>
             <h3 className="formLibTitle">Primary fields</h3>
             <p className="formLibSub">
-              Focus, hover, disabled, helper text. No submission logic — UI only.
+              Focus, hover, disabled, helper text. No submission logic — UI layer only.
             </p>
           </div>
 

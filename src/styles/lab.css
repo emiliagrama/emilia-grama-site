@@ -17,7 +17,7 @@
 }
 
 .labSection .glitchTitle::before { color: #00ffff; }
-.labSection .glitchTitle::after  { color: #ff00c8; }
+.labSection .glitchTitle::after  { color: #9900ff; }
 
 @keyframes labGlitchShift {
   0%, 92%, 100% { opacity: 0; transform: translate(0,0); }
@@ -27,5 +27,5 @@
   96% { opacity: 0; transform: translate(0,0); }
 }
 
-.labSection .glitchTitle::before { animation: labGlitchShift 6s infinite; }
-.labSection .glitchTitle::after  { animation: labGlitchShift 6s infinite reverse; }
+.labSection .glitchTitle::before { animation: labGlitchShift 4s infinite; }
+.labSection .glitchTitle::after  { animation: labGlitchShift 4s infinite reverse; }

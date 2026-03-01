@@ -1,5 +1,4 @@
 /* ========== Component Library Page ========== */
-/* ========== Component Library Page ========== */
 /* =========================
    EXP INTRO (make it feel "part of the page")
    ========================= */
@@ -7,12 +6,11 @@
 .expIntro{
   /* anchor it to the same visual language as your panels */
   position: relative;
-  padding: clamp(18px, 2vw, 28px) clamp(18px, 2.4vw, 34px);
-  margin: 0 0 clamp(18px, 3vw, 28px);
-  border-radius: 22px;
+padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15px, 3vw, 15px);
+  border-radius: 18px;
   margin-top: 32px;
   background:
-    radial-gradient(800px 420px at 18% 30%,rgba(99, 22, 9, 0.103) , transparent 60%),
+    radial-gradient(800px 420px at 18% 30%,rgba(99, 22, 9, 0.068) , transparent 60%),
     radial-gradient(700px 360px at 88% 20%, rgba(70, 200, 255, 0.034), transparent 55%),
     rgba(10, 12, 20, 0.55);
   border-bottom: 1px solid rgba(182, 12, 12, 0.068);
@@ -30,7 +28,7 @@
 .expIntro__title{
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.08;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-weight: 620;
   text-wrap: balance; /* modern browsers */
 }
@@ -38,7 +36,7 @@
 /* The blue part was shouting — make it “designed”, not “promo” */
 .expIntro__edge{
   color: rgba(13, 101, 112, 0.82);
-  text-shadow: 0 0 18px rgba(158, 220, 247, 0.274);
+  text-shadow: 0 0 8px rgba(158, 220, 247, 0.274);
 }
 
 /* Lead: a bit tighter and less “hero copy” */
@@ -48,6 +46,7 @@
   opacity: 0.62;
   font-size: 15px;
   line-height: 1.55;
+  
 }
 .libPage{ min-height: 100vh; padding-bottom: 30vh; }
 .libShell{
@@ -94,10 +93,9 @@
   padding: 18px;
   border-radius: 18px;
   background:
-    radial-gradient(circle at top, rgba(126, 31, 31, 0.103), transparent 60%),
+    radial-gradient(circle at top, rgba(126, 31, 31, 0.068), transparent 60%),
     rgba(10,10,10,0.075);
-  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
-}
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);}
 
 /* top line */
 .libSidebar::before {
@@ -110,7 +108,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 120, 127, 0.233),
+    rgba(255, 120, 127, 0.158),
     transparent
   );
   opacity: 0.7;
@@ -127,7 +125,7 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(255, 120, 120, 0.144),
+    rgba(255, 120, 120, 0.137),
     transparent
   );
   opacity: 0.7;
@@ -142,6 +140,7 @@
 }
 
 .libNav{ display: grid; gap: 10px; }
+
 .libNav__link{
   display:block;
   padding: 10px 12px;
@@ -161,10 +160,13 @@
   background: rgba(39, 37, 37, 0.05);
   border-color: rgba(53, 148, 161, 0.267);
 }
-
+.libNav__link.is-active{
+  background: rgba(0, 200, 255, 0.062);
+  border-color: rgba(0, 200, 255, 0.164);
+}
 
 .libContent { display: grid;
-  gap: 36px;  
+  gap: 30px;  
   align-content: start;}
 
 /*section*/
@@ -183,7 +185,7 @@
   padding: 16px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.027);
-  background: rgba(0, 0, 0, 0.103);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
 }
 .libPanel--placeholder{ opacity: 0.6; padding: 22px; }
 
@@ -197,7 +199,7 @@
   font-size: 32px;
   font-weight: 600;
   line-height: 1.15;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 .libSection__header p{
   margin: 0;
@@ -214,15 +216,15 @@
   margin-top: 10px;
   background: linear-gradient(
     90deg,
-    rgba(220,40,40,0.04),
-    rgba(220, 40, 40, 0.219),
-    rgba(255, 90, 90, 0.288),
-    rgba(220, 40, 40, 0.171),
-    rgba(220,40,40,0.04)
+    rgba(0,200,255,0.04),
+    rgba(0,200,255,0.22),
+    rgba(0,200,255,0.30),
+    rgba(0,200,255,0.18),
+    rgba(0,200,255,0.04)
   );
 
-  filter: blur(1px);
-  opacity: 0.6;
+  filter: blur(2px);
+  opacity: 0.2;
   border-radius: 999px;
   transform-origin: center;
   animation: libGlowPulse 3.6s ease-in-out infinite;
@@ -422,8 +424,3 @@
   opacity: 0.55;
 }
 
-.libNav__link.is-active{
-  background: rgba(0, 200, 255, 0.062);
-  border-color: rgba(0, 200, 255, 0.164);
- 
-}
