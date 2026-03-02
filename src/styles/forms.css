@@ -2,11 +2,23 @@
 
 .formLibGrid{
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
   gap: 18px;
 }
+
+/* IMPORTANT: allow grid children to shrink (prevents squeezing/overflow) */
+.formLibGrid > * { 
+  min-width: 0; 
+}
+
+/* Split-screen / medium layouts */
+@media (max-width: 1400px){
+  .formLibGrid { grid-template-columns: 1fr; }
+}
+
+/* Mobile */
 @media (max-width: 980px){
-  .formLibGrid{ grid-template-columns: 1fr; }
+  .formLibGrid { grid-template-columns: 1fr; }
 }
 
 /* =========================
@@ -444,3 +456,4 @@
 .formLibCalendarWrap .rdp-chevron{
   fill: rgba(37, 104, 94, 0.75) !important;
 }
+

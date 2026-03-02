@@ -324,53 +324,7 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   92% { opacity: 0; transform: scaleX(0.2); }
 }
 
-@media (max-width: 900px) {
-  .mobileToMenu {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 200;
 
-    width: 30px;
-    height: 30px;
-    border-radius: 18px;
-
-    display: grid;
-    place-items: center;
-
-    background: rgba(15,15,20,0.95);
-    border: 1px solid rgba(255,80,80,0.25);
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.5),
-      0 0 12px rgba(255,80,80,0.15);
-    backdrop-filter: blur(14px);
-    animation: haloPulse 2.8s ease-in-out infinite;
-    text-decoration: none;
-
-    color: inherit;
-
-    font-size: 1rem;
-  }
-}
-@keyframes haloPulse {
-  0% {
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.5),
-      0 0 0 0 rgba(255, 80, 80, 0.21);
-  }
-
-  70% {
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.5),
-      0 0 0 14px rgba(255, 80, 80, 0);
-  }
-
-  100% {
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.5),
-      0 0 0 0 rgba(255, 80, 80, 0);
-  }
-}
 
 .appShell{
   min-height: 100vh;
@@ -425,3 +379,225 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   opacity: 0.55;
 }
 
+/* =========================
+   EXPERIMENTS — MOBILE POLISH
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Overall page padding + rhythm */
+  .libContent{
+    padding-inline: 16px; /* if libContent is full-width container */
+  }
+
+  .libSection{
+    padding: 16px;
+    scroll-margin-top: 72px;
+  }
+
+  .libSection_header{
+    margin-bottom: 12px;
+  }
+
+  .libSection_header h2{
+    font-size: 28px;           /* adjust if needed */
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .libSection_header p{
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* Hero / intro card */
+  .expIntro{
+    padding: 16px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+  }
+
+  .expIntro_title{
+    font-size: clamp(28px, 7.2vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* Keep the accent phrase readable on small widths */
+  .expIntro_edge{
+    display: inline;
+    white-space: normal;
+  }
+
+  .expIntro_lead{
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 52ch; /* prevents super long lines on big phones */
+  }
+
+  /* Button groups ("Neon / Gold / Outline / Ghost", shapes, lab chips) */
+  .libRow{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  /* Make buttons fill grid cells nicely */
+  .libRow .uiBtn,
+  .libRow button{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* If you have some rows that should be 3 columns on wider phones */
+  @media (min-width: 520px){
+    .libRow{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Group labels ("Styles", "Shapes", "Lab") */
+  .libGroupLabel{
+    margin-top: 14px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Panels */
+  .libPanel{
+    padding: 14px;
+    border-radius: 18px;
+  }
+}
+/* =========================
+   EXPERIMENTS — TABLET POLISH
+   Target: 721px → 1100px
+   ========================= */
+
+@media (min-width: 721px) and (max-width: 1100px){
+
+  /* Content padding: not as wide as desktop */
+  .libContent{
+    padding-inline: 24px;
+  }
+
+  /* Intro / hero */
+  .expIntro{
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  .expIntro_title{
+    font-size: clamp(34px, 4.2vw, 44px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+
+  .expIntro_lead{
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+
+  /* Sections */
+  .libSection{
+    padding: 18px;
+    scroll-margin-top: 80px;
+  }
+
+  .libSection_header{
+    margin-bottom: 14px;
+  }
+
+  .libSection_header h2{
+    font-size: 32px;
+    line-height: 1.12;
+  }
+
+  .libSection_header p{
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+
+  /* Panels */
+  .libPanel{
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  /* Button rows on tablet: 3 columns feels best */
+  .libRow{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .libRow .uiBtn,
+  .libRow button{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Labels */
+  .libGroupLabel{
+    margin-top: 16px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+}
+.mobileToMenu {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .mobileToMenu {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 200;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 18px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(15,15,20,0.95);
+    border: 1px solid rgba(255,80,80,0.25);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 12px rgba(255,80,80,0.15);
+    backdrop-filter: blur(14px);
+    animation: haloPulse 2.8s ease-in-out infinite;
+    text-decoration: none;
+
+    color: inherit;
+
+    font-size: 1rem;
+  }
+}
+@keyframes haloPulse {
+  0% {
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 0 rgba(255, 80, 80, 0.21);
+  }
+
+  70% {
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 14px rgba(255, 80, 80, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 0 rgba(255, 80, 80, 0);
+  }
+}

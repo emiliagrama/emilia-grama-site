@@ -129,7 +129,7 @@ export default function Experiments() {
               </div>
 
               <p className="libGroupLabel">Shapes</p>
-              <div className="libRow" style={{ marginTop: 16 }}>
+              <div className="libRow">
                 <Button shape="soft">Soft</Button>
                 <Button shape="square">Square</Button>
                 <Button shape="cut">Cut</Button>
