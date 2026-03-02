@@ -4,8 +4,7 @@ export default function Footer() {
       <div className="container footerInner">
         <p className="footerEmail">
         <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=emiliagrama@gmail.com"
-            target="_blank"
+          href="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"            target="_blank"
             rel="noopener noreferrer"
         >
             emiliagrama@gmail.com

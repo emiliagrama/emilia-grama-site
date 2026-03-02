@@ -276,9 +276,13 @@ export default function Experiments() {
                   <Navbar
                     variant="base"
                     brand="EMILIA GRAMA"
-                    links={["Work", "Experiments", "About"]}
+                      links={[
+                        { label: "Work", href: "/#projects" },
+                        { label: "Experiments", href: "/experiments" },
+                      ]}
                     ctaLabel="Contact"
-                  />
+                    ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"            
+                 />
                 </div>
 
                 <div className="demoRow">
@@ -286,8 +290,12 @@ export default function Experiments() {
                   <Navbar
                     variant="transparent"
                     brand="EMILIA / LAB"
-                    links={["Experiments", "Notes", "Studio"]}
+                     links={[
+                        { label: "Experiments", href: "/experiments" },
+                        { label: "Lab", href: "/experiments#lab" },
+                      ]}
                     ctaLabel="Let's talk"
+                    ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
                   />
                 </div>
 
@@ -297,8 +305,12 @@ export default function Experiments() {
                     variant="minimal"
                     withMenu
                     brand="EG"
-                    links={["Offers", "Work"]}
+                      links={[
+                        { label: "Lab", href: "/experiments#lab" },
+                        { label: "Work", href: "/#projects" },
+                      ]}
                     ctaLabel="Send email"
+                    ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
                   />
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
-
+import ScrollToHash from "../components/ScrollToHash";
 export default function SiteLayout() {
   return (
     <div className="appShell">
@@ -15,7 +15,7 @@ export default function SiteLayout() {
           </nav>
         </div>
       </header>
-
+      <ScrollToHash />
       <main className="mainContent">
         <Outlet />
       </main>

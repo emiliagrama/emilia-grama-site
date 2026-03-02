@@ -36,7 +36,10 @@
   justify-content: center;
 }
 
-.navb__link {
+.navb__link{
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
   opacity: 0.8;
   cursor: pointer;
   transition: transform 160ms ease, opacity 160ms ease;
@@ -234,6 +237,9 @@
   color: rgba(38, 110, 110, 0.88);
   cursor: pointer;
   transition: background 160ms ease;
+    display: block;
+  text-decoration: none;
+  color: rgba(255,255,255,0.82);
 }
 
 .navb__menuItem:hover {
