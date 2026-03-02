@@ -1,15 +1,19 @@
 .formLib { width: 100%; }
 
-.formLibGrid {
+.formLibGrid{
   display: grid;
   grid-template-columns: 1.2fr 0.9fr;
   gap: 18px;
 }
-@media (max-width: 980px) {
-  .formLibGrid { grid-template-columns: 1fr; }
+@media (max-width: 980px){
+  .formLibGrid{ grid-template-columns: 1fr; }
 }
 
-.formLibPanel {
+/* =========================
+   PANEL
+   ========================= */
+
+.formLibPanel{
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.02);
@@ -17,37 +21,65 @@
   box-shadow: 0 14px 50px rgba(0,0,0,.45);
   transition: transform .25s ease, box-shadow .25s ease;
 }
-.formLibPanel:hover {
+.formLibPanel:hover{
   transform: translateY(-2px);
   box-shadow: 0 18px 60px rgba(0,0,0,.55);
 }
 
-.formLibPanel--states .formLibField {
+.formLibPanel--states .formLibField{
   padding-bottom: 12px;
   border-bottom: 1px dashed rgba(255,255,255,.06);
 }
-.formLibPanel--states .formLibField:last-of-type {
+.formLibPanel--states .formLibField:last-of-type{
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.formLibHeader { margin-bottom: 14px; }
-.formLibKicker { font-size: 11px; letter-spacing: .12em; opacity: .7; text-transform: uppercase; }
-.formLibTitle { margin: 6px 0 4px; font-size: 18px; }
-.formLibSub { margin: 0; opacity: .75; font-size: 13px; line-height: 1.35; }
+.formLibHeader{ margin-bottom: 14px; }
+.formLibKicker{
+  font-size: 11px;
+  letter-spacing: .12em;
+  opacity: .7;
+  text-transform: uppercase;
+}
+.formLibTitle{ margin: 6px 0 4px; font-size: 18px; }
+.formLibSub{ margin: 0; opacity: .75; font-size: 13px; line-height: 1.35; }
 
-.formLibRow { display:flex; justify-content: space-between; align-items:center; gap: 12px; margin-top: 14px; }
-.formLibRow2 { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-@media (max-width: 680px) {
-  .formLibRow2 { grid-template-columns: 1fr; }
+/* =========================
+   LAYOUT
+   ========================= */
+
+.formLibRow{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.formLibRow2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 680px){
+  .formLibRow2{ grid-template-columns: 1fr; }
 }
 
-.formLibField { display:flex; flex-direction: column; gap: 8px; margin-top: 12px; }
-.formLibLabel { font-size: 12px; opacity: .75; }
+.formLibField{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.formLibLabel{ font-size: 12px; opacity: .75; }
+
+/* =========================
+   INPUTS
+   ========================= */
 
 .formLibInput,
 .formLibSelect,
-.formLibTextarea {
+.formLibTextarea{
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(0,0,0,.25);
@@ -56,40 +88,44 @@
   outline: none;
 }
 
-.formLibTextarea { padding-top: 10px; }
+.formLibTextarea{ padding-top: 10px; }
 
 .formLibInput:focus,
 .formLibSelect:focus,
-.formLibTextarea:focus {
-  border-color: rgba(120,180,255,.35);
-  box-shadow: 0 0 0 4px rgba(120,180,255,.10);
+.formLibTextarea:focus{
+  border-color: rgba(90,220,200,.35);
+  box-shadow: 0 0 0 4px rgba(90,220,200,.10);
 }
 
 .formLibInput:disabled,
 .formLibSelect:disabled,
-.formLibTextarea:disabled {
+.formLibTextarea:disabled{
   opacity: .55;
   cursor: not-allowed;
 }
 
-.formLibInput[readonly] {
+.formLibInput[readonly]{
   opacity: .85;
   cursor: default;
 }
 
 .formLibInput::placeholder,
-.formLibTextarea::placeholder {
+.formLibTextarea::placeholder{
   color: rgba(242,246,255,.45);
 }
 
-.formLibHelp { font-size: 12px; opacity: .65; line-height: 1.3; }
-.formLibInput--error { border-color: rgba(255,90,120,.45); }
-.formLibHelp--error { opacity: .75; color: rgba(255,140,160,.95); }
+.formLibHelp{ font-size: 12px; opacity: .65; line-height: 1.3; }
+.formLibInput--error{ border-color: rgba(255,90,120,.45); }
+.formLibHelp--error{ opacity: .75; color: rgba(255,140,160,.95); }
 
-.formLibCheck { display:flex; align-items:center; gap: 10px; font-size: 13px; opacity: .9; }
-.formLibCheck input { position: absolute; opacity: 0; pointer-events: none; }
+/* =========================
+   CHECKBOX
+   ========================= */
 
-.formLibCheckBox {
+.formLibCheck{ display:flex; align-items:center; gap: 10px; font-size: 13px; opacity: .9; }
+.formLibCheck input{ position: absolute; opacity: 0; pointer-events: none; }
+
+.formLibCheckBox{
   width: 18px;
   height: 18px;
   border-radius: 6px;
@@ -100,26 +136,30 @@
   place-items: center;
   transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
 }
-.formLibCheck:focus-within .formLibCheckBox {
-  border-color: rgba(120,180,255,.35);
-  box-shadow: 0 0 0 4px rgba(120,180,255,.10);
+.formLibCheck:focus-within .formLibCheckBox{
+  border-color: rgba(90,220,200,.35);
+  box-shadow: 0 0 0 4px rgba(90,220,200,.10);
 }
-.formLibCheck input:checked + .formLibCheckBox {
-  border-color: rgba(120,180,255,.35);
-  background: rgba(120,180,255,.12);
+.formLibCheck input:checked + .formLibCheckBox{
+  border-color: rgba(90,220,200,.35);
+  background: rgba(90,220,200,.12);
 }
-.formLibCheck input:checked + .formLibCheckBox::after {
+.formLibCheck input:checked + .formLibCheckBox::after{
   content: "";
   width: 8px;
   height: 8px;
   border-radius: 3px;
   background: rgba(242,246,255,.92);
-  box-shadow: 0 0 0 3px rgba(120,180,255,.12);
+  box-shadow: 0 0 0 3px rgba(90,220,200,.12);
 }
 
-.formLibActions { display:flex; gap: 10px; }
+/* =========================
+   BUTTONS / MESSAGES
+   ========================= */
 
-.formLibBtn {
+.formLibActions{ display:flex; gap: 10px; }
+
+.formLibBtn{
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.04);
@@ -127,13 +167,13 @@
   padding: 10px 14px;
   cursor: pointer;
 }
-.formLibBtn--primary {
-  border-color: rgba(120,180,255,.25);
-  background: rgba(120,180,255,.10);
+.formLibBtn--primary{
+  border-color: rgba(90,220,200,.25);
+  background: rgba(90,220,200,.10);
 }
-.formLibBtn--ghost { background: transparent; }
+.formLibBtn--ghost{ background: transparent; }
 
-.formLibError {
+.formLibError{
   margin-top: 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,90,120,.25);
@@ -142,19 +182,265 @@
   font-size: 13px;
 }
 
-.formLibDivider {
+.formLibDivider{
   height: 1px;
   margin: 14px 0;
   background: rgba(255,255,255,.08);
 }
 
-/* dropdown menu (native, best-effort) */
-.formLibSelect { color-scheme: dark; }
-.formLibSelect option {
+/* =========================
+   SELECT (REALITY CHECK)
+   - Closed select is styleable.
+   - Open dropdown list is OS UI in many browsers -> limited styling.
+   ========================= */
+
+.formLibSelect{ color-scheme: dark; }
+
+/* Best-effort only (may not apply to the opened list) */
+.formLibSelect option{
   background: rgba(10,14,22,1);
   color: rgba(242,246,255,.92);
 }
-.formLibSelect option:checked {
-  background: rgba(120,180,255,.22);
+.formLibSelect option:checked{
+  background: rgba(90,220,200,.22);
   color: rgba(242,246,255,.98);
+}
+/* =========================
+   CUSTOM SELECT (Radix)
+   ========================= */
+
+.formLibSelectTrigger{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.25);
+  padding: 12px;
+
+  color: rgba(242, 246, 255, 0.479);
+  outline: none;
+  cursor: pointer;
+
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.formLibSelectTrigger:hover{
+  transform: translateY(-1px);
+}
+
+.formLibSelectTrigger:focus{
+  border-color: rgba(90,220,200,.35);
+  box-shadow: 0 0 0 4px rgba(90,220,200,.10);
+}
+
+.formLibSelectIcon{
+  opacity: .75;
+  display: flex;
+  align-items: center;
+}
+
+/* Dropdown panel */
+.formLibSelectContent{
+  z-index: 9999;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,14,22,.95);
+  box-shadow: 0 18px 60px rgba(0,0,0,.60);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  
+}
+
+.formLibSelectViewport{
+  padding: 8px;
+  min-width: var(--radix-select-trigger-width);
+}
+
+/* Items */
+.formLibSelectItem{
+  position: relative;
+  border-radius: 10px;
+  padding: 10px 36px 10px 12px;
+  color: rgba(242, 246, 255, 0.678);
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.formLibSelectItem[data-highlighted]{
+  background: rgba(90,220,200,.08);
+}
+
+.formLibSelectItem[data-state="checked"]{
+  background: rgba(90,220,200,.18);
+}
+
+.formLibSelectCheck{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .9;
+  color: rgba(90,220,200,.85);
+}
+/* =========================
+   DATE RANGE PICKER (trigger + panel)
+   ========================= */
+
+.formLibDateTrigger{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.25);
+  padding: 12px;
+
+  color: rgba(66, 207, 207, 0.486);
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.formLibDateTrigger:hover{ transform: translateY(-1px); }
+.formLibDateTrigger:focus{
+  outline: none;
+  border-color: rgba(90,220,200,.35);
+  box-shadow: 0 0 0 4px rgba(90,220,200,.08);
+}
+
+.formLibDateValue{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  font-size: 13px;
+  opacity: .95;
+}
+.formLibDateArrow{ opacity: .6; }
+.formLibDateMeta{ font-size: 12px; opacity: .65; white-space: nowrap; }
+
+.formLibCalendarWrap{
+  margin-top: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(10,14,22,.85);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+.formLibCalendarActions{
+  display:flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* =========================
+   DayPicker (scoped theme) — IMPORTANT
+   Blue comes from:
+   - .rdp-chevron { fill: var(--rdp-accent-color) }
+   - borders like --rdp-selected-border / --rdp-range_* variables
+   We override those tokens HERE, scoped to your wrapper.
+   ========================= */
+
+.formLibCalendarWrap .rdp{
+  /* your current accent, keep it */
+  --accent: 90, 220, 200;
+
+  /* tokens used by DayPicker internal CSS */
+  --rdp-accent-color: rgba(var(--accent), .75);
+
+  --rdp-selected-border: 1px solid rgba(var(--accent), .22);
+  --rdp-range_start-border: 1px solid rgba(var(--accent), .22);
+  --rdp-range_end-border: 1px solid rgba(var(--accent), .22);
+
+  /* these show up in DevTools for start/end */
+  --rdp-range_start-date-background-color: rgba(var(--accent), .28);
+  --rdp-range_end-date-background-color: rgba(var(--accent), .28);
+  --rdp-range_start-color: rgba(242,246,255,.98);
+  --rdp-range_end-color: rgba(242,246,255,.98);
+
+  margin: 0;
+  padding: 12px;
+}
+
+.formLibCalendarWrap .rdp-months{ gap: 18px; }
+.formLibCalendarWrap .rdp-caption_label{
+  color: rgba(242,246,255,.92);
+  font-weight: 650;
+}
+.formLibCalendarWrap .rdp-head_cell{
+  color: rgba(242,246,255,.55);
+  font-size: 12px;
+}
+
+/* Base day + button (v8 targets) */
+.formLibCalendarWrap .rdp-day{ background: transparent !important; }
+.formLibCalendarWrap .rdp-day_button{
+  background: transparent !important;
+  border-radius: 999px;
+  color: rgba(242,246,255,.86);
+  outline: none !important;
+}
+
+.formLibCalendarWrap .rdp-day_button:hover{
+  background: rgba(255,255,255,.06) !important;
+}
+
+.formLibCalendarWrap .rdp-day_disabled .rdp-day_button{
+  background: transparent !important;
+  color: rgba(242,246,255,.22) !important;
+  opacity: .45;
+}
+
+/* Range middle ribbon */
+.formLibCalendarWrap .rdp-range_middle .rdp-day_button{
+  background: rgba(38, 99, 90, 0.26) !important;
+  color: rgba(242,246,255,.92) !important;
+  border-radius: 0 !important;
+}
+
+/* Range ends */
+.formLibCalendarWrap .rdp-range_start .rdp-day_button,
+.formLibCalendarWrap .rdp-range_end .rdp-day_button{
+  background: rgba(37, 105, 96, 0.418) !important;
+  color: rgba(242,246,255,.98) !important;
+  border: 1px solid rgba(var(--accent), .22) !important;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.45),
+    0 0 0 2px rgba(var(--accent), .18),
+    0 0 18px rgba(var(--accent), .18);
+}
+
+/* Connect start/end into ribbon */
+.formLibCalendarWrap .rdp-range_start .rdp-day_button{
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+.formLibCalendarWrap .rdp-range_end .rdp-day_button{
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+}
+
+/* Nav buttons + chevrons */
+.formLibCalendarWrap .rdp-nav_button{
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.formLibCalendarWrap .rdp-nav_button:hover{
+  border-color: rgba(35, 90, 82, 0.22);
+  background: rgba(255,255,255,.07);
+}
+
+/* This is what your DevTools showed: fill uses --rdp-accent-color */
+.formLibCalendarWrap .rdp-chevron{
+  fill: rgba(37, 104, 94, 0.75) !important;
 }

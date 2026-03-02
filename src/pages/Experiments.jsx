@@ -252,7 +252,7 @@ export default function Experiments() {
               <h2>
                 Form fields <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Inputs, states, validation, and helpers.</p>
+              <p>Inputs, states, validation, and structured interaction.</p>
             </header>
 
             <div className="libPanel">
