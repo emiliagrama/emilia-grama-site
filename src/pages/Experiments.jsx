@@ -1,5 +1,4 @@
-import { useEffect, useMemo } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Form from "../components/Form";
@@ -12,12 +11,13 @@ const SECTIONS = [
   { id: "cards", label: "Cards" },
   { id: "forms", label: "Form fields" },
   { id: "nav", label: "Navbars" },
-  { id: "player", label: "Players" },
+  { id: "player", label: "Player" },
 ];
 
 const LAB_SECTIONS = [{ id: "lab", label: "Controlled chaos" }];
 
 export default function Experiments() {
+  const [navPreview, setNavPreview] = useState("desktop"); // "desktop" | "mobile"
   const ids = useMemo(
     () => [...SECTIONS, ...LAB_SECTIONS].map((s) => s.id),
     []
@@ -263,46 +263,82 @@ export default function Experiments() {
           {/* Nav */}
           <div className="libSection" id="nav">
             <header className="libSection__header">
-              <h2>
-                Navbars <span className="libPulse" aria-hidden="true" />
-              </h2>
-              <p>Variants of a reusable component.</p>
+              <div className="navSectionHead">
+                <div>
+                  <h2>
+                    Navbars <span className="libPulse" aria-hidden="true" />
+                  </h2>
+                  <p>Variants of a reusable component.</p>
+                </div>
+
+                <div className="navPreviewToggle" role="group" aria-label="Navbar preview">
+                  <button
+                    type="button"
+                    className={`navPreviewBtn ${navPreview === "desktop" ? "is-active" : ""}`}
+                    onClick={() => setNavPreview("desktop")}
+                  >
+                    Desktop
+                  </button>
+                  <button
+                    type="button"
+                    className={`navPreviewBtn ${navPreview === "mobile" ? "is-active" : ""}`}
+                    onClick={() => setNavPreview("mobile")}
+                  >
+                    Mobile
+                  </button>
+                </div>
+              </div>
             </header>
 
             <div className="navContainer">
-              <div className="navDemoStack">
-                <div className="demoRow">
-                  <span className="demoTag">Base</span>
-                  <Navbar
-                    variant="base"
-                    brand="EMILIA GRAMA"
+              <div className={`demoViewport ${navPreview === "mobile" ? "demoViewport--mobile" : ""}`}>
+                <div className="navDemoStack">
+                    <div className="demoRow">
+                      <span className="demoTag">Base</span>
+                      <Navbar
+                        variant="base"
+                        brand="EMILIA GRAMA"
+                        links={[
+                          { label: "Work", href: "/#projects" },
+                          { label: "Experiments", href: "/experiments#top" },
+                        ]}
+                        ctaLabel="Contact"
+                        ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                      />
+                    </div>
+
+                  <div className="demoRow">
+                    <span className="demoTag">Transparent</span>
+                    <Navbar
+                      variant="transparent"
+                      brand="EMILIA / LAB"
                       links={[
-                        { label: "Work", href: "/#projects" },
-                        { label: "Experiments", href: "/experiments#top" },
-                      ]}
-                    ctaLabel="Contact"
-                    ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"            
-                 />
-                </div>
+                          { label: "Experiments", href: "/experiments#top" },
+                          { label: "Lab", href: "/experiments#lab" },
+                        ]}
+                      ctaLabel="Let's talk"
+                      ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                    />
+                  </div>
 
-                <div className="demoRow">
-                  <span className="demoTag">Transparent</span>
-                  <Navbar
-                    variant="transparent"
-                    brand="EMILIA / LAB"
-                     links={[
-                        { label: "Experiments", href: "/experiments#top" },
-                        { label: "Lab", href: "/experiments#lab" },
-                      ]}
-                    ctaLabel="Let's talk"
-                    ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
-                  />
-                </div>
-
-                <div className="demoRow demoRow--menu">
-                  <span className="demoTag">Minimal (menu)</span>
-                  <Navbar
-                    variant="minimal"
+                  <div className="demoRow demoRow--menu">
+                    <span className="demoTag">Minimal (menu)</span>
+                    <Navbar
+                      variant="minimal"
+                      withMenu
+                      brand="EG"
+                        links={[
+                          { label: "Lab", href: "/experiments#lab" },
+                          { label: "Work", href: "/#projects" },
+                        ]}
+                      ctaLabel="Send email"
+                      ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                    />
+                  </div>
+                  <div className="demoRow demoRow--menu">
+                    <span className="demoTag">Lab</span>
+                    <Navbar
+                    variant="lab"
                     withMenu
                     brand="EG"
                       links={[
@@ -311,21 +347,8 @@ export default function Experiments() {
                       ]}
                     ctaLabel="Send email"
                     ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
-                  />
+                  /></div>
                 </div>
-                <div className="demoRow demoRow--menu">
-                  <span className="demoTag">Lab</span>
-                  <Navbar
-                  variant="lab"
-                  withMenu
-                  brand="EG"
-                    links={[
-                      { label: "Lab", href: "/experiments#lab" },
-                      { label: "Work", href: "/#projects" },
-                    ]}
-                  ctaLabel="Send email"
-                  ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
-                /></div>
               </div>
             </div>
           </div>
@@ -334,7 +357,7 @@ export default function Experiments() {
           <div className="libSection" id="player">
             <header className="libSection__header">
               <h2>
-                Players <span className="libPulse" aria-hidden="true" />
+                Player <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>WaveSurfer UI player.</p>
             </header>
