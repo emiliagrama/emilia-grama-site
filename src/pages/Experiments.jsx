@@ -96,7 +96,7 @@ export default function Experiments() {
           </nav>
         </aside>
 
-        <section className="libContent">
+        <section className="libContent" id="top">
           <header className="expIntro">
             <div className="expIntro__kicker uiLabel">UI SYSTEM + LAB</div>
             <h2 className="expIntro__title">
@@ -278,7 +278,7 @@ export default function Experiments() {
                     brand="EMILIA GRAMA"
                       links={[
                         { label: "Work", href: "/#projects" },
-                        { label: "Experiments", href: "/experiments" },
+                        { label: "Experiments", href: "/experiments#top" },
                       ]}
                     ctaLabel="Contact"
                     ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"            
@@ -291,7 +291,7 @@ export default function Experiments() {
                     variant="transparent"
                     brand="EMILIA / LAB"
                      links={[
-                        { label: "Experiments", href: "/experiments" },
+                        { label: "Experiments", href: "/experiments#top" },
                         { label: "Lab", href: "/experiments#lab" },
                       ]}
                     ctaLabel="Let's talk"
@@ -313,6 +313,19 @@ export default function Experiments() {
                     ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
                   />
                 </div>
+                <div className="demoRow demoRow--menu">
+                  <span className="demoTag">Lab</span>
+                  <Navbar
+                  variant="lab"
+                  withMenu
+                  brand="EG"
+                    links={[
+                      { label: "Lab", href: "/experiments#lab" },
+                      { label: "Work", href: "/#projects" },
+                    ]}
+                  ctaLabel="Send email"
+                  ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                /></div>
               </div>
             </div>
           </div>

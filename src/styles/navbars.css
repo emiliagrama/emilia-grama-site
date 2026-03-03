@@ -10,10 +10,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-
   padding: 14px 18px;
   border-radius: 16px;
-
   border: 1px solid rgba(97, 152, 216, 0.08);
   backdrop-filter: blur(10px);
 }
@@ -66,22 +64,15 @@
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+/* Spacer when links are hidden */
+.navb__spacer {
+  flex: 1;
+}
 
+/* Always allow flex children to shrink */
 .navb__brand,
-.navb__actions {
-  min-width: 160px;
-  display: flex;
-  align-items: center;
-}
-
-.navb__actions {
-  position: relative; /* 🔥 this is the key */
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-.demoRow--menu {
-  padding-bottom: 110px; /* room for dropdown */
+.navb__links {
+  min-width: 0;
 }
 
 /* Variants */
@@ -90,7 +81,7 @@
   background: rgba(5, 110, 128, 0.164);
   border: 1px solid rgba(93, 207, 188, 0.1);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  
+  padding: 22px 16px;
 }
 /* Base underline on hover */
 .navb--base .navb__link {
@@ -123,6 +114,16 @@
   );
   border: 1px solid rgba(18, 196, 157, 0.089);
   backdrop-filter: blur(16px);
+  padding: 22px 16px;
+}
+
+/* Transparent navbar – link hover color */
+.navb--transparent .navb__link {
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.navb--transparent .navb__link:hover {
+  color: rgba(28, 212, 212, 0.5);
 }
 
 /* MINIMAL = flatter, tighter, less “card”, more utilitarian */
@@ -143,15 +144,8 @@
   background: rgba(20, 59, 109, 0.322);
   border: 1px solid rgba(255,255,255,0.16);
 }
-/* Transparent navbar – link hover color */
-.navb--transparent .navb__link {
-  transition: color 160ms ease, background 160ms ease;
-}
 
-.navb--transparent .navb__link:hover {
-  color: rgba(28, 212, 212, 0.5); /* soft blue highlight */
-}
-
+/* demo helpers*/
 .demoRow {
   display: grid;
   gap: 10px;
@@ -165,9 +159,16 @@
   padding-left: 6px;
 }
 
-/* Spacer when links are hidden */
-.navb__spacer {
-  flex: 1;
+.navContainer {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.253),
+    rgba(0, 0, 0, 0.185)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.027);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Menu button (burger) */
@@ -213,20 +214,6 @@
 }
 
 /* Dropdown */
-.navb__menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 190px;
-  padding: 10px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(10, 12, 18, 0.92);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.5);
-  z-index: 50;
-}
-
 .navb__menuItem {
   width: 100%;
   text-align: left;
@@ -237,9 +224,8 @@
   color: rgba(38, 110, 110, 0.88);
   cursor: pointer;
   transition: background 160ms ease;
-    display: block;
+   display: block;
   text-decoration: none;
-  color: rgba(255,255,255,0.82);
 }
 
 .navb__menuItem:hover {
@@ -250,24 +236,125 @@
   background: rgba(16, 162, 172, 0.05);
   border: 1px solid rgba(255,255,255,0.10);
 }
-.navContainer {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.253),
-    rgba(0, 0, 0, 0.185)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.027);
-  border-radius: 22px;
-  padding: 26px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+
+/* LAB variant - base */
+.navb--lab {
+  position: relative;
+  overflow: visible; 
+  background: rgba(8, 10, 16, 0.88);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 8px 24px rgba(0,0,0,0.4);
 }
 
+/* Dot pattern */
+.navb--lab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 12px;
 
-/* Always allow flex children to shrink */
-.navb__brand,
-.navb__links,
-.navb__actions {
-  min-width: 0;
+  /* dot texture */
+  background-image: radial-gradient(rgba(93, 207, 188, 0.22) 0.6px, transparent 10px);
+  background-size: 22px 22px;
+  background-position: 6px;
+
+  /* dots visible but subtle */
+  opacity: 0.52;
+  transition: opacity 220ms ease;
+
+  /* fade dots from right -> left */
+  /* fade dots right → left */
+-webkit-mask-image:
+  linear-gradient(to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 35%,
+    rgba(0,0,0,0) 70%
+  ),
+  /* fade dots top → bottom */
+  linear-gradient(to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 70%,
+    rgba(0,0,0,0) 100%
+  );
+
+-webkit-mask-composite: intersect;
+
+mask-image:
+  linear-gradient(to left,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 35%,
+    rgba(0,0,0,0) 70%
+  ),
+    linear-gradient(to right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 25%,
+    rgba(0,0,0,0) 99%
+  ),
+  linear-gradient(to bottom,
+    rgba(0, 0, 0, 0.562) 0%,
+    rgb(0, 0, 0) 55%,
+    rgba(0,0,0,0) 99%
+  );
+mask-composite: intersect;
+}
+
+.navb--lab:hover::before {
+  opacity: 0.15;
+}
+
+/* Soft teal wash */
+.navb--lab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 12px;
+  background: radial-gradient(
+    600px 280px at 18% 45%,
+    rgba(93,207,188,0.1),
+    transparent 50%
+  );
+}
+
+/* Content above decorative layers */
+.navb--lab > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* CLOSED: no space, no margin */
+.navbDropdown {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 220ms ease;
+  justify-items: end;
+  margin-top: 0;              
+  pointer-events: none;       
+  opacity: 0;                 
+}
+
+/* OPEN: it appears + adds spacing */
+.navbDropdown.is-open {
+  grid-template-rows: 1fr;
+  margin-top: 2px;           
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* inner must be clipped by 0fr row */
+.navbDropdown__inner {
+  overflow: hidden;
+  width: min(220px, 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.048);
+  background: rgba(27, 31, 41, 0.041);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  padding: 12px;
 }
 
 /* Mid-small phones (when links are still visible) */
