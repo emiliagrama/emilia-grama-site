@@ -1,31 +1,178 @@
 
+/* =========================
+   LAB — Voltage Button (base)
+   ========================= */
 
-/* glich lab*/
-.labSection .glitchTitle {
+.labVoltage{
   position: relative;
   display: inline-block;
 }
 
-.labSection .glitchTitle::before,
-.labSection .glitchTitle::after {
-  content: attr(data-text);
+.labVoltage__btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  background: rgba(20, 60, 95, 0.35);
+  backdrop-filter: blur(6px);
+  padding: 1rem 3rem;
+  border-radius: 999px;
+
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.075em;
+
+  border: none; /* explicit: prevents random inherited borders */
+  transition: background 0.25s ease, transform 0.15s ease;
+  will-change: transform;
+}
+
+.labVoltage__btn:hover{
+  cursor: pointer;
+  background: #34c9e438;
+  transform: translateY(-1px);
+}
+
+.labVoltage__btn:active{
+  transform: translateY(0);
+}
+
+/* Effect layers */
+.labVoltage__svg{
+  display: block;
   position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+  top: -0.75em;
+  left: -0.25em;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 1.5em);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  transition-delay: 0.1s;
 }
 
-.labSection .glitchTitle::before { color: #00ffff; }
-.labSection .glitchTitle::after  { color: #9900ff; }
-
-@keyframes labGlitchShift {
-  0%, 92%, 100% { opacity: 0; transform: translate(0,0); }
-  93% { opacity: 0.8; transform: translate(-2px, 1px); }
-  94% { opacity: 0.5; transform: translate(2px, -1px); }
-  95% { opacity: 0.3; transform: translate(-1px, 2px); }
-  96% { opacity: 0; transform: translate(0,0); }
+.labVoltage__dots{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  transition-delay: 0.35s;
 }
 
-.labSection .glitchTitle::before { animation: labGlitchShift 4s infinite; }
-.labSection .glitchTitle::after  { animation: labGlitchShift 4s infinite reverse; }
+/* Default trigger: hover the element itself */
+.labVoltage:hover .labVoltage__svg,
+.labVoltage:hover .labVoltage__dots{
+  opacity: 1;
+}
+
+.labVoltage__line{
+  stroke-dasharray: 100;
+  stroke: #fff;
+  stroke-width: 0.5;
+}
+
+.labVoltage__line--1{
+  stroke: #649ff7;
+  stroke-dashoffset: 0;
+  animation: labSpark1 5s linear infinite;
+   opacity: 0.45;
+}
+
+.labVoltage__line--2{
+  stroke: #6bfeff;
+  stroke-dashoffset: 500;
+  animation: labSpark2 5s linear infinite;
+   opacity: 0.65;
+}
+
+
+.labVoltage__dot{
+  width: 0.65rem;
+  height: 0.65rem;
+  background: #fff;
+  border-radius: 999px;
+  position: absolute;
+  opacity: 0;
+}
+
+.labVoltage__dot--1{ top: 0;    left: 20%; animation: labFlyUp   3s linear infinite; }
+.labVoltage__dot--2{ top: 0;    left: 55%; animation: labFlyUp   3s linear infinite; animation-delay: 0.5s; }
+.labVoltage__dot--3{ top: 0;    left: 80%; animation: labFlyUp   3s linear infinite; animation-delay: 1s; }
+.labVoltage__dot--4{ bottom: 0; left: 30%; animation: labFlyDown 3s linear infinite; animation-delay: 2.5s; }
+.labVoltage__dot--5{ bottom: 0; left: 65%; animation: labFlyDown 3s linear infinite; animation-delay: 1.5s; }
+
+@keyframes labSpark1{ to { stroke-dashoffset: -1000; } }
+@keyframes labSpark2{ to { stroke-dashoffset: -500; } }
+
+@keyframes labFlyUp{
+  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
+  5%{ opacity: 1; transform: translateY(-1.5rem) scale(0.4); }
+  10%,100%{ opacity: 0; transform: translateY(-3rem) scale(0.2); }
+}
+
+@keyframes labFlyDown{
+  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
+  5%{ opacity: 1; transform: translateY(1.5rem) scale(0.4); }
+  10%,100%{ opacity: 0; transform: translateY(3rem) scale(0.2); }
+}
+
+/* =========================
+   Sidebar: Lab nav item
+   Calm by default → chaos on hover
+   ========================= */
+
+/* kill normal nav background/border for this item so the voltage pill is the UI */
+.libNav__link--lab{
+  padding: 6px;
+  border: none;
+  background: none;
+}
+
+/* make the voltage component fill the nav width */
+.libNav__link--lab .labVoltage{
+  width: 100%;
+  display: block;
+}
+
+/* nav-sized pill */
+.libNav__link--lab .labVoltage__btn{
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* IMPORTANT: calm by default inside the sidebar */
+.libNav__link--lab .labVoltage__svg,
+.libNav__link--lab .labVoltage__dots{
+  opacity: 0;
+}
+
+/* and only animate when the NAV ITEM is hovered or active */
+.libNav__link--lab:hover .labVoltage__svg,
+.libNav__link--lab:hover .labVoltage__dots,
+.libNav__link--lab.is-active .labVoltage__svg,
+.libNav__link--lab.is-active .labVoltage__dots{
+  opacity: 1;
+}
+
+/* =========================
+   Accessibility
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+  .labVoltage__line--1,
+  .labVoltage__line--2,
+  .labVoltage__dot{
+    animation: none !important;
+  }
+  .labVoltage__svg,
+  .labVoltage__dots{
+    transition: none !important;
+  }
+  .labSection .glitchTitle::before,
+  .labSection .glitchTitle::after{
+    animation: none !important;
+  }
+}

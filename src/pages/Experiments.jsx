@@ -4,7 +4,8 @@ import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
 import HugoPlayer from "../components/HugoPlayer";
-import Lab from "../components/Lab";
+import Lab from "../components/lab/Lab"
+import VoltageButton from "../components/lab/VoltageButton";
 
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
@@ -14,8 +15,13 @@ const SECTIONS = [
   { id: "player", label: "Player" },
 ];
 
-const LAB_SECTIONS = [{ id: "lab", label: "Controlled chaos" }];
-
+const LAB_SECTIONS = [
+  {
+    id: "lab",
+    label: "Controlled chaos",
+    navNode: <VoltageButton as="span">Controlled chaos</VoltageButton>
+  }
+];
 export default function Experiments() {
   const [navPreview, setNavPreview] = useState("desktop"); // "desktop" | "mobile"
   const ids = useMemo(
@@ -90,7 +96,7 @@ export default function Experiments() {
                 className="libNav__link libNav__link--lab"
                 href={`#${s.id}`}
               >
-                {s.label}
+                {s.navNode ?? s.label}
               </a>
             ))}
           </nav>
