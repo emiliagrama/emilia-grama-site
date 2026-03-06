@@ -1,6 +1,8 @@
-import React from "react";
+
 import "../../styles/lab.css";
 import ShaderPanel from "./ShaderPanel";
+import WaveGridCard from "./WaveGridCard";
+
 export default function Lab() {
   return (
     <section id="lab" className="libSection">
@@ -22,9 +24,15 @@ export default function Lab() {
         </p>
 
         <ShaderPanel />
-
       </div>
-    
+      <h3 className="labExperimentTitle">Wave Grid</h3>
+        <p className="labExperimentDesc">
+          Distorted checker surface presented as a floating motion card.
+        </p>
+
+      <div className="libPanel">
+        <WaveGridCard />
+      </div>
     </section>
   );
 }
