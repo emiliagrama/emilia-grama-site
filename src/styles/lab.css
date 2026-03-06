@@ -176,3 +176,61 @@
     animation: none !important;
   }
 }
+
+
+
+.labExperimentTitle{
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,0.9);
+}
+
+.labExperimentDesc{
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+}
+@media (max-width: 1100px) {
+  .shaderPanel {
+    height: 340px;
+  }
+}
+@media (max-width: 768px) {
+  .shaderPanel {
+    height: 260px;
+    border-radius: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .shaderPanel {
+    height: 260px;
+    border-radius: 14px;
+  }
+}
+
+/* shared panel*/
+.shaderPanel{
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 220, 255, 0.12);
+  background: rgba(8, 12, 22, 0.92);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 10px 30px rgba(0,0,0,0.22);
+  transition: transform 140ms ease; 
+  cursor: crosshair;
+}
+
+.shaderPanel:active{
+  transform: scale(0.998);
+}
+
+.shaderPanel canvas{
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
