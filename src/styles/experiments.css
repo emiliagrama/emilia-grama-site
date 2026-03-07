@@ -1,10 +1,9 @@
 /* ========== Component Library Page ========== */
 /* =========================
-   EXP INTRO (make it feel "part of the page")
+   EXP INTRO 
    ========================= */
 
 .expIntro{
-  /* anchor it to the same visual language as your panels */
   position: relative;
 padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15px, 3vw, 15px);
   border-radius: 18px;
@@ -16,7 +15,6 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   border-bottom: 1px solid rgba(182, 12, 12, 0.068);
 }
 
-/* Kicker: tighter, more “system label” */
 .uiLabel{
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -24,22 +22,22 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   opacity: 0.55;
   margin-bottom: 10px; 
 }
-/* Title: slightly less huge so it matches the doc vibe */
+
 .expIntro__title{
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.08;
   margin: 0 0 8px;
   font-weight: 620;
-  text-wrap: balance; /* modern browsers */
+  text-wrap: balance; 
 }
 
-/* The blue part was shouting — make it “designed”, not “promo” */
+
 .expIntro__edge{
   color: rgba(13, 101, 112, 0.82);
   text-shadow: 0 0 8px rgba(158, 220, 247, 0.274);
 }
 
-/* Lead: a bit tighter and less “hero copy” */
+
 .expIntro__lead{
   max-width: 56ch;
   margin: 0;

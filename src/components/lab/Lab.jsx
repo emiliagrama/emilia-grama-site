@@ -3,6 +3,7 @@ import "../../styles/lab.css";
 import ShaderPanel from "./ShaderPanel";
 import WaveGridCard from "./WaveGridCard";
 
+
 export default function Lab() {
   return (
     <section id="lab" className="libSection">
@@ -13,26 +14,27 @@ export default function Lab() {
         <p className="libLead">
           Controlled instability. Where structure bends.
         </p>
-      <div className="libPanel">
-
+      
         <h3 className="labExperimentTitle">
           Fractal Noise
         </h3>
 
-        <p className="labExperimentDesc">
-          Noise field warped by cursor interaction.
-        </p>
+        <div className="libPanel">
+          <p className="labExperimentDesc">
+            Noise field warped by cursor interaction.
+          </p>
 
-        <ShaderPanel />
-      </div>
-      <h3 className="labExperimentTitle">Wave Grid</h3>
-        <p className="labExperimentDesc">
-          Distorted checker surface presented as a floating motion card.
-        </p>
-
-      <div className="libPanel">
-        <WaveGridCard />
-      </div>
+          <ShaderPanel />
+        </div>
+      
+        <h3 className="labExperimentTitle">Wave Grid</h3>
+        <div className="libPanel">
+          <p className="labExperimentDesc">
+            Distorted checker surface presented as a floating motion card.
+          </p>
+          <WaveGridCard />
+          
+        </div>
     </section>
   );
 }

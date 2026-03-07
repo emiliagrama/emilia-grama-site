@@ -182,7 +182,7 @@
 .labExperimentTitle{
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 20px;
   color: rgba(255,255,255,0.9);
 }
 
@@ -238,7 +238,13 @@
 /* =========================
    LAB — Wave Grid Card
    ========================= */
-
+.labCardsGrid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  align-items: start;
+  margin-top: 12px;
+}
 .waveGridCardWrap{
   position: relative;
   width: min(100%, 340px);
@@ -398,3 +404,5 @@
     transform: none !important;
   }
 }
+
+

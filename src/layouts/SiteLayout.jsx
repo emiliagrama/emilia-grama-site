@@ -9,7 +9,7 @@ export default function SiteLayout() {
           <div className="brand"><NavLink to="/">EMILIA GRAMA</NavLink></div>
 
           <nav className="navLinks">
-            
+            <NavLink to="/contact">Contact</NavLink>
             <NavLink to="/experiments">UI experiments</NavLink>
             
           </nav>
