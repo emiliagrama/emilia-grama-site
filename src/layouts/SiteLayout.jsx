@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import ScrollToHash from "../components/ScrollToHash";
 
 export default function SiteLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -13,11 +14,29 @@ export default function SiteLayout() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handlePointerDown = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [menuOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="appShell">
-      <header className="navbar">
+      <header className="navbar" ref={navRef}>
         <div className="container navInner">
           <div className="brand">
             <NavLink to="/" onClick={closeMenu}>
