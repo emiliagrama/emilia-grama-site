@@ -53,7 +53,7 @@ const baseProps = {};
                 </div>
               ) : null}
 
-              <div className="cardFlip_hint">Hover to reveal →</div>
+              <div className="cardFlip__hint">Hover to reveal →</div>
             </div>
 
             <div className="cardFlip__face cardFlip__back">

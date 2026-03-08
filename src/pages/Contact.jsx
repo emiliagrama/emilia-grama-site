@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "../styles/contact.css";
+import { useEffect, useRef, useState } from "react";import "../styles/contact.css";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -14,7 +13,25 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [serverError, setServerError] = useState("");
+  const [projectMenuOpen, setProjectMenuOpen] = useState(false);
 
+  const projectMenuRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        projectMenuRef.current &&
+        !projectMenuRef.current.contains(event.target)
+      ) {
+        setProjectMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   function validate(values) {
     const nextErrors = {};
 
@@ -114,10 +131,9 @@ try {
     <main className="contactPage">
       <section className="contactHero">
         <div className="contactHero__inner">
-          <p className="contactEyebrow">CONTACT</p>
           <h1>Let’s build something strong, clear, and well designed.</h1>
           <p className="contactIntro">
-            I build modern websites and web applications with a strong focus on
+            Modern websites and web applications with a strong focus on
             structure, visual quality, and user experience. Send me a message
             with your idea, timeline, or project goals.
           </p>
@@ -174,6 +190,7 @@ try {
                     id="name"
                     name="name"
                     type="text"
+                    spellCheck={false}
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Your name"
@@ -189,6 +206,7 @@ try {
                       id="email"
                       name="email"
                       type="email"
+                      spellCheck={false}
                       value={form.email}
                       onChange={handleChange}
                       placeholder="name@email.com"
@@ -200,23 +218,106 @@ try {
                   </div>
 
                   <div className="contactField">
-                    <label htmlFor="projectType">Project type</label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      value={form.projectType}
-                      onChange={handleChange}
+                  <label htmlFor="projectTypeTrigger">Project type</label>
+
+                  <input
+                    type="hidden"
+                    name="projectType"
+                    value={form.projectType}
+                  />
+
+                  <div className="customSelect" ref={projectMenuRef}>
+                    <button
+                      id="projectTypeTrigger"
+                      type="button"
+                      className={`customSelectTrigger ${projectMenuOpen ? "is-open" : ""}`}
+                      onClick={() => setProjectMenuOpen((prev) => !prev)}
+                      aria-haspopup="listbox"
+                      aria-expanded={projectMenuOpen}
                     >
-                      <option value="">Select</option>
-                      <option value="portfolio">Portfolio</option>
-                      <option value="business-site">Business website</option>
-                      <option value="ui-system">UI system</option>
-                      <option value="interactive-frontend">
-                        Interactive frontend
-                      </option>
-                      <option value="web-app">Web application</option>
-                      <option value="other">Other</option>
-                    </select>
+                      
+                        <span>
+                          {form.projectType === "portfolio" && "Portfolio"}
+                          {form.projectType === "business-site" && "Business website"}
+                          {form.projectType === "ui-system" && "UI system"}
+                          {form.projectType === "interactive-frontend" && "Interactive frontend"}
+                          {form.projectType === "web-app" && "Web application"}
+                          {form.projectType === "other" && "Other"}
+                          {!form.projectType && "Select"}
+                        </span>
+
+                        <span className="customSelectArrow">▾</span>
+                      </button>
+
+                      {projectMenuOpen && (
+                        <ul className="customSelectMenu" role="listbox">
+                        
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({ ...prev, projectType: "portfolio" }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              Portfolio
+                            </button>
+                          </li>
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({ ...prev, projectType: "ui-system" }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              UI system
+                            </button>
+                          </li>
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "interactive-frontend"
+                                }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              Interactive frontend
+                            </button>
+                          </li>
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({ ...prev, projectType: "web-app" }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              Web application
+                            </button>
+                          </li>
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({ ...prev, projectType: "other" }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              Other
+                            </button>
+                          </li>
+                        </ul>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -226,6 +327,7 @@ try {
                     id="message"
                     name="message"
                     rows="7"
+                    spellCheck={false}
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell me about your project, goals, or idea..."

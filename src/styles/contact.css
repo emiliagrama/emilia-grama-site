@@ -1,6 +1,6 @@
 .contactPage {
   min-height: 100vh;
-  padding-top: 56px;
+  padding-top: 48px;
   padding-bottom: 72px;
   background:
     linear-gradient(to bottom, rgba(7, 13, 29, 0.96), rgba(4, 8, 20, 0.98)),
@@ -21,24 +21,24 @@
 }
 
 .contactHero__inner {
-  max-width: 1100px;
+  max-width: 920px;
 }
 
 .contactHero h1 {
   margin: 0;
   font-size: clamp(2.4rem, 2.6vw, 4.4rem);
-  line-height: 0.88;
+  line-height: 0.9;
   letter-spacing: -0.03em;
-  color: #eef3ff;
+  color: #f4f6f8;
   font-weight: 600;
 }
 
 .contactIntro {
   margin-top: 20px;
-  max-width: 950px;
+  max-width: 860px;
   font-size: 1.04rem;
   line-height: 1.75;
-  color: rgba(225, 232, 245, 0.575);
+  color: rgba(225, 232, 245, 0.58);
 }
 
 .contactGrid {
@@ -51,14 +51,13 @@
 .contactInfoCard,
 .contactFormCard {
   position: relative;
+  overflow: hidden;
   border: 1px solid rgba(96, 132, 204, 0.18);
   border-radius: 12px;
-  background:
-    linear-gradient(180deg, rgba(10, 16, 34, 0.92), rgba(6, 10, 23, 0.9));
+  background: linear-gradient(180deg, rgba(10, 16, 34, 0.92), rgba(6, 10, 23, 0.9));
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  overflow: hidden;
 }
 
 .contactInfoCard::before,
@@ -76,6 +75,10 @@
   padding: 26px 24px;
 }
 
+.contactFormCard {
+  padding: 30px;
+}
+
 .contactInfoBlock + .contactInfoBlock {
   margin-top: 28px;
   padding-top: 24px;
@@ -91,20 +94,20 @@
 }
 
 .contactMailLink {
-  color: #78fbff85;
+  color: rgba(120, 251, 255, 0.52);
   text-decoration: none;
   font-size: 1rem;
   word-break: break-word;
 }
 
 .contactMailLink:hover {
-  color: #b6ecffd0;
+  color: rgba(182, 236, 255, 0.82);
 }
 
 .contactList {
   margin: 0;
   padding-left: 18px;
-  color: rgba(223, 230, 242, 0.61);
+  color: rgba(223, 230, 242, 0.62);
   line-height: 1.9;
 }
 
@@ -112,10 +115,6 @@
   margin: 0;
   color: rgba(223, 230, 242, 0.72);
   line-height: 1.75;
-}
-
-.contactFormCard {
-  padding: 30px;
 }
 
 .contactForm {
@@ -131,32 +130,30 @@
 }
 
 .contactField {
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .contactField label {
+  display: block;
   margin-bottom: 10px;
   font-size: 0.92rem;
-  color: rgba(236, 241, 250, 0.9);
+  color: rgba(236, 241, 250, 0.64);
 }
 
 .contactField input,
-.contactField select,
 .contactField textarea {
   width: 100%;
-  border: 1px solid rgba(111, 138, 201, 0.18);
+  padding: 14px 16px;
+  border: 1px solid rgba(111, 138, 201, 0.12);
   border-radius: 16px;
   background: rgba(5, 10, 22, 0.76);
   color: #edf2ff;
-  padding: 14px 16px;
   font: inherit;
   outline: none;
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease,
-    background 180ms ease,
-    transform 180ms ease;
+    background 180ms ease;
 }
 
 .contactField input::placeholder,
@@ -165,18 +162,98 @@
 }
 
 .contactField input:focus,
-.contactField select:focus,
 .contactField textarea:focus {
-  border-color: rgba(84, 175, 255, 0.55);
+  border-color: rgba(84, 235, 255, 0.18);
   box-shadow:
-    0 0 0 4px rgba(40, 122, 255, 0.11),
-    0 0 30px rgba(35, 130, 255, 0.08);
+    0 0 0 4px rgba(40, 169, 255, 0.08),
+    0 0 30px rgba(35, 130, 255, 0.04);
   background: rgba(8, 14, 30, 0.92);
 }
 
 .contactField textarea {
   resize: vertical;
   min-height: 170px;
+}
+
+/* custom select */
+.customSelect {
+  position: relative;
+}
+
+.customSelectTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid rgba(111, 138, 201, 0.12);
+  border-radius: 16px;
+  background: rgba(5, 10, 22, 0.76);
+  color: rgba(237, 242, 255, 0.72);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.customSelectTrigger:hover {
+  border-color: rgba(120, 170, 255, 0.24);
+}
+
+.customSelectTrigger.is-open {
+  border-color: rgba(84, 235, 255, 0.18);
+  box-shadow:
+    0 0 0 4px rgba(40, 169, 255, 0.08),
+    0 0 30px rgba(35, 130, 255, 0.04);
+  background: rgba(8, 14, 30, 0.92);
+}
+
+.customSelectArrow {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.customSelectMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid rgba(111, 138, 201, 0.18);
+  border-radius: 18px;
+  background: rgba(8, 14, 30, 0.98);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(35, 130, 255, 0.08);
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.customSelectMenu li + li {
+  margin-top: 2px;
+}
+
+.customSelectMenu button {
+  width: 100%;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(237, 242, 255, 0.78);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.customSelectMenu button:hover {
+  background: rgba(9, 91, 116, 0.12);
+  color: #fff;
 }
 
 .contactField .is-error {
@@ -193,16 +270,15 @@
 .contactActions {
   display: flex;
   justify-content: flex-end;
-  padding-top: 6px;
+  padding-top: 8px;
 }
 
 .contactSubmitBtn {
-  border: 1px solid rgba(90, 170, 220, 0.34);
+  padding: 10px 22px;
+  border: 1px solid rgba(16, 50, 71, 0.96);
   border-radius: 999px;
-  padding: 13px 22px;
-  background:
-    linear-gradient(135deg, rgba(41, 93, 176, 0.678), rgba(17, 131, 172, 0.562));
-  color: #f4f8ffcb;
+  background: linear-gradient(90deg, rgba(107, 223, 244, 0.3), rgba(244, 200, 107, 0.1));
+  color: rgba(244, 248, 255, 0.8);
   font: inherit;
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -212,27 +288,27 @@
     box-shadow 180ms ease,
     border-color 180ms ease,
     filter 180ms ease;
-  box-shadow:
-    0 10px 28px rgba(0, 63, 157, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 28px rgba(0, 63, 157, 0.26);
 }
-.contactHpField {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
-  pointer-events: none;
+
+.contactSubmitBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 16px 34px rgba(0, 77, 184, 0.14),
+    inset 0 1px 0 rgba(58, 140, 173, 0.1);
 }
 
 .contactSubmitBtn:disabled {
   opacity: 0.7;
   cursor: wait;
 }
-.contactSubmitBtn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.06);
-  box-shadow:
-    0 16px 34px rgba(0, 77, 184, 0.288),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+.contactHpField {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .contactSuccess {
@@ -245,7 +321,7 @@
 .contactSuccess h2 {
   margin: 0 0 14px;
   font-size: clamp(1.8rem, 2.4vw, 2.5rem);
-  color: #eef3ffe0;
+  color: rgba(238, 243, 255, 0.88);
 }
 
 .contactSuccess p {
@@ -253,6 +329,19 @@
   max-width: 580px;
   line-height: 1.8;
   color: rgba(225, 232, 245, 0.74);
+}
+
+/* autofill fix */
+.contactField input:-webkit-autofill,
+.contactField input:-webkit-autofill:hover,
+.contactField input:-webkit-autofill:focus,
+.contactField textarea:-webkit-autofill,
+.contactField select:-webkit-autofill {
+  -webkit-text-fill-color: #e8edf8 !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(5, 10, 22, 0.96) inset !important;
+  box-shadow: 0 0 0 1000px rgba(5, 10, 22, 0.96) inset !important;
+  border: 1px solid rgba(111, 138, 201, 0.06) !important;
+  transition: background-color 9999s ease-in-out 0s;
 }
 
 @media (max-width: 980px) {

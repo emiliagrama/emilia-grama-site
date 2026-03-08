@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
-import TrackTitle from "./TrackTitle";
 
 const tracks = [ 
   // STYLE 3 – Video game

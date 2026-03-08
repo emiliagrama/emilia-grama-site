@@ -552,7 +552,7 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .mobileToMenu {
     position: fixed;
     right: 16px;

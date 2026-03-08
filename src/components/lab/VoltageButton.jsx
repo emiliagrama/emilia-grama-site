@@ -36,7 +36,7 @@ export default function VoltageButton({
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.075"
-              numOctaves="0.3"
+              numOctaves="1"
               result="turbulence"
             />
             <feDisplacementMap

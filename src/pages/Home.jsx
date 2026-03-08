@@ -8,9 +8,9 @@ export default function Home() {
   const componentCards = [
     { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button experiments" },
     { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card experiments" },
-    { img: "/images/universe/forms.jpg", title: "Forms", alt: "Form experiments" },
+    { img: "/images/universe/form.jpg", title: "Forms", alt: "Form experiments" },
     { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar experiments" },
-    { img: "/images/universe/players.jpg", title: "Players", alt: "Player experiments" },
+    { img: "/images/universe/player.jpg", title: "Players", alt: "Player experiments" },
     { img: "/images/universe/lab.jpg", title: "Lab", alt: "Lab" },
   ];
 
