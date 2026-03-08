@@ -330,7 +330,7 @@
     background 200ms ease,
     border-color 200ms ease;
     
-  box-shadow: 0 10px 35px rgba(61,132,224,0.35);
+  box-shadow: 0 2px 8px rgba(61, 132, 224, 0.205);
 }
 
 .btn:hover {
@@ -857,6 +857,7 @@
 
   .heroActions {
    margin-top: 58px;
+   
   }
 .hero p {
   color: rgba(237, 241, 243, 0.9);
