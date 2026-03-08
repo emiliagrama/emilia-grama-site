@@ -865,3 +865,12 @@
 }
 }
 
+.footer a {
+  color: #208083;
+  text-decoration: none;
+  text-shadow: 0 0 2px rgba(80, 210, 255, 0.4);
+}
+
+.footer a:hover {
+  color: #9fe3ff;
+}

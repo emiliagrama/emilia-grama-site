@@ -10,7 +10,14 @@ export default function Footer() {
             emiliagrama@gmail.com
         </a>
         </p>
-
+        <a
+          href="https://www.linkedin.com/in/emilia-grama/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footerSocial"
+        >
+          LinkedIn
+        </a>
         <p className="footerCopy">
           © {new Date().getFullYear()} Emilia Grama
         </p>
