@@ -833,25 +833,23 @@
 @media (max-width: 767px) {
   .hero {
     min-height: auto;
-    padding-top: 128px !important;
-    padding-bottom: 120px !important;
-    background-position: 60% 66%;
+    padding-top: 88px !important;
+    padding-bottom: 160px !important;
+    background-position: 20% 26%;
     background-size: cover;
   }
 }
 
 @media (max-width: 767px) {
-
   .heroTitle span {
     background-image: none;
-    -webkit-text-fill-color: rgb(9, 86, 124);
-    color: rgba(220, 233, 240, 0.671);
+    -webkit-text-fill-color: initial;
+    color: #8ed7ff70;
     text-shadow:
-      0 0 6px rgba(75, 180, 233, 0.6),
-      0 0 18px rgba(248, 249, 250, 0.979),
-      0 0 30px rgba(236, 239, 243, 0.466);
+      0 0 16px rgba(53, 208, 255, 0.466),
+      0 0 14px rgba(53, 207, 255, 0.18);
   }
-
+  
 }
 @media (max-width: 767px) {
 
