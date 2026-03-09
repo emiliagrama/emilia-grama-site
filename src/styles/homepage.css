@@ -777,32 +777,45 @@
   .componentCard{ scroll-snap-align: start; }
   .experimentsCTA{ justify-content: center; }
 }
-@media (max-width: 640px) {
+@media (max-width: 860px) {
   .experimentsScroll {
-    padding-left: 8px;
-    padding-right: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
     -webkit-mask-image: none;
     mask-image: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .experimentsScroll::before,
-  .experimentsScroll::after {
+  .experimentsScroll::-webkit-scrollbar {
     display: none;
   }
 
+  .experimentsScroll::before,
+  .experimentsScroll::after,
+  .experimentsFog {
+    display: none;
+  }
+
+  .experimentsTrack {
+    width: max-content;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
   .experimentsSet {
-    gap: 16px;
-    padding-right: 16px;
+    gap: 14px;
+    padding-right: 10px;
   }
 
-  .componentCard {
-    flex: 0 0 360px;
-  }
+ .componentCard {
+  flex: 0 0 clamp(300px, 86vw, 360px);
+}
 
-  .componentCardContent {
-    padding: 10px 10px 12px;
+  .componentPreview {
+    height: clamp(230px, 72vw, 280px);
   }
-
 }
 /* =========================
    HERO TITLE ANIMATION
