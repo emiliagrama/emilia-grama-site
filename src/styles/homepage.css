@@ -609,7 +609,6 @@
 /* =========================
    Carousel viewport
    ========================= */
-
 .experimentsScroll{
   position: relative;
   overflow: hidden;
@@ -665,8 +664,6 @@
   padding-right: 24px; /* seam spacing between last and first */
   box-sizing: content-box;
 }
-
-
 
 /* optional tiny soft glow (very subtle, doesn’t change vibe) */
 .experimentsFog::after{
@@ -779,6 +776,33 @@
   .experimentsTrack{ transform: none !important; }
   .componentCard{ scroll-snap-align: start; }
   .experimentsCTA{ justify-content: center; }
+}
+@media (max-width: 640px) {
+  .experimentsScroll {
+    padding-left: 8px;
+    padding-right: 8px;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .experimentsScroll::before,
+  .experimentsScroll::after {
+    display: none;
+  }
+
+  .experimentsSet {
+    gap: 16px;
+    padding-right: 16px;
+  }
+
+  .componentCard {
+    flex: 0 0 360px;
+  }
+
+  .componentCardContent {
+    padding: 10px 10px 12px;
+  }
+
 }
 /* =========================
    HERO TITLE ANIMATION
