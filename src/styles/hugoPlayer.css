@@ -24,6 +24,12 @@
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  .hf-player-text {
+    opacity: 0.85;
+  }
+}
+
 /* Background photo behind the glass deck */
 .hf-showreel-bg {
   margin-top: 0.9rem;
@@ -63,6 +69,17 @@
   box-shadow:
     0 28px 70px rgba(0, 0, 0, 0.9),
     0 0 22px rgba(40, 120, 220, 0.25);
+}
+
+@media (max-width: 767px) {
+  .hf-player-deck {
+    background: radial-gradient(
+        circle at top,
+        rgba(1, 7, 15, 0.87) 0%,
+        rgba(5, 7, 15, 0.99) 55%,
+        rgba(5, 7, 15, 1) 100%
+      );
+  }
 }
 
 /* Entrance animation – “coming out of the screen” */
@@ -175,12 +192,22 @@
   margin: 0 0 0.15;
   margin-top: 10;
 }
-
+@media (max-width: 767px) {
+  .hf-player-info h3 {
+    color: rgba(200, 200, 210, 0.95);
+  }
+}
 
 .hf-player-info p {
   margin: 0 0 0.6rem;
   font-size: 0.75rem;
   opacity: 0.35;
+}
+
+@media (max-width: 767px) {
+  .hf-player-info p {
+    opacity: 0.40;
+  }
 }
 
 .hf-player-style {
@@ -206,6 +233,12 @@
   opacity: 0.72;
   margin-bottom: 0.35rem;
   color: rgba(202, 202, 207, 0.87);
+}
+
+@media (max-width: 767px) {
+  .hf-progress-time {
+    opacity: 0.7;
+  }
 }
 
 .hf-progress-track {
@@ -279,6 +312,12 @@
   font-weight: 500;
   color: rgba(52, 102, 150, 0.78);
   margin-bottom: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .hf-style-title {
+    color: rgba(52, 102, 150, 0.9);
+  }
 }
 
 /* WaveSurfer container for the style bar */
@@ -380,6 +419,12 @@
   color: rgba(210, 211, 214, 0.9);
   
 }
+
+@media (max-width: 767px) {
+  .hf-style-track-title {
+    color: rgba(240, 241, 244, 0.95);
+  }
+}
 .hf-player-title{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -392,6 +437,12 @@
   text-transform: uppercase;
   opacity: 0.8;
   color: rgba(86, 175, 211, 0.9);
+}
+
+@media (max-width: 767px) {
+  .hf-style-track-length {
+    opacity: 0.95;
+  }
 }
 
 h4 {

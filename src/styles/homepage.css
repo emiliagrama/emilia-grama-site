@@ -429,6 +429,12 @@
               border-color 280ms ease;         
 }
 
+@media (max-width: 767px) {
+  .projectCard {
+    border-color: rgba(27, 182, 161, 0.233);
+  }
+}
+
 .projectCard:hover {
   transform: translateY(-4px);
   box-shadow:
@@ -511,6 +517,16 @@
   color: rgba(202, 197, 197, 0.6);
   max-width: 60ch;
   opacity: .68;
+}
+
+@media (max-width: 767px) {
+  .projectKicker {
+    opacity: .75;
+  }
+
+  .projectDesc, .projectDesc2 {
+    opacity: .8;
+  }
 }
 /* Link */
 .projectActions {
@@ -694,6 +710,12 @@
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .componentCard {
+    border-color: rgba(8, 133, 155, 0.35);
+  }
+}
+
 .componentPreview{
   position: relative;
   width: 100%;
@@ -713,6 +735,18 @@
     rgba(2, 4, 10, .10) 60%,
     rgba(2, 4, 10, 0) 100%
   );
+}
+
+@media (max-width: 767px) {
+  .componentPreview::after {
+    background: linear-gradient(
+      to top,
+      rgba(2, 4, 10, .6) 0%,
+      rgba(2, 4, 10, .25) 20%,
+      rgba(2, 4, 10, .08) 40%,
+      rgba(2, 4, 10, 0) 100%
+    );
+  }
 }
 
 .componentPreview img{
@@ -736,12 +770,28 @@
   );
 }
 
+@media (max-width: 767px) {
+  .componentCardContent {
+    background: linear-gradient(
+      to top,
+      rgba(7, 22, 53, 0.12),
+      rgb(2, 3, 7)
+    );
+  }
+}
+
 .componentCard h3{
   color: rgba(237,241,243,.82);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: .3px;
   margin: 14px 14px 12px;
+}
+
+@media (max-width: 767px) {
+  .componentCard h3 {
+    color: rgba(237,241,243,.9);
+  }
 }
 
 .componentCard:hover,
