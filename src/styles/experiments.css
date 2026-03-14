@@ -391,6 +391,7 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   .libSection{
     padding: 16px;
     scroll-margin-top: 72px;
+    
   }
 
   .libSection_header{
@@ -582,15 +583,11 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
 
 
   .formLibPanel {
-    border-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.178)!important;
   }
-
-  .libPanel {
-    border-color: rgba(255, 255, 255, 0.015);
-  }
-
+  
   .card {
-    border-color: rgba(255, 255, 255, 0.01);
+    border-color: rgba(255, 255, 255, 0.123)!important;
   }
 
 }
