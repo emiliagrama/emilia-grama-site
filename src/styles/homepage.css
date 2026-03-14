@@ -431,7 +431,7 @@
 
 @media (max-width: 767px) {
   .projectCard {
-    border-color: rgba(27, 182, 161, 0.233);
+    border-color: rgba(238, 243, 242, 0.212);
   }
 }
 
@@ -712,7 +712,7 @@
 
 @media (max-width: 767px) {
   .componentCard {
-    border-color: rgba(8, 133, 155, 0.35);
+    border-color: rgba(245, 248, 248, 0.205);
   }
 }
 
