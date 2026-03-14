@@ -204,57 +204,60 @@
 
 .section{ padding: 72px 0; }
 
-.hero{
+.hero {
   position: relative;
   z-index: 3;
   padding-top: clamp(100px, 12vh, 160px) !important;
-  padding-bottom: clamp(30px, 35vh, 90px)!important;
+  padding-bottom: clamp(30px, 35vh, 90px) !important;
   overflow: hidden;
   min-height: calc(100svh - 10px);
-  background:
-    /* readability layer — LIGHTER than before */
+
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(5, 8, 18, 0.8) 0%,
+      rgba(5, 8, 18, 0.6) 35%,
+      rgba(5, 8, 18, 0.2) 65%,
+      transparent 85%
+    ),
     linear-gradient(
       180deg,
       rgba(7, 9, 18, 0) 0%,
       rgba(7, 9, 18, 0) 40%,
       rgba(7, 9, 18, 0.12) 100%
     ),
-
-    /* accent glow (keeps identity) */
     radial-gradient(
       900px 520px at 18% 20%,
-      rgba(138, 123, 255, 0.267),
+      rgba(54, 42, 131, 0.623),
       transparent 55%
     ),
-
-    /* image */
     url("/images/universe/hero-wave.jpg");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transform-origin: center;
+  animation: heroWaveDrift 16s ease-in-out infinite alternate;
+  will-change: transform;
+  z-index: 0;
 }
 
-.hero .container{
+.hero .container {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
-.hero::before {
-  
-  background: linear-gradient(
-    to right,
-    rgba(5,8,18,0.8) 0%,
-    rgba(5,8,18,0.6) 35%,
-    rgba(5,8,18,0.2) 65%,
-    transparent 85%
-  );
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; bottom:-1px;
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
   height: 70px;
   background: linear-gradient(
     to bottom,
@@ -262,10 +265,18 @@
     rgba(7, 9, 18, 0.74) 35%,
     rgb(6, 9, 20) 100%
   );
-  pointer-events:none;
-  z-index: 2;
+  pointer-events: none;
+  z-index: 1;
 }
 
+@keyframes heroWaveDrift {
+  0% {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(-10px, -6px, 0);
+  }
+}
 .heroMeta{
   font-size: 14px;
   letter-spacing: .14em;
