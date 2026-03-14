@@ -395,11 +395,11 @@
   .contactField input,
   .contactField textarea,
   .customSelectTrigger {
-    border-color: rgba(111, 138, 201, 0.25);
+    border-color: rgba(111, 138, 201, 0.337);
   }
 
   .contactFormCard,
   .contactInfoCard {
     border-color: rgba(96, 132, 204, 0.329);
   }
-
+}
