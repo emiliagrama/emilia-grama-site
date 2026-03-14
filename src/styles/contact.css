@@ -390,4 +390,16 @@
   .contactHero h1 {
     line-height: 1.02;
   }
-}
+
+  /* Clearer borders for form fields and sections on mobile */
+  .contactField input,
+  .contactField textarea,
+  .customSelectTrigger {
+    border-color: rgba(111, 138, 201, 0.25);
+  }
+
+  .contactFormCard,
+  .contactInfoCard {
+    border-color: rgba(96, 132, 204, 0.329);
+  }
+
