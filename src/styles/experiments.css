@@ -146,7 +146,7 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
    position: relative;
   text-decoration:none;
   color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   background: rgba(32, 32, 32, 0.144);
   transition: transform 160ms ease,
    background 180ms ease, 
