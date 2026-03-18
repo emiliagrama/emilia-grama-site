@@ -47,9 +47,9 @@ export default async function handler(req, res) {
     const safeMessage = escapeHtml(message.trim()).replace(/\n/g, "<br />");
 
     const { error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
+      from: "Portfolio Contact <contact@emiliagrama.com>",
       to: process.env.CONTACT_EMAIL,
-      replyTo: email.trim(),
+      replyTo: cleanEmail,
       subject: `New portfolio message from ${name.trim()}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
@@ -62,15 +62,15 @@ export default async function handler(req, res) {
         </div>
       `,
       text: `
-New portfolio contact
+        New portfolio contact
 
-Name: ${name.trim()}
-Email: ${email.trim()}
-Project type: ${projectType || "Not specified"}
+        Name: ${name.trim()}
+        Email: ${email.trim()}
+        Project type: ${projectType || "Not specified"}
 
-Message:
-${message.trim()}
-      `.trim()
+        Message:
+        ${message.trim()}
+              `.trim()
     });
 
     if (error) {
