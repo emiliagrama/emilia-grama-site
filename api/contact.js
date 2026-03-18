@@ -41,16 +41,21 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Message too short." });
     }
 
-    const safeName = escapeHtml(name.trim());
-    const safeEmail = escapeHtml(email.trim());
-    const safeProjectType = escapeHtml(projectType || "Not specified");
-    const safeMessage = escapeHtml(message.trim()).replace(/\n/g, "<br />");
+    const cleanName = name.trim();
+    const cleanEmail = email.trim();
+    const cleanProjectType = (projectType || "Not specified").trim();
+    const cleanMessage = message.trim();
+
+    const safeName = escapeHtml(cleanName);
+    const safeEmail = escapeHtml(cleanEmail);
+    const safeProjectType = escapeHtml(cleanProjectType);
+    const safeMessage = escapeHtml(cleanMessage).replace(/\n/g, "<br />");
 
     const { error } = await resend.emails.send({
       from: "Portfolio Contact <contact@emiliagrama.com>",
       to: process.env.CONTACT_EMAIL,
       replyTo: cleanEmail,
-      subject: `New portfolio message from ${name.trim()}`,
+      subject: `New portfolio message from ${cleanName}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
           <h2>New portfolio contact</h2>
@@ -62,15 +67,15 @@ export default async function handler(req, res) {
         </div>
       `,
       text: `
-        New portfolio contact
+    New portfolio contact
 
-        Name: ${name.trim()}
-        Email: ${email.trim()}
-        Project type: ${projectType || "Not specified"}
+    Name: ${cleanName}
+    Email: ${cleanEmail}
+    Project type: ${cleanProjectType}
 
-        Message:
-        ${message.trim()}
-              `.trim()
+    Message:
+    ${cleanMessage}
+      `.trim()
     });
 
     if (error) {
