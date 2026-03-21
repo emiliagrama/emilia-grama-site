@@ -110,7 +110,7 @@ export default function Experiments() {
               <span className="expIntro__edge">Unstable edge.</span>
             </h2>
             <p className="expIntro__lead">
-              A reusable UI system in React — extended with experimental motion and interaction.
+             Reusable React components built for production use, extended with selected motion and interaction experiments.          
             </p>
           </header>
 
@@ -120,7 +120,7 @@ export default function Experiments() {
               <h2>
                 Buttons <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Button styles, sizes, and states.</p>
+              <p>Variants for hierarchy, interaction, and emphasis.</p>
             </header>
 
             <div className="libPanel">
@@ -167,7 +167,7 @@ export default function Experiments() {
               <h2>
                 Cards <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Layouts, media cards, hover states, and flip.</p>
+              <p>Content blocks, media surfaces, and interaction states.</p>
             </header>
 
             <div className="libPanel">
@@ -177,7 +177,7 @@ export default function Experiments() {
                 <Card
                   variant="default"
                   eyebrow="Default"
-                  title="Project card"
+                  title="Service overview"
                   subtitle="Clean structure with CTA + hover lift."
                   href="#"
                   ctaLabel="Open"
@@ -199,7 +199,7 @@ export default function Experiments() {
                 <Card
                   variant="glow"
                   eyebrow="Glow"
-                  title="Featured card"
+                  title="Highlighted feature"
                   subtitle="Controlled neon aura (still classy)."
                   href="#"
                   ctaLabel="See more"
@@ -258,7 +258,7 @@ export default function Experiments() {
               <h2>
                 Form fields <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Inputs, states, validation, and structured interaction.</p>
+              <p>Form structure, validation patterns, and input behavior.</p>
             </header>
 
             <div className="libPanel">
@@ -384,7 +384,7 @@ export default function Experiments() {
               </p>
 
               <h4>
-                Custom audio player built with React and WaveSurfer.js, featuring waveform-based progress, grouped playlists, and responsive playback controls. Designed to demonstrate advanced UI composition and interactive audio integration in a modern frontend architecture.
+                Custom React audio player built with WaveSurfer.js, with grouped playlists, waveform progress, and responsive playback controls.
               </h4>
             </div>
           </div>
