@@ -219,25 +219,26 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(
+  linear-gradient(
       to right,
-      rgba(5, 8, 18, 0.8) 0%,
-      rgba(5, 8, 18, 0.6) 35%,
-      rgba(5, 8, 18, 0.2) 65%,
+      rgba(5, 8, 18, 0.0) 0%,
+      rgba(5, 8, 18, 0.5) 35%,
+      rgba(5, 8, 18, 0.16) 65%,
       transparent 85%
     ),
     linear-gradient(
       180deg,
       rgba(7, 9, 18, 0) 0%,
       rgba(7, 9, 18, 0) 40%,
-      rgba(7, 9, 18, 0.12) 100%
+      rgba(7, 9, 18, 0.10) 100%
     ),
     radial-gradient(
       900px 520px at 18% 20%,
-      rgba(54, 42, 131, 0.623),
+      rgba(54, 42, 131, 0.42),
       transparent 55%
     ),
     url("/images/universe/hero-wave.jpg");
+    
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -278,12 +279,12 @@
   }
 }
 .heroMeta{
-  font-size: 14px;
-  letter-spacing: .14em;
+  font-size: 15px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 28px;
-  opacity: .7;
+  opacity: 0.6;
 }
 
 .heroTitle{
@@ -321,7 +322,14 @@
   margin-top: 42px;
   flex-wrap: wrap;
 }
+.heroSubnote {
+  margin-top: 36px !important;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.425)!important;
+  opacity: 0.6;
 
+}
 .hero p {
   color: rgba(237, 241, 243, 0.78);
   max-width: 620px;
@@ -346,11 +354,11 @@
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
 }
 
 .btnBlue{
-  background: linear-gradient(90deg, rgba(107, 223, 244, 0.3), rgba(244,200,107,.10));
+  background: linear-gradient(90deg, rgba(39, 142, 173, 0.671), rgba(12, 49, 172, 0.301));
 }
 
 /* ===== Projects section ===== */
@@ -428,7 +436,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+   border: 1px solid rgba(255,255,255,0.06);
   background: rgba(8, 11, 17, 0.842);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -462,13 +470,17 @@
   height: auto;
 }
 
-.projectMedia::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.00) 100%);
-  pointer-events:none;
+.projectMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.52) 0%,
+    rgba(0, 0, 0, 0.14) 52%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+  pointer-events: none;
 }
 
 /* shared image behavior */
@@ -497,7 +509,7 @@
 
 /* Text content */
 .projectBody {
-  padding: 13px 14px 18px;
+  padding: 20px 20px 24px;
 }
 
 .projectKicker {
@@ -553,11 +565,11 @@
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: rgba(50, 151, 177, 0.767);
+  color: rgba(50, 152, 177, 0.603);
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(35, 149, 184, 0.11);
+  background: rgba(35, 149, 184, 0.116);
   transition: transform 200ms ease, color 200ms ease;
   font-size: 14px;
 }
@@ -570,9 +582,10 @@
 
 /* Note */
 .projectsNote {
-  margin-top: 18px;
-  color: rgba(255, 255, 255, 0.55);
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
+  letter-spacing: 0.01em;
 }
 
 /* =========================
@@ -598,8 +611,8 @@
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(800px 450px at 15% 40%, rgba(10, 20, 40, 0.55), transparent 60%),
-    radial-gradient(800px 450px at 85% 40%, rgba(10, 20, 40, 0.55), transparent 60%),
+    radial-gradient(800px 450px at 15% 40%, rgba(8, 16, 32, 0.55), transparent 60%),
+    radial-gradient(800px 450px at 85% 40%, rgba(9, 17, 34, 0.55), transparent 60%),
     linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 35%, transparent 65%, rgba(0,0,0,0.55));
 }
 
@@ -891,7 +904,7 @@
   text-shadow:
     0 4px 18px rgba(0,0,0,0.65),
     0 0 12px rgba(120,200,255,0.25);
-
+opacity: 0.95;
   animation: none;
 }
 
@@ -903,7 +916,7 @@
 
 @media (max-width: 520px){
   .heroDesc{
-    min-height: calc(1.6em * 2);
+    min-height: calc(3em * 3);
     color: rgb(255, 255, 255);
 
     text-shadow:
