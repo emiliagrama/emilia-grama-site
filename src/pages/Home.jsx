@@ -151,7 +151,7 @@ export default function Home() {
           <p ref={heroDescRef} className="heroDesc">
             {heroDescAnimated}
           </p>
-<p className="heroSubnote">Custom-built. No shortcuts.</p>
+          <p className="heroSubnote">Custom-built. No shortcuts.</p>
           <div className="heroActions">
             <a className="btn btnBlue" href="#projects">
               View my work
