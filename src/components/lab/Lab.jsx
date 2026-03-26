@@ -2,7 +2,7 @@
 import "../../styles/lab.css";
 import ShaderPanel from "./ShaderPanel";
 import WaveGridCard from "./WaveGridCard";
-
+import DepthBloomCard from "./DepthBloomCard";
 
 export default function Lab() {
   return (
@@ -27,13 +27,16 @@ export default function Lab() {
           <ShaderPanel />
         </div>
       
-        <h3 className="labExperimentTitle">Wave Grid</h3>
+        <h3 className="labExperimentTitle">Surface & Depth Systems</h3>
         <div className="libPanel">
           <p className="labExperimentDesc">
-            Distorted checker surface presented as a floating motion card.
+            Interactive visual experiments exploring surface distortion and depth fields.
           </p>
-          <WaveGridCard />
-          
+          <div className="labCardsRow">
+            
+            <DepthBloomCard />
+            <WaveGridCard />
+          </div>
         </div>
     </section>
   );

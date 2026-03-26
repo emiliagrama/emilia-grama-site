@@ -4,16 +4,16 @@ import WaveGridPanel from "./WaveGridPanel";
 export default function WaveGridCard() {
   const cardRef = useRef(null);
 
-  function handleMove(e) {
+  function updateTilt(clientX, clientY) {
     const el = cardRef.current;
     if (!el) return;
 
     const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
+    const px = (clientX - rect.left) / rect.width;
+    const py = (clientY - rect.top) / rect.height;
 
-    const rotateY = (px - 0.5) * 18;
-    const rotateX = (0.5 - py) * 18;
+    const rotateY = (px - 0.5) * 13;
+    const rotateX = (0.5 - py) * 13;
 
     const glareX = px * 100;
     const glareY = py * 100;
@@ -22,10 +22,10 @@ export default function WaveGridCard() {
     el.style.setProperty("--rotateY", `${rotateY}deg`);
     el.style.setProperty("--glareX", `${glareX}%`);
     el.style.setProperty("--glareY", `${glareY}%`);
-    el.style.setProperty("--lift", `-8px`);
+    el.style.setProperty("--lift", `-12px`);
   }
 
-  function handleLeave() {
+  function resetTilt() {
     const el = cardRef.current;
     if (!el) return;
 
@@ -33,7 +33,31 @@ export default function WaveGridCard() {
     el.style.setProperty("--rotateY", `0deg`);
     el.style.setProperty("--glareX", `50%`);
     el.style.setProperty("--glareY", `0%`);
-    el.style.setProperty("--lift", `8px`);
+    el.style.setProperty("--lift", `0px`);
+  }
+
+  function handleMove(e) {
+    updateTilt(e.clientX, e.clientY);
+  }
+
+  function handleTouchStart(e) {
+    const touch = e.touches[0];
+    if (!touch) return;
+    updateTilt(touch.clientX, touch.clientY);
+  }
+
+  function handleTouchMove(e) {
+    const touch = e.touches[0];
+    if (!touch) return;
+    updateTilt(touch.clientX, touch.clientY);
+  }
+
+  function handleLeave() {
+    resetTilt();
+  }
+
+  function handleTouchEnd() {
+    resetTilt();
   }
 
   return (
@@ -43,6 +67,9 @@ export default function WaveGridCard() {
         className="waveCard"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="waveCard__media">
           <WaveGridPanel />
