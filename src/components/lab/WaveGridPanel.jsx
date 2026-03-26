@@ -58,7 +58,7 @@ void main() {
   col *= vignette;
 
   vec3 bg = vec3(0.02, 0.02, 0.03);
-  vec3 fg = vec3(0.96, 0.96, 0.97);
+  vec3 fg = vec3(0.88, 0.88, 0.9);
 
   vec3 finalColor = mix(bg, fg, col);
 
