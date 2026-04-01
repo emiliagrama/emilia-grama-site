@@ -447,7 +447,7 @@ export default function GlassBreakCanvas({ isActive = true }) {
     const ok = setupScene();
     if (!ok) return;
 
-    loadTexture("/images/universe/leopard.png");
+    loadTexture("/images/universe/space-fracture.jpg");
 
     
     canvas.addEventListener("click", handleClick);

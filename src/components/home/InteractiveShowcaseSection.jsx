@@ -47,22 +47,15 @@ export default function InteractiveShowcaseSection() {
             </span>
 
             <h2>
-              Motion that feels alive,
+              Distortion that feels alive,
               <br />
               not artificial.
             </h2>
 
-            <p className="interactive-showcase-body">
-              Subtle distortion driven by interaction, not noise.
+            <p className="interactive-showcase-hint">
+            Move to disturb. Click to fracture.
             </p>
 
-            <p
-              className={`interactive-showcase-secondary ${
-                progress > 0.42 ? "is-visible" : ""
-              }`}
-            >
-              Then tension builds as the surface starts to fracture.
-            </p>
           </div>
 
           <div className="interactive-showcase-stage">
