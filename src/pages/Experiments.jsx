@@ -309,7 +309,7 @@ export default function Experiments() {
                           { label: "Experiments", href: "/experiments#top" },
                         ]}
                         ctaLabel="Contact"
-                        ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                        ctaHref="/contact"
                       />
                     </div>
 
@@ -323,7 +323,7 @@ export default function Experiments() {
                           { label: "Lab", href: "/experiments#lab" },
                         ]}
                       ctaLabel="Let's talk"
-                      ctaHref="mailto:emiliagrama@gmail.com?subject=Project%20Inquiry"
+                      ctaHref="/contact"
                     />
                   </div>
 
