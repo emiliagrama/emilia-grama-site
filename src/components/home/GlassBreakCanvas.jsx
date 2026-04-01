@@ -63,9 +63,7 @@ float get_sector_shape(float d, float a, float angle, float edges) {
 }
 
 float get_img_frame_alpha(vec2 uv, float img_frame_width) {
-  float img_frame_alpha = smoothstep(0.0, img_frame_width, uv.x) * smoothstep(1.0, 1.0 - img_frame_width, uv.x);
-  img_frame_alpha *= smoothstep(0.0, img_frame_width, uv.y) * smoothstep(1.0, 1.0 - img_frame_width, uv.y);
-  return img_frame_alpha;
+  return 1.0;
 }
 
 float get_simple_cracks(float a, float d, float n) {
@@ -90,7 +88,7 @@ vec2 get_img_uv() {
     img_uv.y = img_uv.y * u_img_ratio / u_ratio;
   }
 
-  float scale_factor = 1.08;
+  float scale_factor = 1.0;
   img_uv *= scale_factor;
   img_uv += 0.5;
   img_uv.y = 1.0 - img_uv.y;
@@ -100,7 +98,7 @@ vec2 get_img_uv() {
 }
 
 vec2 get_disturbed_uv(vec2 uv, float section_constant, float edge, vec2 direction, float border) {
-  float img_distortion = 0.8 * u_effect * (section_constant - 0.5);
+  float img_distortion = 0.5 * u_effect * (section_constant - 0.5);
   vec2 disturbed_uv = uv;
 
   disturbed_uv += 2.0 * img_distortion;
