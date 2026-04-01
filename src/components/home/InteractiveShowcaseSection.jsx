@@ -52,6 +52,10 @@ export default function InteractiveShowcaseSection() {
               not artificial.
             </h2>
 
+            <p className="interactive-showcase-body">
+              Subtle distortion driven by interaction, not noise.
+            </p>
+
             <p className="interactive-showcase-hint">
             Move to disturb. Click to fracture.
             </p>
