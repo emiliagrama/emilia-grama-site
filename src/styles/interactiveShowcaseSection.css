@@ -1,0 +1,131 @@
+.interactive-showcase-section {
+  position: relative;
+  height: 200vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(35, 73, 130, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(0, 170, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, #020817 0%, #030b1d 100%);
+}
+
+.interactive-showcase-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.interactive-showcase-inner {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(300px, 430px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.interactive-showcase-copy {
+  z-index: 2;
+}
+
+.interactive-showcase-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: rgba(227, 235, 255, 0.82);
+}
+
+.interactive-showcase-copy h2 {
+  margin: 0 0 22px;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #e8ecff;
+  max-width: 9ch;
+}
+
+.interactive-showcase-body {
+  margin: 0;
+  max-width: 38ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: rgba(227, 235, 255, 0.72);
+}
+
+.interactive-showcase-secondary {
+  margin-top: 18px;
+  max-width: 34ch;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(227, 235, 255, 0.54);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.interactive-showcase-secondary.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interactive-showcase-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(8, 16, 34, 0.75);
+  border: 1px solid rgba(170, 205, 255, 0.08);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.interactive-showcase-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(2, 8, 23, 0.22) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 16%);
+}
+
+.stage-layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.25s linear, transform 0.35s ease;
+  will-change: opacity, transform;
+}
+
+.interactive-showcase-canvas,
+.stage-layer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .interactive-showcase-section {
+    height: auto;
+    padding: 100px 0;
+  }
+
+  .interactive-showcase-sticky {
+    position: relative;
+    min-height: auto;
+  }
+
+  .interactive-showcase-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .interactive-showcase-copy h2 {
+    max-width: 11ch;
+  }
+
+  .interactive-showcase-stage {
+    aspect-ratio: 4 / 3;
+  }
+}

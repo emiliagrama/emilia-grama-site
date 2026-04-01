@@ -55,8 +55,9 @@ float get_sector_shape(float d, float a, float angle, float edges) {
   float angle1 = PI;
   float angle2 = angle1 + angle;
 
-  float edge1 = smoothstep(angle1 - edges / d, angle1 + edges / d, a);
-  float edge2 = smoothstep(angle2 - edges / d, angle2 + edges / d, a);
+  float safeD = max(d, 0.0001);
+  float edge1 = smoothstep(angle1 - edges / safeD, angle1 + edges / safeD, a);
+  float edge2 = smoothstep(angle2 - edges / safeD, angle2 + edges / safeD, a);
 
   return edge1 * (1.0 - edge2);
 }
@@ -89,24 +90,25 @@ vec2 get_img_uv() {
     img_uv.y = img_uv.y * u_img_ratio / u_ratio;
   }
 
-  float scale_factor = 1.35;
+  float scale_factor = 1.08;
   img_uv *= scale_factor;
   img_uv += 0.5;
   img_uv.y = 1.0 - img_uv.y;
+  img_uv = clamp(img_uv, 0.001, 0.999);
 
   return img_uv;
 }
 
 vec2 get_disturbed_uv(vec2 uv, float section_constant, float edge, vec2 direction, float border) {
-  float img_distortion = u_effect * (section_constant - 0.5);
+  float img_distortion = 0.8 * u_effect * (section_constant - 0.5);
   vec2 disturbed_uv = uv;
 
   disturbed_uv += 2.0 * img_distortion;
-  disturbed_uv.x -= mix(0.03 * edge * direction.x, -0.1 * edge, border);
-  disturbed_uv.y -= mix(0.03 * edge * direction.y, -0.1 * edge, border);
+  disturbed_uv.x -= mix(0.015 * edge * direction.x, -0.04 * edge, border);
+  disturbed_uv.y -= mix(0.015 * edge * direction.y, -0.04 * edge, border);
 
   vec2 center = vec2(0.5, 0.5);
-  disturbed_uv = disturbed_uv - center;
+  disturbed_uv -= center;
 
   float cosA = cos(4.0 * img_distortion);
   float sinA = sin(4.0 * img_distortion);
@@ -118,6 +120,8 @@ vec2 get_disturbed_uv(vec2 uv, float section_constant, float edge, vec2 directio
   );
 
   disturbed_uv += center;
+  disturbed_uv = clamp(disturbed_uv, 0.001, 0.999);
+
   return disturbed_uv;
 }
 
@@ -127,7 +131,8 @@ void main() {
   uv.x *= u_ratio;
 
   vec2 pointer = u_pointer_position;
-  vec2 pointer_direction = normalize(u_pointer_position - vec2(vUv.x, 1.0 - vUv.y));
+  vec2 diff = u_pointer_position - vec2(vUv.x, 1.0 - vUv.y);
+  vec2 pointer_direction = normalize(diff + vec2(0.0001));
   pointer.x *= u_ratio;
   pointer = pointer - uv;
 
@@ -192,55 +197,56 @@ void main() {
   float central_cracks = get_simple_cracks(pointer_angle, pointer_distance_normalized, angle_noise);
   cracks_edge += central_cracks;
 
-    if (u_effect_active > 0.0) {
-    vec2 stable_uv = img_uv;
-    vec2 distorted_uv = get_disturbed_uv(
-        img_uv,
-        sector_constant,
-        cracks_edge,
-        pointer_direction,
-        get_img_frame_alpha(img_uv, 0.2)
+  if (u_effect_active > 0.0) {
+    img_uv = get_disturbed_uv(
+      img_uv,
+      sector_constant,
+      cracks_edge,
+      pointer_direction,
+      get_img_frame_alpha(img_uv, 0.2)
     );
-
-    float localEffect = clamp(cracks_edge * 0.65, 0.0, 1.0);
-    img_uv = mix(stable_uv, distorted_uv, localEffect);
-    }
+  }
 
   vec4 img = texture2D(u_image_texture, img_uv);
   color = img.rgb;
-  color += 0.12 * u_effect_active * (sector_constant - 0.5);
+  color += 0.08 * u_effect_active * (sector_constant - 0.5);
 
   img_edge_alpha = get_img_frame_alpha(img_uv, 0.004);
   float opacity = img_edge_alpha;
-  opacity -= 0.3 * u_effect_active * pow(is_grid_edge, 4.0);
-  opacity -= 0.3 * u_effect_active * is_central_edge;
-  opacity -= 0.03 * u_effect_active * pow(central_cracks, 4.0);
+  opacity -= 0.12 * u_effect_active * pow(is_grid_edge, 3.0);
+  opacity -= 0.12 * u_effect_active * is_central_edge;
+  opacity -= 0.02 * u_effect_active * pow(central_cracks, 4.0);
 
   gl_FragColor = vec4(color, opacity);
 }
 `;
 
-export default function GlassBreakSection() {
-  const sectionRef = useRef(null);
+export default function GlassBreakCanvas({ isActive = true }) {
   const canvasRef = useRef(null);
+  const activeRef = useRef(isActive);
+
+  useEffect(() => {
+    activeRef.current = isActive;
+  }, [isActive]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const section = sectionRef.current;
-    if (!canvas || !section) return;
+    if (!canvas) return;
 
     const gl = canvas.getContext("webgl", { alpha: true, antialias: true });
     if (!gl) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    let disposed = false;
     let rafId = null;
-    let isVisible = false;
-    let image = null;
+    let resizeObserver = null;
     let texture = null;
     let program = null;
+    let vertex = null;
+    let fragment = null;
+    let image = null;
     let uniforms = {};
-    let resizeObserver = null;
 
     const pointer = { x: 0.55, y: 0.5 };
     const params = {
@@ -250,6 +256,12 @@ export default function GlassBreakSection() {
       edgeThickness: 0.006,
       rotation: 0,
     };
+
+    function safeUseProgram() {
+      if (disposed || !program) return false;
+      gl.useProgram(program);
+      return true;
+    }
 
     function createShader(type, source) {
       const shader = gl.createShader(type);
@@ -265,18 +277,19 @@ export default function GlassBreakSection() {
       return shader;
     }
 
-    function createProgram(vsSource, fsSource) {
-      const vertexShader = createShader(gl.VERTEX_SHADER, vsSource);
-      const fragmentShader = createShader(gl.FRAGMENT_SHADER, fsSource);
-      if (!vertexShader || !fragmentShader) return null;
+    function createProgram() {
+      vertex = createShader(gl.VERTEX_SHADER, vertexShader);
+      fragment = createShader(gl.FRAGMENT_SHADER, fragmentShader);
+      if (!vertex || !fragment) return null;
 
       const shaderProgram = gl.createProgram();
-      gl.attachShader(shaderProgram, vertexShader);
-      gl.attachShader(shaderProgram, fragmentShader);
+      gl.attachShader(shaderProgram, vertex);
+      gl.attachShader(shaderProgram, fragment);
       gl.linkProgram(shaderProgram);
 
       if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
         console.error(gl.getProgramInfoLog(shaderProgram));
+        gl.deleteProgram(shaderProgram);
         return null;
       }
 
@@ -296,11 +309,11 @@ export default function GlassBreakSection() {
     }
 
     function setupScene() {
-      program = createProgram(vertexShader, fragmentShader);
-      if (!program) return;
+      program = createProgram();
+      if (!program) return false;
 
+      if (!safeUseProgram()) return false;
       uniforms = getUniformLocations(program);
-      gl.useProgram(program);
 
       const vertices = new Float32Array([
         -1, -1,
@@ -316,10 +329,12 @@ export default function GlassBreakSection() {
       const positionLocation = gl.getAttribLocation(program, "a_position");
       gl.enableVertexAttribArray(positionLocation);
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+      return true;
     }
 
     function updateUniforms() {
-      if (!program) return;
+      if (!safeUseProgram()) return;
 
       gl.uniform1f(uniforms.u_click_randomizer, params.clickRandomizer);
       gl.uniform1f(uniforms.u_rotation, params.rotation);
@@ -330,32 +345,20 @@ export default function GlassBreakSection() {
     }
 
     function resizeCanvas() {
-      if (!image) return;
+      if (disposed || !image || !program) return;
 
       const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-
       gl.viewport(0, 0, canvas.width, canvas.height);
 
       const imgRatio = image.naturalWidth / image.naturalHeight;
+
+      if (!safeUseProgram()) return;
       gl.uniform1f(uniforms.u_ratio, canvas.width / canvas.height);
       gl.uniform1f(uniforms.u_img_ratio, imgRatio);
-    }
-
-    function render() {
-      if (!isVisible) return;
-
-      gl.clearColor(0, 0, 0, 0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-
-      rafId = requestAnimationFrame(render);
-    }
-
-    function startRender() {
-      if (rafId) return;
-      rafId = requestAnimationFrame(render);
     }
 
     function stopRender() {
@@ -365,66 +368,92 @@ export default function GlassBreakSection() {
       }
     }
 
+    function render() {
+      if (disposed) return;
+
+      if (!activeRef.current) {
+        rafId = requestAnimationFrame(render);
+        return;
+      }
+
+      if (!safeUseProgram()) return;
+
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+      rafId = requestAnimationFrame(render);
+    }
+
+    function startRender() {
+      if (!rafId && !disposed) {
+        rafId = requestAnimationFrame(render);
+      }
+    }
+
     function loadTexture(src) {
       image = new Image();
       image.crossOrigin = "anonymous";
-      image.src = src;
 
       image.onload = () => {
+        if (disposed) return;
+
         texture = gl.createTexture();
+        gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
 
+        if (!safeUseProgram()) return;
         gl.uniform1i(uniforms.u_image_texture, 0);
+
         resizeCanvas();
         updateUniforms();
-
-        if (isVisible) startRender();
+        startRender();
       };
+
+      image.onerror = () => {
+        if (!disposed) {
+          console.error("IMAGE FAILED TO LOAD:", src);
+        }
+      };
+
+      image.src = src;
     }
 
     function handlePointerMove(event) {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = (event.clientX - rect.left) / rect.width;
-      pointer.y = 1 - (event.clientY - rect.top) / rect.height;
-      updateUniforms();
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    pointer.x = (event.clientX - rect.left) / rect.width;
+    pointer.y = (event.clientY - rect.top) / rect.height;
+    updateUniforms();
     }
 
     function handleClick(event) {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = (event.clientX - rect.left) / rect.width;
-      pointer.y = 1 - (event.clientY - rect.top) / rect.height;
-      params.clickRandomizer = Math.random();
-      updateUniforms();
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    pointer.x = (event.clientX - rect.left) / rect.width;
+    pointer.y = (event.clientY - rect.top) / rect.height;
+    params.clickRandomizer = Math.random();
+    updateUniforms();
     }
 
-    setupScene();
+    const ok = setupScene();
+    if (!ok) return;
+
     loadTexture("/images/universe/leopard.png");
 
-    canvas.addEventListener("pointermove", handlePointerMove);
+    
     canvas.addEventListener("click", handleClick);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-
-        if (isVisible) {
-          section.classList.add("is-visible");
-          startRender();
-        } else {
-          stopRender();
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    observer.observe(section);
-
     resizeObserver = new ResizeObserver(() => {
+      if (disposed) return;
       resizeCanvas();
       updateUniforms();
     });
@@ -433,31 +462,20 @@ export default function GlassBreakSection() {
     window.addEventListener("resize", resizeCanvas);
 
     return () => {
+      disposed = true;
       stopRender();
-      observer.disconnect();
+
       resizeObserver?.disconnect();
       window.removeEventListener("resize", resizeCanvas);
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("click", handleClick);
+
+      if (texture) gl.deleteTexture(texture);
+      if (program) gl.deleteProgram(program);
+      if (vertex) gl.deleteShader(vertex);
+      if (fragment) gl.deleteShader(fragment);
     };
   }, []);
 
-  return (
-    <section ref={sectionRef} className="glass-break-section">
-      <div className="glass-break-inner">
-        <div className="glass-break-copy">
-          <span className="glass-break-eyebrow">Fractured focus</span>
-          <h2>Motion that breaks the surface without breaking the layout.</h2>
-          <p>
-            Scroll into the section, move through the frame, and let interaction
-            create tension instead of noise.
-          </p>
-        </div>
-
-        <div className="glass-break-media">
-          <canvas ref={canvasRef} className="glass-break-canvas" />
-        </div>
-      </div>
-    </section>
-  );
+  return <canvas ref={canvasRef} className="interactive-showcase-canvas" />;
 }

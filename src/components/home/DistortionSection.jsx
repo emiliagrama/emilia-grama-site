@@ -1,5 +1,4 @@
 import DistortionCanvas from "./DistortionCanvas";
-import "../../styles/distortionSection.css";
 
 export default function DistortionSection() {
   return (

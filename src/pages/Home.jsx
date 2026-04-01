@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import DistortionSection from "../components/home/DistortionSection";
+import InteractiveShowcaseSection from "../components/home/InteractiveShowcaseSection";
 export default function Home() {
   /* ===============================
      DATA
@@ -162,7 +162,10 @@ export default function Home() {
           </div>
         </div>
       </section>
- <DistortionSection />
+
+     {/* ================= INTERACTIVE SHOWCASE ================= */}
+      <InteractiveShowcaseSection />
+
       {/* ================= PROJECTS ================= */}
       <section id="projects" className="section projectsSection">
         <div className="container">
