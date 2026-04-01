@@ -55,7 +55,13 @@ export default function InteractiveShowcaseSection() {
             <p className="interactive-showcase-hint">
             Move to disturb. Click to fracture.
             </p>
-
+            <p
+              className={`interactive-showcase-secondary ${
+                progress > 0.42 ? "is-visible" : ""
+              }`}
+            >
+              Then tension builds as the surface starts to fracture.
+            </p>
           </div>
 
           <div className="interactive-showcase-stage">
