@@ -343,7 +343,7 @@ try {
                 <div className="contactActions">
                   <button
                     type="submit"
-                    className="contactSubmitBtn"
+                    className="btn btnBlue contactSubmitBtn"
                     disabled={isSending}
                   >
                     {isSending ? "Sending..." : "Send message"}

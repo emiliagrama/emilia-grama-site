@@ -31,7 +31,7 @@
 .interactive-showcase-eyebrow {
   display: inline-block;
   margin-bottom: 18px;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   letter-spacing: 0.04em;
   color: rgba(227, 235, 255, 0.82);
 }
@@ -89,10 +89,10 @@
 
 .interactive-showcase-hint {
   margin: 12px 0 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.04em;
-  color: rgba(227, 235, 255, 0.48);
+  color: rgba(251, 252, 253, 0.685);
 }
 
 .interactive-showcase-stage {

@@ -16,13 +16,27 @@ html{
    Global Typography System
 ================================= */
 
-h1, h2, h3, h4 {
-  letter-spacing: var(--ls-heading);
-  line-height: var(--lh-heading);
-  
+
+
+h1 {
+  font-size: var(--fs-hero);
+}
+
+h2 {
+  font-size: var(--fs-display);
+}
+
+h3 {
+  font-size: var(--fs-section);
+}
+
+h4 {
+  font-size: var(--fs-subsection);
 }
 
 p {
   line-height: var(--lh-body);
+  font-size: var(--fs-body);
+  margin: 0;
 }
 

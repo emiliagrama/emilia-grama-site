@@ -236,7 +236,10 @@ export default function Home() {
           <p className="projectsNote">
             More projects available on request.
           </p>
-        </div>
+            <a className="btn btnBlue" href="/contact">
+              Get in touch
+            </a>
+            </div>
       </section>
 
       {/* ================= EXPERIMENTS ================= */}

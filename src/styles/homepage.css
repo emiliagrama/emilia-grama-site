@@ -361,7 +361,6 @@
   background: linear-gradient(90deg, rgba(39, 142, 173, 0.671), rgba(12, 49, 172, 0.301));
 }
 
-
 /* ===== Projects section ===== */
 .projectsSection {
   padding: clamp(96px, 9vw, 140px) 0;
@@ -587,6 +586,7 @@
   color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
   letter-spacing: 0.01em;
+   margin-bottom: 16px;
 }
 
 /* =========================
