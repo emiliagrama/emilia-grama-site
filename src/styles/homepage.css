@@ -826,14 +826,19 @@
 }
 
 /* CTA (unchanged) */
-.experimentsCTA{
+.sectionCTA {
   margin-top: 22px;
   display: flex;
   justify-content: flex-start;
 }
 
-.experimentsCTA .btn{ box-shadow: 0 0 28px rgba(61,132,224,0.12); }
-.experimentsCTA .btn:hover{ box-shadow: 0 0 38px rgba(61,132,224,0.18); }
+.sectionCTA .btn {
+  box-shadow: 0 0 28px rgba(61, 132, 224, 0.12);
+}
+
+.sectionCTA .btn:hover {
+  box-shadow: 0 0 38px rgba(61, 132, 224, 0.18);
+}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
@@ -850,7 +855,7 @@
   }
   .experimentsTrack{ transform: none !important; }
   .componentCard{ scroll-snap-align: start; }
-  .experimentsCTA{ justify-content: center; }
+  .sectionCTA{ justify-content: center; }
 }
 @media (max-width: 860px) {
   .experimentsScroll {
@@ -985,4 +990,17 @@ opacity: 0.95;
 
 .footer a:hover {
   color: #9fe3ff;
+}
+
+@media (max-width: 380px) {
+  .heroTitle {
+    font-size: 2.35rem;
+    line-height: 1.05;
+  }
+ .heroDesc {
+    min-height: auto;
+  }
+  .heroTitle span {
+    display: block;
+  }
 }

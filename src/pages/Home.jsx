@@ -236,10 +236,12 @@ export default function Home() {
           <p className="projectsNote">
             More projects available on request.
           </p>
+          <div className="sectionCTA">
             <a className="btn btnBlue" href="/contact">
               Get in touch
             </a>
-            </div>
+          </div>
+          </div>
       </section>
 
       {/* ================= EXPERIMENTS ================= */}
@@ -302,11 +304,11 @@ export default function Home() {
               {/* 🔥 THIS MUST BE HERE */}
             <div className="experimentsFog" aria-hidden="true" />
             </div>
-          <div className="experimentsCTA">
-            <a className="btn btnBlue" href="/experiments">
-              View all experiments →
-            </a>
-          </div>
+            <div className="sectionCTA">
+              <a className="btn btnBlue" href="/experiments">
+                View all experiments →
+              </a>
+            </div>
         </div>
       </section>
 
