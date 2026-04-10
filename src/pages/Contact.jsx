@@ -40,63 +40,68 @@ export default function Contact() {
     };
   }, []);
 
-  useEffect(() => {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+useEffect(() => {
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-    if (reduceMotion) return;
+  if (reduceMotion) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set(
-        [
-          heroRef.current,
-          infoCardRef.current,
-          formCardRef.current,
-          ".contactField",
-          ".contactActions"
-        ],
+  const ctx = gsap.context(() => {
+    const fieldRow = formCardRef.current?.querySelector(".contactFieldRow");
+    const nameField = formCardRef.current?.querySelector('.contactField label[for="name"]')?.closest(".contactField");
+    const messageField = formCardRef.current?.querySelector('.contactField label[for="message"]')?.closest(".contactField");
+    const actions = formCardRef.current?.querySelector(".contactActions");
+
+    gsap.set(
+      [heroRef.current, infoCardRef.current, formCardRef.current],
+      {
+        opacity: 0,
+        y: 18
+      }
+    );
+
+    gsap.set([nameField, fieldRow, messageField, actions], {
+      opacity: 0,
+      y: 14
+    });
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power2.out" }
+    });
+
+    tl.to(heroRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      clearProps: "transform,opacity"
+    })
+      .to(
+        [infoCardRef.current, formCardRef.current],
         {
-          opacity: 0,
-          y: 18
-        }
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          clearProps: "transform,opacity"
+        },
+        "-=0.35"
+      )
+      .to(
+        [nameField, fieldRow, messageField, actions],
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.45,
+          stagger: 0.06,
+          clearProps: "transform,opacity"
+        },
+        "-=0.35"
       );
+  }, pageRef);
 
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power2.out"
-        }
-      });
-
-      tl.to(heroRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7
-      })
-        .to(
-          [infoCardRef.current, formCardRef.current],
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            stagger: 0.08
-          },
-          "-=0.35"
-        )
-        .to(
-          ".contactField, .contactActions",
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            stagger: 0.05
-          },
-          "-=0.35"
-        );
-    }, pageRef);
-
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);;
 
   function validate(values) {
     const nextErrors = {};
