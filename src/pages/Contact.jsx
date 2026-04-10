@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";import "../styles/contact.css";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import "../styles/contact.css";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -15,7 +17,12 @@ export default function Contact() {
   const [serverError, setServerError] = useState("");
   const [projectMenuOpen, setProjectMenuOpen] = useState(false);
 
+  const pageRef = useRef(null);
+  const heroRef = useRef(null);
+  const infoCardRef = useRef(null);
+  const formCardRef = useRef(null);
   const projectMenuRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -32,6 +39,65 @@ export default function Contact() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reduceMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(
+        [
+          heroRef.current,
+          infoCardRef.current,
+          formCardRef.current,
+          ".contactField",
+          ".contactActions"
+        ],
+        {
+          opacity: 0,
+          y: 18
+        }
+      );
+
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power2.out"
+        }
+      });
+
+      tl.to(heroRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7
+      })
+        .to(
+          [infoCardRef.current, formCardRef.current],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.08
+          },
+          "-=0.35"
+        )
+        .to(
+          ".contactField, .contactActions",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.05
+          },
+          "-=0.35"
+        );
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, []);
+
   function validate(values) {
     const nextErrors = {};
 
@@ -81,71 +147,74 @@ export default function Contact() {
       return;
     }
 
-try {
-  setIsSending(true);
+    try {
+      setIsSending(true);
 
-  const response = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: form.name,
-      email: form.email,
-      projectType: form.projectType,
-      message: form.message,
-      website: form.website
-    })
-  });
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          projectType: form.projectType,
+          message: form.message,
+          website: form.website
+        })
+      });
 
-  const text = await response.text();
-  let data = {};
+      const text = await response.text();
+      let data = {};
 
-  try {
-    data = text ? JSON.parse(text) : {};
-  } catch {
-    throw new Error("Server returned an invalid response.");
-  }
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error("Server returned an invalid response.");
+      }
 
-  if (!response.ok) {
-    throw new Error(data.error || "Failed to send message.");
-  }
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
 
-  setSubmitted(true);
-  setForm({
-    name: "",
-    email: "",
-    projectType: "",
-    message: "",
-    website: ""
-  });
-  setErrors({});
-} catch (error) {
-  setServerError(error.message || "Failed to send message.");
-} finally {
-  setIsSending(false);
-}
+      setSubmitted(true);
+      setForm({
+        name: "",
+        email: "",
+        projectType: "",
+        message: "",
+        website: ""
+      });
+      setErrors({});
+    } catch (error) {
+      setServerError(error.message || "Failed to send message.");
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
-    <main className="contactPage">
+    <main className="contactPage" ref={pageRef}>
       <section className="contactHero">
-        <div className="contactHero__inner">
+        <div className="contactHero__inner" ref={heroRef}>
           <h1>Let’s build something strong, clear, and well designed.</h1>
           <p className="contactIntro">
-            Modern websites and web applications with a strong focus on
-            structure, visual quality, and user experience. Send me a message
-            with your idea, timeline, or project goals.
+            Modern websites and applications, built with structure and precision.
+            Send me your idea, timeline, or project goals and I’ll take it from
+            there.
           </p>
         </div>
       </section>
 
       <section className="contactContent">
         <div className="contactGrid">
-          <aside className="contactInfoCard">
+          <aside className="contactInfoCard" ref={infoCardRef}>
             <div className="contactInfoBlock">
               <p className="contactLabel">Email</p>
-              <a className="contactMailLink" href="mailto:emiliagrama@gmail.com">
+              <a
+                className="contactMailLink"
+                href="mailto:emiliagrama@gmail.com"
+              >
                 emiliagrama@gmail.com
               </a>
             </div>
@@ -162,15 +231,14 @@ try {
             </div>
 
             <div className="contactInfoBlock">
-              <p className="contactLabel">What helps</p>
+              <p className="contactLabel">TO GET STARTED</p>
               <p className="contactSmallText">
-                A short message with your goals, rough timeline, and the kind of
-                site or product you want to build.
+                Keep it simple. Clarity matters more than detail.
               </p>
             </div>
           </aside>
 
-          <div className="contactFormCard">
+          <div className="contactFormCard" ref={formCardRef}>
             {!submitted ? (
               <form className="contactForm" onSubmit={handleSubmit} noValidate>
                 <input
@@ -218,29 +286,32 @@ try {
                   </div>
 
                   <div className="contactField">
-                  <label htmlFor="projectTypeTrigger">Project type</label>
+                    <label htmlFor="projectTypeTrigger">Project type</label>
 
-                  <input
-                    type="hidden"
-                    name="projectType"
-                    value={form.projectType}
-                  />
+                    <input
+                      type="hidden"
+                      name="projectType"
+                      value={form.projectType}
+                    />
 
-                  <div className="customSelect" ref={projectMenuRef}>
-                    <button
-                      id="projectTypeTrigger"
-                      type="button"
-                      className={`customSelectTrigger ${projectMenuOpen ? "is-open" : ""}`}
-                      onClick={() => setProjectMenuOpen((prev) => !prev)}
-                      aria-haspopup="listbox"
-                      aria-expanded={projectMenuOpen}
-                    >
-                      
+                    <div className="customSelect" ref={projectMenuRef}>
+                      <button
+                        id="projectTypeTrigger"
+                        type="button"
+                        className={`customSelectTrigger ${
+                          projectMenuOpen ? "is-open" : ""
+                        }`}
+                        onClick={() => setProjectMenuOpen((prev) => !prev)}
+                        aria-haspopup="listbox"
+                        aria-expanded={projectMenuOpen}
+                      >
                         <span>
                           {form.projectType === "portfolio" && "Portfolio"}
-                          {form.projectType === "business-site" && "Business website"}
+                          {form.projectType === "business-site" &&
+                            "Business website"}
                           {form.projectType === "ui-system" && "UI system"}
-                          {form.projectType === "interactive-frontend" && "Interactive frontend"}
+                          {form.projectType === "interactive-frontend" &&
+                            "Interactive frontend"}
                           {form.projectType === "web-app" && "Web application"}
                           {form.projectType === "other" && "Other"}
                           {!form.projectType && "Select"}
@@ -251,13 +322,14 @@ try {
 
                       {projectMenuOpen && (
                         <ul className="customSelectMenu" role="listbox">
-                        
-
                           <li>
                             <button
                               type="button"
                               onClick={() => {
-                                setForm((prev) => ({ ...prev, projectType: "portfolio" }));
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "portfolio"
+                                }));
                                 setProjectMenuOpen(false);
                               }}
                             >
@@ -269,7 +341,25 @@ try {
                             <button
                               type="button"
                               onClick={() => {
-                                setForm((prev) => ({ ...prev, projectType: "ui-system" }));
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "business-site"
+                                }));
+                                setProjectMenuOpen(false);
+                              }}
+                            >
+                              Business website
+                            </button>
+                          </li>
+
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "ui-system"
+                                }));
                                 setProjectMenuOpen(false);
                               }}
                             >
@@ -296,7 +386,10 @@ try {
                             <button
                               type="button"
                               onClick={() => {
-                                setForm((prev) => ({ ...prev, projectType: "web-app" }));
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "web-app"
+                                }));
                                 setProjectMenuOpen(false);
                               }}
                             >
@@ -308,7 +401,10 @@ try {
                             <button
                               type="button"
                               onClick={() => {
-                                setForm((prev) => ({ ...prev, projectType: "other" }));
+                                setForm((prev) => ({
+                                  ...prev,
+                                  projectType: "other"
+                                }));
                                 setProjectMenuOpen(false);
                               }}
                             >
@@ -361,7 +457,7 @@ try {
 
                 <button
                   type="button"
-                  className="contactSubmitBtn"
+                  className="btn btnBlue contactSubmitBtn"
                   onClick={() => {
                     setSubmitted(false);
                     setForm({
