@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import ScrollToHash from "../components/ScrollToHash";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function SiteLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,6 +84,7 @@ export default function SiteLayout() {
       </main>
 
       <Footer />
+      <Analytics />
     </div>
   );
 }

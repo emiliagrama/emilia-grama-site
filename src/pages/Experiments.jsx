@@ -126,7 +126,6 @@ export default function Experiments() {
             <div className="libPanel">
               <p className="libGroupLabel">Styles</p>
               <div className="libRow">
-                <Button variant="neon">Neon</Button>
                 <Button variant="gold">Gold</Button>
                 <Button variant="outline" className="uiBtn--ring">
                   Outline
@@ -136,7 +135,6 @@ export default function Experiments() {
 
               <p className="libGroupLabel">Shapes</p>
               <div className="libRow">
-                <Button shape="soft">Soft</Button>
                 <Button shape="square">Square</Button>
                 <Button shape="cut">Cut</Button>
                 <Button shape="hex">Hex</Button>

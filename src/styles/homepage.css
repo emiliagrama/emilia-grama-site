@@ -289,7 +289,7 @@
 
 .heroTitle {
   max-width: 710px;
-  font-size: clamp(3.2rem, 5.4vw, 5.4rem);
+  font-size: clamp(3.2rem, 5.2vw, 5.2rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   margin-bottom: 28px;

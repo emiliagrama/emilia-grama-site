@@ -447,9 +447,10 @@ useEffect(() => {
                     className="btn btnBlue contactSubmitBtn"
                     disabled={isSending}
                   >
-                    {isSending ? "Sending..." : "Send message"}
+                    {isSending ? "Sending..." : "Start a project"}
                   </button>
                 </div>
+                <h4>I usually reply within 24h.</h4>
               </form>
             ) : (
               <div className="contactSuccess">
