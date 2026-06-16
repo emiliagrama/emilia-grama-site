@@ -12,5 +12,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+
+  <script>
+      window.LesnoiseConfig = {
+        apiUrl: "https://lesnoise-api-b5407e4f19e1.herokuapp.com",
+        cableUrl: "wss://lesnoise-api-b5407e4f19e1.herokuapp.com/cable"
+      };
+    </script>
+
+    <script crossorigin src="https://lesnoise-frontend.vercel.app/lesnoise-widget.js"></script>
+
+    <script>
+      Lesnoise.init({
+        reviewToken: "a89f2ccabd099eccffe35f66e563d0ca"
+      });
+    </script>
+
   </body>
 </html>
