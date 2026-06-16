@@ -14,20 +14,25 @@
     <script type="module" src="/src/main.jsx"></script>
 
 
+<script>
+    window.LesnoiseConfig = {
+      apiUrl: "https://lesnoise-api-b5407e4f19e1.herokuapp.com",
+      cableUrl: "wss://lesnoise-api-b5407e4f19e1.herokuapp.com/cable"
+    };
+  </script>
+
+  <script crossorigin src="https://lesnoise-frontend.vercel.app/lesnoise-widget.js"></script>
+
   <script>
-      window.LesnoiseConfig = {
-        apiUrl: "https://lesnoise-api-b5407e4f19e1.herokuapp.com",
-        cableUrl: "wss://lesnoise-api-b5407e4f19e1.herokuapp.com/cable"
-      };
-    </script>
+    const lesnoiseParams = new URLSearchParams(window.location.search);
+    const lesnoiseReviewToken = lesnoiseParams.get("lesnoise_review");
 
-    <script crossorigin src="https://lesnoise-frontend.vercel.app/lesnoise-widget.js"></script>
-
-    <script>
+    if (lesnoiseReviewToken) {
       Lesnoise.init({
-        reviewToken: "a89f2ccabd099eccffe35f66e563d0ca"
+        reviewToken: lesnoiseReviewToken
       });
-    </script>
+    }
+  </script>
 
   </body>
 </html>
