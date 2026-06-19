@@ -380,9 +380,11 @@
 }
 
 /* Ensure content stays above overlay */
-.projectsSection .container{
+.projectsSection .container {
   position: relative;
   z-index: 1;
+  width: min(1500px, 92vw);
+  max-width: none;
 }
 
 /* Overlay haze that blends UP into the hero */
@@ -420,14 +422,14 @@
 .projectsGrid {
   margin-top: 28px;
   display: grid;
-  gap: 18px;
+  gap: 22px;
   grid-template-columns: 1fr;
 }
 
 /* 2 columns on desktop */
 @media (min-width: 900px) {
   .projectsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 22px;
   }
 }
@@ -494,6 +496,14 @@
 }
 
 /* individual projects */
+.projectLesnoise .projectThumbPlaceholder {
+  background-image: url("/images/universe/LesNoise.png");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.55) contrast(1.15) saturate(.85);
+}
+
+
 .projectHotel .projectThumbPlaceholder {
   background-image: url("/images/universe/hotel-vacanta.webp");
     filter: brightness(.78) contrast(1.05);

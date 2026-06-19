@@ -176,6 +176,37 @@ export default function Home() {
 
           <div className="projectsGrid">
 
+            <article className="projectCard projectLesnoise">
+              <div className="projectMedia">
+                <div className="projectThumbPlaceholder" />
+              </div>
+
+              <div className="projectBody">
+                <p className="projectKicker">Website Review Platform</p>
+                <h3 className="projectTitle">LesNoise</h3>
+
+                <p className="projectDesc">
+                  Real-time website review tool for developers and clients.
+                </p>
+
+                <p className="projectDesc2">
+                  React frontend, Rails API, PostgreSQL, Redis, ActionCable/WebSockets,
+                  JWT authentication, password reset flows, and production deployment.
+                </p>
+
+                <div className="projectActions">
+                  <a
+                    className="projectLink"
+                    href="https://lesnoise.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View project <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
             <article className="projectCard projectHotel">
               <div className="projectMedia">
                 <div className="projectThumbPlaceholder" />
