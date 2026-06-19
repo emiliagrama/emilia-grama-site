@@ -229,9 +229,10 @@ useEffect(() => {
               <ul className="contactList">
                 <li>Portfolio websites</li>
                 <li>Business websites</li>
+                <li>SaaS products</li>
                 <li>UI systems</li>
                 <li>Interactive frontend work</li>
-                <li>Full web applications</li>
+                <li>Custom web applications</li>
               </ul>
             </div>
 
