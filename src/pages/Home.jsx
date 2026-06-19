@@ -186,12 +186,11 @@ export default function Home() {
                 <h3 className="projectTitle">LesNoise</h3>
 
                 <p className="projectDesc">
-                  Real-time website review tool for developers and clients.
+                  Real-time website review tool for developers and clients.No more screenshots.
                 </p>
 
                 <p className="projectDesc2">
-                  React frontend, Rails API, PostgreSQL, Redis, ActionCable/WebSockets,
-                  JWT authentication, password reset flows, and production deployment.
+                  Built for faster reviews, clearer communication, and fewer revision cycles during website projects.
                 </p>
 
                 <div className="projectActions">
