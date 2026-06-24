@@ -1,16 +1,63 @@
-# React + Vite
+# Emilia Grama Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Professional portfolio showcasing client projects, SaaS products, and full-stack web development services.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This website serves as a central place to present:
 
-## React Compiler
+- Client projects
+- SaaS products
+- Technical skills
+- Professional experience
+- Contact information
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Featured Projects
 
-## Expanding the ESLint configuration
+### LesNoise
+Collaborative website review platform built with Rails, React, PostgreSQL, Redis and WebSockets.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Hotel Vacanța
+Production hotel website built for a real client in Romania.
+
+### Hugo Figuera
+Portfolio website for a professional music producer.
+
+### Sheila Reid
+Artist portfolio website.
+
+## Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+### Animation & Interaction
+
+- GSAP
+- WebGL
+- Modern UI animations
+
+## Live Demo
+
+https://emiliagrama.com
+
+## Screenshots
+
+<img width="1899" height="905" alt="image" src="https://github.com/user-attachments/assets/00161c20-63d4-4a57-b96f-1b32919b63d1" />
+
+
+## Goals
+
+- Present professional work
+- Showcase technical skills
+- Provide a direct contact point for potential clients and employers
+
+## Future Improvements
+
+- Additional case studies
+- Expanded project showcases
+- More interactive demos
