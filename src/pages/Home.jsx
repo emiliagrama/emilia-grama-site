@@ -185,11 +185,7 @@ export default function Home() {
           <p className="projectsNote">
             More projects available on request.
           </p>
-          <div className="sectionCTA">
-            <a className="btn btnBlue" href="/contact">
-              Get in touch
-            </a>
-          </div>
+
           </div>
       </section>
 
@@ -254,18 +250,17 @@ export default function Home() {
               </p>
             </article>
             
-            <div className="beyondCodeStack" area-label="Tech stack">
-              
+            <div className="beyondCodeStack" aria-label="Tech stack">
                 <span>React</span>
                 <span>Ruby on Rails</span>
                 <span>JavaScript</span>
                 <span>PostgreSQL</span>
-                <span>API</span>
+                <span>APIs</span>
                 <span>Git</span>
                 <span>Heroku</span>
                 <span>Vercel</span>
             </div>
-              
+            
           </div>
         </div>
 
@@ -274,8 +269,24 @@ export default function Home() {
            {/* ================= INTERACTIVE SHOWCASE ================= */}
       <InteractiveShowcaseSection />
 
-      
+          {/* ================= FINAL CTA ================= */}
+      <section className="finalCta">
+        <div className="container finalCtaInner">
 
+          <div className="finalCtaCopy">
+            <h2>Your thoughts are creating <span>chaotic noise</span>.</h2>
+
+            <p>
+              Let&apos;s organize them.
+            </p>
+          </div>
+
+          <a className="btn btnBlue" href="/contact">
+            Get in touch <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+     
     </main>
   );
 }
