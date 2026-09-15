@@ -727,7 +727,10 @@
 ================================ */
 
 .finalCta {
-  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -736,7 +739,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 64px;
-  padding-top: 88px;
+  padding-top: 28px;
   padding-bottom: 88px;
   max-width: 1120px;
 }
