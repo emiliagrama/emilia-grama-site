@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar({
   variant = "base",
   brand = "EMILIA GRAMA",
-  links = ["UI experiments"],
+  links = ["UI Lab"],
   ctaLabel = "Contact",
   ctaHref = "#",
   withMenu = false,

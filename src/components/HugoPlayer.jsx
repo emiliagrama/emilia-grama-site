@@ -103,13 +103,11 @@ const ShowreelSection = () => {
 
   // Create the main WaveSurfer instance once
   useEffect(() => {
-    if (!isVisible) return;
     if (!waveformRef.current) return;
-    if (waveSurferRef.current) return; // already created
+    if (waveSurferRef.current) return;
 
     const ws = WaveSurfer.create({
   container: waveformRef.current,
-  url: currentTrack.src,
 
   // HEIGHT
   height: 80,              // try 70–90 until you like it
@@ -157,7 +155,7 @@ ws.on("error", (error) => {
       waveSurferRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVisible]);
+  }, []);
 
   // When the current track changes, load it into WaveSurfer
   useEffect(() => {
@@ -167,8 +165,10 @@ ws.on("error", (error) => {
     setIsPlaying(false);
     setCurrentTime(0);
     setDuration(0);
-
-    ws.load(currentTrack.src);
+    ws.load(currentTrack.src).catch((error) => {
+      if (error?.name === "AbortError") return;
+      console.error("WaveSurfer load error:", error);
+    });
   }, [currentTrack.src]);
 
   const togglePlay = () => {

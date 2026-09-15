@@ -1,14 +1,14 @@
 
-import "../../styles/lab.css";
+import "../../styles/controlledChaos.css";
 import ShaderPanel from "./ShaderPanel";
 import WaveGridCard from "./WaveGridCard";
 import DepthBloomCard from "./DepthBloomCard";
 
-export default function Lab() {
+export default function ControlledChaos() {
   return (
-    <section id="lab" className="libSection">
+      <section id="controlled-chaos" className="libSection">
         <h2>
-          Lab <span className="libPulse" aria-hidden="true" />
+          Controlled chaos <span className="libPulse" aria-hidden="true" />
         </h2>
 
         <p className="libLead">

@@ -101,16 +101,17 @@
 
 @media (max-width: 900px) {
   .interactive-showcase-section {
-    min-height: 170vh;
-    height: 170vh;
+    height: auto;
+    min-height: 0;
+    padding: 80px 0;
   }
 
   .interactive-showcase-sticky {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
-    align-items: start;
-    padding-top: 96px;
+    position: relative;
+    top: auto;
+    min-height: 0;
+    padding-top: 0;
+    display: block;
   }
 
   .interactive-showcase-inner {

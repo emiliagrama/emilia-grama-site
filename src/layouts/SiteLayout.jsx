@@ -59,11 +59,11 @@ export default function SiteLayout() {
 
           <nav className={`navLinks ${menuOpen ? "is-open" : ""}`}>
             <NavLink
-              to="/experiments"
+              to="/lab"
               onClick={closeMenu}
               className={({ isActive }) => (isActive ? "navLink active" : "navLink")}
             >
-              UI experiments
+              UI Lab
             </NavLink>
 
             <NavLink

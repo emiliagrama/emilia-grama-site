@@ -1,520 +1,930 @@
-
+/* ========== Component Library Page ========== */
 /* =========================
-   LAB — Voltage Button (base)
+   EXP INTRO 
    ========================= */
 
-.labVoltage{
+.expIntro{
   position: relative;
-  display: inline-block;
+padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15px, 3vw, 15px);
+  border-radius: 18px;
+  margin-top: 32px;
+  background:
+    radial-gradient(800px 420px at 18% 30%,rgba(99, 22, 9, 0.068) , transparent 60%),
+    radial-gradient(700px 360px at 88% 20%, rgba(70, 200, 255, 0.034), transparent 55%),
+    rgba(10, 12, 20, 0.55);
+  border-bottom: 1px solid rgba(182, 12, 12, 0.068);
 }
 
-.labVoltage__btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  background: rgba(20, 60, 95, 0.35);
-  backdrop-filter: blur(6px);
-  padding: 1rem 3rem;
-  border-radius: 999px;
-
-  font-size: 1.1rem;
-  line-height: 1;
-  letter-spacing: 0.075em;
-
-  border: none; /* explicit: prevents random inherited borders */
-  transition: background 0.25s ease, transform 0.15s ease;
-  will-change: transform;
+.uiLabel{
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 14px;
+  opacity: 0.55;
+  margin-bottom: 10px; 
 }
 
-.labVoltage__btn:hover{
-  cursor: pointer;
-  background: #34c9e438;
+.expIntro__title{
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.08;
+  margin: 0 0 8px;
+  font-weight: 620;
+  text-wrap: balance; 
+}
+
+
+.expIntro__edge{
+  color: rgba(13, 101, 112, 0.82);
+  text-shadow: 0 0 8px rgba(158, 220, 247, 0.274);
+}
+
+
+.expIntro__lead{
+  max-width: 56ch;
+  margin: 0;
+  opacity: 0.62;
+  font-size: 15px;
+  line-height: 1.55;
+  
+}
+.libPage{ min-height: 100vh; padding-bottom: 30vh; }
+.libShell{
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 26px;
+  overflow: visible;
+}
+
+@media (max-width: 900px) {
+  .libShell {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .libSidebar {
+    position: static;
+    top: auto;
+  }
+
+ .libContent .libSection {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+}
+
+.libSidebar{
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  padding: 18px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top, rgba(126, 31, 31, 0.068), transparent 60%),
+    rgba(10,10,10,0.075);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);}
+
+/* top line */
+.libSidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 120, 127, 0.158),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* right line */
+.libSidebar::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 120, 120, 0.137),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.libTitle{ font-size: 18px; margin: 0 0 6px; }
+.libSubtitle{
+  margin: 0 0 16px;
+  opacity: 0.62;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.libNav{ display: grid; gap: 10px; }
+
+.libNav__link{
+  display:block;
+  padding: 10px 12px;
+  border-radius: 12px;
+   position: relative;
+  text-decoration:none;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(32, 32, 32, 0.144);
+  transition: transform 160ms ease,
+   background 180ms ease, 
+   border-color 180ms ease;
+   
+}
+
+.libNav__link:hover{
   transform: translateY(-1px);
+  background: rgba(39, 37, 37, 0.05);
+  border-color: rgba(53, 148, 161, 0.267);
+}
+.libNav__link.is-active{
+  background: rgba(0, 200, 255, 0.062);
+  border-color: rgba(0, 200, 255, 0.164);
 }
 
-.labVoltage__btn:active{
-  transform: translateY(0);
-}
+.libContent { display: grid;
+  gap: 30px;  
+  align-content: start;}
 
-/* Effect layers */
-.labVoltage__svg{
-  display: block;
-  position: absolute;
-  top: -0.75em;
-  left: -0.25em;
-  width: calc(100% + 0.5em);
-  height: calc(100% + 1.5em);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  transition-delay: 0.1s;
-}
+/*section*/
 
-.labVoltage__dots{
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  transition-delay: 0.35s;
-}
-
-/* Default trigger: hover the element itself */
-.labVoltage:hover .labVoltage__svg,
-.labVoltage:hover .labVoltage__dots{
-  opacity: 1;
-}
-
-.labVoltage__line{
-  stroke-dasharray: 100;
-  stroke: #fff;
-  stroke-width: 0.5;
-}
-
-.labVoltage__line--1{
-  stroke: #649ff7;
-  stroke-dashoffset: 0;
-  animation: labSpark1 5s linear infinite;
-   opacity: 0.45;
-}
-
-.labVoltage__line--2{
-  stroke: #6bfeff;
-  stroke-dashoffset: 500;
-  animation: labSpark2 5s linear infinite;
-   opacity: 0.65;
-}
-
-
-.labVoltage__dot{
-  width: 0.65rem;
-  height: 0.65rem;
-  background: #fff;
-  border-radius: 999px;
-  position: absolute;
-  opacity: 0;
-}
-
-.labVoltage__dot--1{ top: 0;    left: 20%; animation: labFlyUp   3s linear infinite; }
-.labVoltage__dot--2{ top: 0;    left: 55%; animation: labFlyUp   3s linear infinite; animation-delay: 0.5s; }
-.labVoltage__dot--3{ top: 0;    left: 80%; animation: labFlyUp   3s linear infinite; animation-delay: 1s; }
-.labVoltage__dot--4{ bottom: 0; left: 30%; animation: labFlyDown 3s linear infinite; animation-delay: 2.5s; }
-.labVoltage__dot--5{ bottom: 0; left: 65%; animation: labFlyDown 3s linear infinite; animation-delay: 1.5s; }
-
-@keyframes labSpark1{ to { stroke-dashoffset: -1000; } }
-@keyframes labSpark2{ to { stroke-dashoffset: -500; } }
-
-@keyframes labFlyUp{
-  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
-  5%{ opacity: 1; transform: translateY(-1.5rem) scale(0.4); }
-  10%,100%{ opacity: 0; transform: translateY(-3rem) scale(0.2); }
-}
-
-@keyframes labFlyDown{
-  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
-  5%{ opacity: 1; transform: translateY(1.5rem) scale(0.4); }
-  10%,100%{ opacity: 0; transform: translateY(3rem) scale(0.2); }
-}
-
-/* =========================
-   Sidebar: Lab nav item
-   Calm by default → chaos on hover
-   ========================= */
-
-/* kill normal nav background/border for this item so the voltage pill is the UI */
-.libNav__link--lab{
-  padding: 6px;
+.libSection{
+  margin-top: 0;
+  padding: 35px;
+  border-radius: 18px;
   border: none;
-  background: none;
+  background: transparent;
+  scroll-margin-top: 90px;
+  position: relative;
+  padding-top: 0;
 }
+.libPanel{
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.027);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+.libPanel--placeholder{ opacity: 0.6; padding: 22px; }
 
-/* make the voltage component fill the nav width */
-.libNav__link--lab .labVoltage{
-  width: 100%;
+.libRow{ display:flex; flex-wrap:wrap; gap: 12px; }
+
+
+.libSection__header h2{
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+.libSection__header p{
+  margin: 0;
+  font-size: 16px;
+  color: rgba(192, 190, 190, 0.76);
+  max-width: 60ch;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.libPulse{
   display: block;
+  width: 100px;
+  height: 2px;
+  margin-top: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(0,200,255,0.04),
+    rgba(0,200,255,0.22),
+    rgba(0,200,255,0.30),
+    rgba(0,200,255,0.18),
+    rgba(0,200,255,0.04)
+  );
+
+  filter: blur(2px);
+  opacity: 0.2;
+  border-radius: 999px;
+  transform-origin: center;
+  animation: libGlowPulse 3.6s ease-in-out infinite;
 }
 
-/* nav-sized pill */
-.libNav__link--lab .labVoltage__btn{
+
+@keyframes libGlowPulse{
+  0%{
+    transform: scaleX(0.85);
+    opacity: 0.45;
+  }
+  50%{
+    transform: scaleX(1);
+    opacity: 0.9;
+  }
+  100%{
+    transform: scaleX(0.85);
+    opacity: 0.45;
+  }
+}
+
+.libInlineLink{
+  color: rgb(23, 113, 129);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+.libInlineLink::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0;
+  height:1px;
+  background: rgba(12, 70, 114, 0.9);
+  transition: width 240ms ease;
+  opacity: .9;
+}
+
+.libInlineLink:hover{
+  color: rgba(20, 81, 114, 0.98);
+}
+
+.libInlineLink:hover::after{
   width: 100%;
-  padding: 0.7rem 1rem;
+}
+
+.libFinePrint{
   font-size: 0.9rem;
+  color: rgba(180, 200, 220, 0.6); /* softer */
+  margin-bottom: 0.75rem;
 }
 
-/* IMPORTANT: calm by default inside the sidebar */
-.libNav__link--lab .labVoltage__svg,
-.libNav__link--lab .labVoltage__dots{
-  opacity: 0;
-}
-
-/* and only animate when the NAV ITEM is hovered or active */
-.libNav__link--lab:hover .labVoltage__svg,
-.libNav__link--lab:hover .labVoltage__dots,
-.libNav__link--lab.is-active .labVoltage__svg,
-.libNav__link--lab.is-active .labVoltage__dots{
-  opacity: 1;
-}
-
-/* =========================
-   Accessibility
-   ========================= */
 
 @media (prefers-reduced-motion: reduce){
-  .labVoltage__line--1,
-  .labVoltage__line--2,
-  .labVoltage__dot{
-    animation: none !important;
-  }
-  .labVoltage__svg,
-  .labVoltage__dots{
-    transition: none !important;
-  }
-  .labSection .glitchTitle::before,
-  .labSection .glitchTitle::after{
-    animation: none !important;
-  }
+  .libPulse{ animation: none; opacity: 0.65; }
 }
 
-/*lab experiments*/
 
-.labExperimentTitle{
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: rgba(255,255,255,0.9);
+@media (max-width: 900px){
+  .libShell{ grid-template-columns: 1fr; }
+  .libSidebar{ position: relative; top: 0; }
 }
 
-.labExperimentDesc{
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 16px;
-}
-@media (max-width: 1100px) {
-  .shaderPanel {
-    height: 340px;
-  }
-}
-@media (max-width: 768px) {
-  .shaderPanel {
-    height: 260px;
-    border-radius: 14px;
-  }
-}
-@media (max-width: 768px) {
-  .shaderPanel {
-    height: 260px;
-    border-radius: 14px;
-  }
-}
-
-/* shared panel*/
-.shaderPanel{
+.libNavDivider{
   position: relative;
+  height: 1px;
+  margin: 16px 0 18px;
+  background: rgba(255,255,255,0.08);
+}
+
+.libNavDivider::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:-6px;
   width: 100%;
-  height: 420px;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(120, 220, 255, 0.12);
-  background: rgba(8, 12, 22, 0.92);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.02),
-    0 10px 30px rgba(0,0,0,0.22);
-  transition: transform 140ms ease; 
-  cursor: crosshair;
+  height: 14px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0,200,255,0.18),
+    transparent
+  );
+  opacity: 0.6;
+  filter: blur(6px);
+  pointer-events:none;
 }
 
-.shaderPanel:active{
-  transform: scale(0.998);
+@keyframes labScan{
+  0%, 86%, 100% { opacity: 0; transform: scaleX(0.15); }
+  88% { opacity: 1; transform: scaleX(1); }
+  90% { opacity: 0.3; transform: scaleX(0.65); }
+  92% { opacity: 0; transform: scaleX(0.2); }
 }
 
-.shaderPanel canvas{
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
+
+
+.appShell{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent{
+  flex: 1;
+}
+.footer{
+  padding: 26px 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: rgba(6, 10, 20, 0.78);
+  backdrop-filter: blur(10px);
+}
+
+.footerInner{
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+@media (max-width: 640px){
+  .footerInner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.footerEmail{
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.footerEmail a{
+  color: rgba(37, 156, 172, 0.9);
+  text-decoration: none;
+}
+
+.footerEmail a:hover{
+  text-decoration: underline;
+}
+
+.footerCopy{
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.55;
 }
 
 /* =========================
-   LAB 
+   EXPERIMENTS — MOBILE POLISH
    ========================= */
-.labCardsRow {
-  display: flex;
-  gap: 52px;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-top: 32px;
-}
 
-   /*— Wave Grid Card*/
-.waveCardStage {
-  display: flex;
-  justify-content: center;
-  perspective: 1400px;
-}
+@media (max-width: 720px){
 
-.waveCard {
-  --rotateX: 0deg;
-  --rotateY: 0deg;
-  --glareX: 50%;
-  --glareY: 0%;
-  --lift: 0px;
-  position: relative;
-  width: 260px;
-  margin: 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #0b0b0d;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  transform-style: preserve-3d;
-  transform:
-    perspective(1400px)
-    rotateX(var(--rotateX))
-    rotateY(var(--rotateY))
-    translateY(var(--lift));
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-  will-change: transform;
-}
-.waveCard::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  pointer-events: none;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.08),
-    transparent 40%,
-    transparent 60%,
-    rgba(255,255,255,0.05)
-  );
-  mix-blend-mode: overlay;
-}
+  /* Overall page padding + rhythm */
+  .libContent{
+    padding-inline: 16px; /* if libContent is full-width container */
+  }
 
-.waveCard::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  pointer-events: none;
-  box-shadow:
-    inset 0 20px 40px rgba(0,0,0,0.35),
-    inset 0 -10px 20px rgba(255,255,255,0.03);
-}
+  .libSection{
+    padding: 16px;
+    scroll-margin-top: 72px;
+    
+  }
 
-.waveCard:hover {
-  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.08);
-}
+  .libSection_header{
+    margin-bottom: 12px;
+  }
 
-.waveCard__media {
-  position: relative;
-  height: 300px;
-  transform: translateZ(60px);
-  overflow: hidden;
-   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.06),
-    inset 0 10px 30px rgba(0,0,0,0.4);
-}
+  .libSection_header h2{
+    font-size: 28px;           /* adjust if needed */
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
 
-.waveGridPanel {
-  position: absolute;
-  inset: 0;
-}
+  .libSection_header p{
+    font-size: 14px;
+    line-height: 1.45;
+  }
 
-.waveGridPanel canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
+  /* Hero / intro card */
+  .expIntro{
+    padding: 16px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+  }
 
-.waveCard__media::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      circle at var(--glareX) var(--glareY),
-      rgba(255, 255, 255, 0.14),
-      transparent 32%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08),
-      transparent 20%,
-      transparent 80%,
-      rgba(255, 255, 255, 0.05)
-    ),
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 40%);
-  mix-blend-mode: screen;
-}
+  .expIntro_title{
+    font-size: clamp(28px, 7.2vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
 
-.waveCard__content {
-  padding: 12px 14px 14px;
-  transform: translateZ(90px);
+  /* Keep the accent phrase readable on small widths */
+  .expIntro_edge{
+    display: inline;
+    white-space: normal;
+  }
 
-  /* NEW */
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.0),
-    rgba(0,0,0,0.25)
-  );
-}
+  .expIntro_lead{
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 52ch; /* prevents super long lines on big phones */
+  }
 
-.waveCard__content h3 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
+  /* Button groups ("Neon / Gold / Outline / Ghost", shapes, lab chips) */
+  .libRow{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
 
-.waveCard__content p {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.6;
-  line-height: 1.4;
-}
+  /* Make buttons fill grid cells nicely */
+  .libRow .uiBtn,
+  .libRow button{
+    width: 100%;
+    justify-content: center;
+  }
 
-@media (max-width: 768px) {
-  .waveCard {
-    transition:
-      transform 160ms ease,
-      box-shadow 180ms ease;
+  /* If you have some rows that should be 3 columns on wider phones */
+  @media (min-width: 520px){
+    .libRow{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Group labels ("Styles", "Shapes", "Lab") */
+  .libGroupLabel{
+    margin-top: 14px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Panels */
+  .libPanel{
+    padding: 14px;
+    border-radius: 18px;
   }
 }
+/* =========================
+   EXPERIMENTS — TABLET POLISH
+   Target: 721px → 1100px
+   ========================= */
 
-/*— Depth Bloom Card */
-.depthBloomStage {
-  display: flex;
-  justify-content: center;
+@media (min-width: 721px) and (max-width: 1100px){
+
+  /* Content padding: not as wide as desktop */
+  .libContent{
+    padding-inline: 24px;
+  }
+
+  /* Intro / hero */
+  .expIntro{
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  .expIntro_title{
+    font-size: clamp(34px, 4.2vw, 44px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+
+  .expIntro_lead{
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+
+  /* Sections */
+  .libSection{
+    padding: 18px;
+    scroll-margin-top: 80px;
+  }
+
+  .libSection_header{
+    margin-bottom: 14px;
+  }
+
+  .libSection_header h2{
+    font-size: 32px;
+    line-height: 1.12;
+  }
+
+  .libSection_header p{
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+
+  /* Panels */
+  .libPanel{
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  /* Button rows on tablet: 3 columns feels best */
+  .libRow{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .libRow .uiBtn,
+  .libRow button{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Labels */
+  .libGroupLabel{
+    margin-top: 16px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+}
+.mobileToMenu {
+  display: none;
 }
 
-.depthBloomCard {
-  width: 260px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #0b0b0d;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  transition:
-    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 220ms ease,
-    border-color 220ms ease,
-    filter 220ms ease;
-  position: relative;
+@media (max-width: 900px) {
+  .mobileToMenu {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 200;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 18px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(15,15,20,0.95);
+    border: 1px solid rgba(255,80,80,0.25);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 12px rgba(255,80,80,0.15);
+    backdrop-filter: blur(14px);
+    animation: haloPulse 2.8s ease-in-out infinite;
+    text-decoration: none;
+
+    color: inherit;
+
+    font-size: 1rem;
+  }
+
+
+  .formLibPanel {
+    border-color: rgba(255, 255, 255, 0.178)!important;
+  }
+  
+  .card {
+    border-color: rgba(255, 255, 255, 0.123)!important;
+  }
+
 }
 
-.depthBloomCard:hover,
-.depthBloomCard--active {
-  transform: scale(1.03);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.depthBloomCard__media {
-  position: relative;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 18px 18px 0 0;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(7, 114, 146, 0.089), transparent 24%),
-    radial-gradient(circle at 50% 50%, rgba(12, 105, 121, 0.062), transparent 48%),
-    #060508;
-    filter: contrast(1.1) brightness(1.05);
-}
-
-.depthBloomField {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  perspective: 800px;
-  transform-style: preserve-3d;
-}
-
-.depthBloomParticle {
-  position: absolute;
-  display: block;
-  border-radius: 999px;
-  transform:
-    translate3d(0, 0, 0)
-    scale(1);
-  animation-name: depthBloomFloat;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  will-change: transform, opacity;
-}
-
-.depthBloomCard:hover .depthBloomParticle,
-.depthBloomCard--active .depthBloomParticle {
-  animation-duration: calc(var(--base-duration, 1s) * 0.85);
-}
-
-.depthBloomField__vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 44%, rgba(0, 0, 0, 0.32) 82%),
-    linear-gradient(180deg, rgba(20, 20, 20, 0.05), transparent 20%, transparent 78%, rgba(255,255,255,0.03));
-}
-
-.depthBloomField__coreGlow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 52%, rgba(7, 7, 17, 0.055), transparent 18%);
-  opacity: 0.7;
-  transition: opacity 220ms ease, transform 260ms ease;
-}
-
-.depthBloomCard:hover .depthBloomField__coreGlow,
-.depthBloomCard--active .depthBloomField__coreGlow {
-  opacity: 1;
-  transform: scale(1.08);
-}
-
-.depthBloomCard__content {
-  padding: 12px 14px 14px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.22));
-}
-
-.depthBloomCard__content h3 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.depthBloomCard__content p {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.6;
-  line-height: 1.4;
-}
-
-@keyframes depthBloomFloat {
+@keyframes haloPulse {
   0% {
-    transform:
-      translate3d(0, 0, 0)
-      translateZ(0px)
-      scale(0.82);
-    opacity: 0.12;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 0 rgba(255, 80, 80, 0.21);
   }
 
-  30% {
-    opacity: 0.9;
+  70% {
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 14px rgba(255, 80, 80, 0);
   }
 
   100% {
-    transform:
-      translate3d(var(--drift-x), var(--drift-y), 0)
-      translateZ(var(--depth-z))
-      scale(1.18);
-    opacity: 0;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.5),
+      0 0 0 0 rgba(255, 80, 80, 0);
+  }
+}
+
+
+
+
+
+
+/* =========================
+  EXPERIMENTS SECTION belongs to carouls , to be put at positioon after refactor the experiments page
+
+   ========================= */
+
+.experimentsSection{
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+  margin-top: 0;
+  padding: clamp(56px, 6vw, 96px) 0 clamp(70px, 8vw, 140px);
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 90px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 90px),
+    rgba(9, 11, 18, 0.95);
+}
+
+.experimentsSection::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(800px 450px at 15% 40%, rgba(8, 16, 32, 0.55), transparent 60%),
+    radial-gradient(800px 450px at 85% 40%, rgba(9, 17, 34, 0.55), transparent 60%),
+    linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 35%, transparent 65%, rgba(0,0,0,0.55));
+}
+
+.experimentsSection::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:-1px;
+  height: 220px;
+  pointer-events:none;
+  z-index:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.35) 45%,
+    rgba(0,0,0,0.00) 100%
+  );
+}
+
+.experimentsSection > .container{
+  position: relative;
+  z-index: 1;
+}
+
+.experimentsHeader{
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.experimentsHeader p{
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* =========================
+   Carousel viewport
+   ========================= */
+.experimentsScroll{
+  position: relative;
+  overflow: hidden;
+   padding-left: 32px;
+  padding-right: 32px;
+ -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 8%,
+    rgba(0,0,0,1) 92%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 8%,
+    rgba(0,0,0,1) 92%,
+    rgba(0,0,0,0) 100%
+  );
+
+  /* important: creates stable stacking for spotlight + cards + fog */
+  isolation: isolate;
+}
+
+/* spotlight behind cards (your current look) */
+.experimentsScroll::before{
+  content:"";
+  position:absolute;
+  inset:-40px 0 -60px 0;
+  pointer-events:none;
+  background: radial-gradient(900px 280px at 50% 55%, rgba(61,132,224,.10), transparent 65%);
+  z-index: 0;
+}
+
+/* Track: rAF owns transform */
+.experimentsTrack{
+  position: relative;
+  z-index: 1; /* above spotlight */
+  display: flex;
+  width: max-content;
+  gap: 0; /* seam spacing handled by .experimentsSet padding-right */
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  animation: none !important;
+  transition: none !important;
+}
+
+/* spacing inside each set */
+.experimentsSet{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  padding-right: 24px; /* seam spacing between last and first */
+  box-sizing: content-box;
+}
+
+/* optional tiny soft glow (very subtle, doesn’t change vibe) */
+.experimentsFog::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background: radial-gradient(820px 240px at 50% 55%, rgba(61,132,224,.22), transparent 65%);
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+/* =========================
+   Cards (unchanged)
+   ========================= */
+
+.componentCard{
+  flex: 0 0 380px;
+  height: auto;
+  padding: 0px;
+  border-radius: 16px;
+  background: radial-gradient(140% 120% at 20% 0%, rgba(10, 10, 10, 0.07), rgba(14, 13, 13, 0.035) 55%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 60px rgba(0,0,0,.50);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .componentCard {
+    border-color: rgba(245, 248, 248, 0.205);
+  }
+}
+
+.componentPreview{
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.componentPreview::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to top,
+    rgba(2, 4, 10, .82) 0%,
+    rgba(2, 4, 10, .35) 30%,
+    rgba(2, 4, 10, .10) 60%,
+    rgba(2, 4, 10, 0) 100%
+  );
+}
+
+@media (max-width: 767px) {
+  .componentPreview::after {
+    background: linear-gradient(
+      to top,
+      rgba(2, 4, 10, .6) 0%,
+      rgba(2, 4, 10, .25) 20%,
+      rgba(2, 4, 10, .08) 40%,
+      rgba(2, 4, 10, 0) 100%
+    );
+  }
+}
+
+.componentPreview img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .85;
+  filter: saturate(1.05) contrast(1.05);
+  transition: transform 220ms ease, opacity 200ms ease, filter 200ms ease;
+}
+
+
+.componentCardContent{
+  padding: 1px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(7, 22, 53, 0.205),
+    rgb(2, 3, 7)
+  );
+}
+
+@media (max-width: 767px) {
+  .componentCardContent {
+    background: linear-gradient(
+      to top,
+      rgba(7, 22, 53, 0.12),
+      rgb(2, 3, 7)
+    );
+  }
+}
+
+.componentCard h3{
+  color: rgba(237,241,243,.82);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  margin: 14px 14px 12px;
+}
+
+@media (max-width: 767px) {
+  .componentCard h3 {
+    color: rgba(237,241,243,.9);
+  }
+}
+
+.componentCard:hover,
+.componentCard:focus-within{
+  border-color: rgba(61,132,224,.28);
+  box-shadow: 0 26px 85px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+
+
+/* CTA (unchanged) */
+.sectionCTA {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sectionCTA .btn {
+  box-shadow: 0 0 28px rgba(61, 132, 224, 0.12);
+}
+
+.sectionCTA .btn:hover {
+  box-shadow: 0 0 38px rgba(61, 132, 224, 0.18);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .experimentsTrack{ transform: none !important; }
+}
+
+/* Mobile: native swipe */
+@media (max-width: 860px){
+  .experimentsScroll{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 18px;
+  }
+  .experimentsTrack{ transform: none !important; }
+  .componentCard{ scroll-snap-align: start; }
+  .sectionCTA{ justify-content: center; }
+}
+@media (max-width: 860px) {
+  .experimentsScroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-mask-image: none;
+    mask-image: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .experimentsScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experimentsScroll::before,
+  .experimentsScroll::after,
+  .experimentsFog {
+    display: none;
+  }
+
+  .experimentsTrack {
+    width: max-content;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .experimentsSet {
+    gap: 14px;
+    padding-right: 10px;
+  }
+
+ .componentCard {
+  flex: 0 0 clamp(300px, 86vw, 360px);
+}
+
+  .componentPreview {
+    height: clamp(230px, 72vw, 280px);
   }
 }

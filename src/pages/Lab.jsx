@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import Form from "../components/Form";
 import Navbar from "../components/Navbar";
 import HugoPlayer from "../components/HugoPlayer";
-import Lab from "../components/lab/Lab"
+import ControlledChaos from "../components/lab/ControlledChaos";
 import VoltageButton from "../components/lab/VoltageButton";
 
 
@@ -27,7 +27,7 @@ const SECTIONS = [
 
 const LAB_SECTIONS = [
   {
-    id: "lab",
+    id: "controlled-chaos",
     label: "Controlled chaos",
     navNode: <VoltageButton as="span">Controlled chaos</VoltageButton>
   }
@@ -169,7 +169,7 @@ export default function Experiments() {
 
             <div className="libNavDivider" />
 
-            <p className="libNavLabel uiLabel ">Lab</p>
+            <p className="libNavLabel uiLabel ">Controlled Chaos</p>
 
             {LAB_SECTIONS.map((s) => (
               <a
@@ -185,7 +185,7 @@ export default function Experiments() {
 
         <section className="libContent" id="top">
           <header className="expIntro">
-            <div className="expIntro__kicker uiLabel">UI SYSTEM + LAB</div>
+            <div className="expIntro__kicker uiLabel">UI LAB + CONTROLLED CHAOS</div>
             <h2 className="expIntro__title">
               Controlled structure.{" "}
               <span className="expIntro__edge">Unstable edge.</span>
@@ -468,8 +468,8 @@ export default function Experiments() {
             </div>
           </div>
 
-          {/* Lab */}
-          <Lab />
+        {/* Controlled chaos */}
+        <ControlledChaos />
         </section>
       </div>
 

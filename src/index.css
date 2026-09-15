@@ -2,10 +2,10 @@
 @import "./styles/tokens.css";
 @import "./styles/global.css";
 @import "./styles/homepage.css";
-@import "./styles/experiments.css";
+@import "./styles/lab.css";
 @import "./styles/cards.css";
 @import "./styles/forms.css";
 @import "./styles/navbars.css";
 @import "./styles/hugoPlayer.css";
-@import "./styles/lab.css";
+@import "./styles/controlledChaos.css";
 @import "./styles/buttons.css";

@@ -1,0 +1,520 @@
+
+/* =========================
+   LAB — Voltage Button (base)
+   ========================= */
+
+.labVoltage{
+  position: relative;
+  display: inline-block;
+}
+
+.labVoltage__btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  background: rgba(20, 60, 95, 0.35);
+  backdrop-filter: blur(6px);
+  padding: 1rem 3rem;
+  border-radius: 999px;
+
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.075em;
+
+  border: none; /* explicit: prevents random inherited borders */
+  transition: background 0.25s ease, transform 0.15s ease;
+  will-change: transform;
+}
+
+.labVoltage__btn:hover{
+  cursor: pointer;
+  background: #34c9e438;
+  transform: translateY(-1px);
+}
+
+.labVoltage__btn:active{
+  transform: translateY(0);
+}
+
+/* Effect layers */
+.labVoltage__svg{
+  display: block;
+  position: absolute;
+  top: -0.75em;
+  left: -0.25em;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 1.5em);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  transition-delay: 0.1s;
+}
+
+.labVoltage__dots{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  transition-delay: 0.35s;
+}
+
+/* Default trigger: hover the element itself */
+.labVoltage:hover .labVoltage__svg,
+.labVoltage:hover .labVoltage__dots{
+  opacity: 1;
+}
+
+.labVoltage__line{
+  stroke-dasharray: 100;
+  stroke: #fff;
+  stroke-width: 0.5;
+}
+
+.labVoltage__line--1{
+  stroke: #649ff7;
+  stroke-dashoffset: 0;
+  animation: labSpark1 5s linear infinite;
+   opacity: 0.45;
+}
+
+.labVoltage__line--2{
+  stroke: #6bfeff;
+  stroke-dashoffset: 500;
+  animation: labSpark2 5s linear infinite;
+   opacity: 0.65;
+}
+
+
+.labVoltage__dot{
+  width: 0.65rem;
+  height: 0.65rem;
+  background: #fff;
+  border-radius: 999px;
+  position: absolute;
+  opacity: 0;
+}
+
+.labVoltage__dot--1{ top: 0;    left: 20%; animation: labFlyUp   3s linear infinite; }
+.labVoltage__dot--2{ top: 0;    left: 55%; animation: labFlyUp   3s linear infinite; animation-delay: 0.5s; }
+.labVoltage__dot--3{ top: 0;    left: 80%; animation: labFlyUp   3s linear infinite; animation-delay: 1s; }
+.labVoltage__dot--4{ bottom: 0; left: 30%; animation: labFlyDown 3s linear infinite; animation-delay: 2.5s; }
+.labVoltage__dot--5{ bottom: 0; left: 65%; animation: labFlyDown 3s linear infinite; animation-delay: 1.5s; }
+
+@keyframes labSpark1{ to { stroke-dashoffset: -1000; } }
+@keyframes labSpark2{ to { stroke-dashoffset: -500; } }
+
+@keyframes labFlyUp{
+  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
+  5%{ opacity: 1; transform: translateY(-1.5rem) scale(0.4); }
+  10%,100%{ opacity: 0; transform: translateY(-3rem) scale(0.2); }
+}
+
+@keyframes labFlyDown{
+  0%{ opacity: 0; transform: translateY(0) scale(0.2); }
+  5%{ opacity: 1; transform: translateY(1.5rem) scale(0.4); }
+  10%,100%{ opacity: 0; transform: translateY(3rem) scale(0.2); }
+}
+
+/* =========================
+   Sidebar: Lab nav item
+   Calm by default → chaos on hover
+   ========================= */
+
+/* kill normal nav background/border for this item so the voltage pill is the UI */
+.libNav__link--lab{
+  padding: 6px;
+  border: none;
+  background: none;
+}
+
+/* make the voltage component fill the nav width */
+.libNav__link--lab .labVoltage{
+  width: 100%;
+  display: block;
+}
+
+/* nav-sized pill */
+.libNav__link--lab .labVoltage__btn{
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* IMPORTANT: calm by default inside the sidebar */
+.libNav__link--lab .labVoltage__svg,
+.libNav__link--lab .labVoltage__dots{
+  opacity: 0;
+}
+
+/* and only animate when the NAV ITEM is hovered or active */
+.libNav__link--lab:hover .labVoltage__svg,
+.libNav__link--lab:hover .labVoltage__dots,
+.libNav__link--lab.is-active .labVoltage__svg,
+.libNav__link--lab.is-active .labVoltage__dots{
+  opacity: 1;
+}
+
+/* =========================
+   Accessibility
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+  .labVoltage__line--1,
+  .labVoltage__line--2,
+  .labVoltage__dot{
+    animation: none !important;
+  }
+  .labVoltage__svg,
+  .labVoltage__dots{
+    transition: none !important;
+  }
+  .labSection .glitchTitle::before,
+  .labSection .glitchTitle::after{
+    animation: none !important;
+  }
+}
+
+/*lab experiments*/
+
+.labExperimentTitle{
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+}
+
+.labExperimentDesc{
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+}
+@media (max-width: 1100px) {
+  .shaderPanel {
+    height: 340px;
+  }
+}
+@media (max-width: 768px) {
+  .shaderPanel {
+    height: 260px;
+    border-radius: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .shaderPanel {
+    height: 260px;
+    border-radius: 14px;
+  }
+}
+
+/* shared panel*/
+.shaderPanel{
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 220, 255, 0.12);
+  background: rgba(8, 12, 22, 0.92);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 10px 30px rgba(0,0,0,0.22);
+  transition: transform 140ms ease; 
+  cursor: crosshair;
+}
+
+.shaderPanel:active{
+  transform: scale(0.998);
+}
+
+.shaderPanel canvas{
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* =========================
+   LAB 
+   ========================= */
+.labCardsRow {
+  display: flex;
+  gap: 52px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+   /*— Wave Grid Card*/
+.waveCardStage {
+  display: flex;
+  justify-content: center;
+  perspective: 1400px;
+}
+
+.waveCard {
+  --rotateX: 0deg;
+  --rotateY: 0deg;
+  --glareX: 50%;
+  --glareY: 0%;
+  --lift: 0px;
+  position: relative;
+  width: 260px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0b0b0d;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  transform-style: preserve-3d;
+  transform:
+    perspective(1400px)
+    rotateX(var(--rotateX))
+    rotateY(var(--rotateY))
+    translateY(var(--lift));
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+  will-change: transform;
+}
+.waveCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.08),
+    transparent 40%,
+    transparent 60%,
+    rgba(255,255,255,0.05)
+  );
+  mix-blend-mode: overlay;
+}
+
+.waveCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  box-shadow:
+    inset 0 20px 40px rgba(0,0,0,0.35),
+    inset 0 -10px 20px rgba(255,255,255,0.03);
+}
+
+.waveCard:hover {
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.waveCard__media {
+  position: relative;
+  height: 300px;
+  transform: translateZ(60px);
+  overflow: hidden;
+   box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    inset 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.waveGridPanel {
+  position: absolute;
+  inset: 0;
+}
+
+.waveGridPanel canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.waveCard__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--glareX) var(--glareY),
+      rgba(255, 255, 255, 0.14),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 20%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.05)
+    ),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 40%);
+  mix-blend-mode: screen;
+}
+
+.waveCard__content {
+  padding: 12px 14px 14px;
+  transform: translateZ(90px);
+
+  /* NEW */
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.0),
+    rgba(0,0,0,0.25)
+  );
+}
+
+.waveCard__content h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.waveCard__content p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .waveCard {
+    transition:
+      transform 160ms ease,
+      box-shadow 180ms ease;
+  }
+}
+
+/*— Depth Bloom Card */
+.depthBloomStage {
+  display: flex;
+  justify-content: center;
+}
+
+.depthBloomCard {
+  width: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0b0b0d;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    filter 220ms ease;
+  position: relative;
+}
+
+.depthBloomCard:hover,
+.depthBloomCard--active {
+  transform: scale(1.03);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.depthBloomCard__media {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(7, 114, 146, 0.089), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(12, 105, 121, 0.062), transparent 48%),
+    #060508;
+    filter: contrast(1.1) brightness(1.05);
+}
+
+.depthBloomField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.depthBloomParticle {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+  animation-name: depthBloomFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.depthBloomCard:hover .depthBloomParticle,
+.depthBloomCard--active .depthBloomParticle {
+  animation-duration: calc(var(--base-duration, 1s) * 0.85);
+}
+
+.depthBloomField__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 44%, rgba(0, 0, 0, 0.32) 82%),
+    linear-gradient(180deg, rgba(20, 20, 20, 0.05), transparent 20%, transparent 78%, rgba(255,255,255,0.03));
+}
+
+.depthBloomField__coreGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(7, 7, 17, 0.055), transparent 18%);
+  opacity: 0.7;
+  transition: opacity 220ms ease, transform 260ms ease;
+}
+
+.depthBloomCard:hover .depthBloomField__coreGlow,
+.depthBloomCard--active .depthBloomField__coreGlow {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.depthBloomCard__content {
+  padding: 12px 14px 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.22));
+}
+
+.depthBloomCard__content h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.depthBloomCard__content p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  line-height: 1.4;
+}
+
+@keyframes depthBloomFloat {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      translateZ(0px)
+      scale(0.82);
+    opacity: 0.12;
+  }
+
+  30% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform:
+      translate3d(var(--drift-x), var(--drift-y), 0)
+      translateZ(var(--depth-z))
+      scale(1.18);
+    opacity: 0;
+  }
+}

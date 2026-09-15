@@ -76,8 +76,8 @@ export default function Home() {
             <a className="btn btnBlue" href="#projects">
               View my work
             </a>
-            <a className="btn" href="/experiments" style={{ border: "1px solid rgba(255, 255, 255, 0.03)" }}>
-              UI experiments
+            <a className="btn" href="/lab" style={{ border: "1px solid rgba(255, 255, 255, 0.03)" }}>
+              UI Lab
             </a>
           </div>
         </div>
