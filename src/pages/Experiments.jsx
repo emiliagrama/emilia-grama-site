@@ -7,6 +7,8 @@ import HugoPlayer from "../components/HugoPlayer";
 import Lab from "../components/lab/Lab"
 import VoltageButton from "../components/lab/VoltageButton";
 
+
+
 const SECTIONS = [
   { id: "buttons", label: "Buttons" },
   { id: "cards", label: "Cards" },

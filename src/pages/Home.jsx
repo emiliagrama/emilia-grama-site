@@ -163,8 +163,7 @@ export default function Home() {
         </div>
       </section>
 
-     {/* ================= INTERACTIVE SHOWCASE ================= */}
-      <InteractiveShowcaseSection />
+
 
       {/* ================= PROJECTS ================= */}
       <section id="projects" className="section projectsSection">
@@ -273,6 +272,9 @@ export default function Home() {
           </div>
           </div>
       </section>
+
+           {/* ================= INTERACTIVE SHOWCASE ================= */}
+      <InteractiveShowcaseSection />
 
       {/* ================= EXPERIMENTS ================= */}
       <section className="experimentsSection" aria-label="UI Experiments">
