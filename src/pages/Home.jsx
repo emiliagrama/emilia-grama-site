@@ -5,7 +5,6 @@ export default function Home() {
      DATA
   =============================== */
 
-
   const heroDescText = "From idea to production. Clear decisions. No noise.";
 
   /* ===============================
@@ -51,8 +50,6 @@ export default function Home() {
     ));
   }, [heroDescText]);
 
-  
-
   /* ===============================
      RENDER
   =============================== */
@@ -87,7 +84,6 @@ export default function Home() {
       </section>
 
 
-
       {/* ================= PROJECTS ================= */}
       <section id="projects" className="section projectsSection">
         <div className="container">
@@ -108,11 +104,12 @@ export default function Home() {
                 <h3 className="projectTitle">LesNoise</h3>
 
                 <p className="projectDesc">
-                  Real-time website review tool for developers and clients.No more screenshots.
+                  Real-time website review tool for developers and clients. No more screenshots.
                 </p>
 
                 <p className="projectDesc2">
-                  Built for faster reviews, clearer communication, and fewer revision cycles during website projects.
+                  React + Rails application with authentication, shareable client reviews,
+                    real-time comments, PostgreSQL, ActionCable, and Redis.     
                 </p>
 
                 <div className="projectActions">
@@ -140,7 +137,7 @@ export default function Home() {
                   Modern-retro hotel & spa website designed for clarity and
                   performance.
                 </p>
-                <p className="projectDesc2"> Rails application with dynamic offer filtering, structured DB logic, and analytics tracking.
+                <p className="projectDesc2"> Rails application with API integration, dynamic offer filtering, structured database logic, and analytics tracking.
                 </p>
 
                 <div className="projectActions">
@@ -165,9 +162,9 @@ export default function Home() {
                 <p className="projectKicker">Cinematic Music Portfolio</p>
                 <h3 className="projectTitle">Hugo Figuera</h3>
                 <p className="projectDesc">
-                  Sci-fi inspired cinematic music portfolio blending immersive visuals. 
+                  Sci-fi inspired music portfolio combining cinematic visuals, motion, and audio. 
                 </p> 
-                <p className="projectDesc2">React + Vite portfolio with custom audio player, performance tuning, and interactive UI system.
+                <p className="projectDesc2">React + Vite portfolio with custom waveform audio player, performance tuning, and interactive UI system.
                 </p>
 
                 <div className="projectActions">
@@ -194,6 +191,84 @@ export default function Home() {
             </a>
           </div>
           </div>
+      </section>
+
+      {/*================CODE IS ONLY PART OF IT=================*/}
+      <section className="section beyondCodeSection">
+        <div className="container">
+          <header className="beyondCodeHeader">
+
+            <h2 className="beyondCodeTitle">
+              Code is only <span> part of the story</span>
+            </h2>
+
+            <p className="beyondCodeLead">
+              Good products need clear decitions before launch — and attention after it.
+            </p>
+          </header>
+
+          <div className="beyondCodelist">
+
+            <article className="beyondCodeRow">
+              <span className="beyondCodeNumber" area-hidden="true">
+                01
+              </span>
+
+              <h3 className="beyondCodeRowTitle">
+                Technical guidance
+              </h3>
+
+              <p className="beyondCodeText">
+                Turn ideas and business needs into a clear technical direction.
+                Define features, priorities and the right approach before development begins.
+              </p>
+            </article>
+
+            <article className="beyondCodeRow">
+              <span className="beyondCodeNumber" aria-hidden="true">
+                02
+              </span>
+
+              <h3 className="beyondCodeRowTitle">
+                Full-stack development
+              </h3>
+
+              <p className="beyondCodeText">
+                Responsive interfaces, backend logic, databases, APIs and deployment —
+                complete web products built for real-world use.
+              </p>
+            </article>
+
+            <article className="beyondCodeRow">
+              <span className="beyondCodeNumber" aria-hidden="true">
+                03
+              </span>
+
+              <h3 className="beyondCodeRowTitle">
+                Ship &amp; maintain
+              </h3>
+
+              <p className="beyondCodeText">
+                Launch, updates, fixes, performance improvements and ongoing support
+                as the product evolves.
+              </p>
+            </article>
+            
+            <div className="beyondCodeStack" area-label="Tech stack">
+              
+                <span>React</span>
+                <span>Ruby on Rails</span>
+                <span>JavaScript</span>
+                <span>PostgreSQL</span>
+                <span>API</span>
+                <span>Git</span>
+                <span>Heroku</span>
+                <span>Vercel</span>
+            </div>
+              
+          </div>
+        </div>
+
       </section>
 
            {/* ================= INTERACTIVE SHOWCASE ================= */}

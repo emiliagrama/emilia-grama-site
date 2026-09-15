@@ -601,8 +601,173 @@
 }
 
 
+/* =========================
+   BEYOND CODE
+   ========================= */
+.beyondCodeSection{ 
+  position: relative;
+  overflow: hidden;
+  background:fixed
+    radial-gradient(
+    circle at 78% 20%,
+    rgba(40, 110, 255, 0.08),
+    transparent 34%
+    ),
+    #070a13;
+}
 
+.beyondCodeHeader{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 78px;
+}
 
+.beyondCodeTitle {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  max-width: 700px;
+}
+
+.beyondCodeTitle span {
+  color: #2899ad;
+}
+
+.beyondCodeLead {
+  margin: 0;
+  max-width: 480px;
+  line-height: 1.7;
+  opacity: 0.72;
+}
+
+.beyondCodeList {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.beyondCodeRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(240px, 0.8fr) 1.4fr;
+  gap: 40px;
+  align-items: center;
+  min-height: 190px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.beyondCodeRow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: #269bb5;
+  transition: width 450ms ease;
+}
+
+.beyondCodeRow:hover::after {
+  width: 100%;
+}
+
+.beyondCodeNumber {
+  font-size: clamp(64px, 7vw, 100px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  opacity: 0.2;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.beyondCodeRowTitle {
+  margin: 0;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.15;
+  transition: transform 250ms ease;
+}
+
+.beyondCodeText {
+  margin: 0;
+  max-width: 620px;
+  line-height: 1.7;
+  opacity: 0.68;
+}
+
+.beyondCodeRow:hover .beyondCodeNumber {
+  opacity: 0.65;
+  transform: translateX(6px);
+}
+
+.beyondCodeRow:hover .beyondCodeRowTitle {
+  transform: translateX(6px);
+}
+
+.beyondCodeStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding-top: 32px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.beyondCodeStack span:not(:last-child)::after {
+  content: "·";
+  margin-left: 28px;
+  opacity: 3.15;
+}
+
+@media (max-width: 860px) {
+  .beyondCodeHeader {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+
+  .beyondCodeTitle {
+    font-size: clamp(42px, 12vw, 60px);
+    max-width: 600px;
+  }
+
+  .beyondCodeLead {
+    max-width: 520px;
+  }
+
+  .beyondCodeRow {
+    grid-template-columns: 72px 1fr;
+    gap: 12px 20px;
+    align-items: start;
+    padding: 32px 0;
+    min-height: 0;
+  }
+
+  .beyondCodeNumber {
+    grid-row: 1 / 3;
+    font-size: 52px;
+  }
+
+  .beyondCodeRowTitle {
+    font-size: 22px;
+  }
+
+  .beyondCodeText {
+    grid-column: 2;
+  }
+
+  .beyondCodeStack {
+    padding-top: 28px;
+    gap: 10px 18px;
+  }
+
+  .beyondCodeStack span:not(:last-child)::after {
+    margin-left: 18px;
+  }
+}
 /* =========================
    HERO TITLE ANIMATION
    ========================= */

@@ -542,8 +542,8 @@ export default function Experiments() {
             <div className="experimentsFog" aria-hidden="true" />
             </div>
             <div className="sectionCTA">
-              <a className="btn btnBlue" href="/experiments">
-                View all experiments →
+              <a className="btn btnBlue" href="/contact">
+                get in touch →
               </a>
             </div>
         </div>
