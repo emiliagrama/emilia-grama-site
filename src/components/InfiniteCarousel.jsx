@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 
 const componentCards = [
-  { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button experiments" },
+  { img: "/images/universe/clicktofracture.png", title: "Fracture", alt: "Click to fracture" },
   { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card experiments" },
-  { img: "/images/universe/form.jpg", title: "Forms", alt: "Form experiments" },
-  { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar experiments" },
-  { img: "/images/universe/player.jpg", title: "Players", alt: "Player experiments" },
-  { img: "/images/universe/lab.jpg", title: "Lab", alt: "Lab" },
+  { img: "/images/universe/form.jpg", title: "Form System", alt: "Form experiments" },
+  { img: "/images/universe/lesnoise.png", title: "LesNoise", alt: "LesNoise website review tool" },
+  { img: "/images/universe/player.jpg", title: " Audio Player", alt: "Custom audio player" },
+  { img: "/images/universe/lab.jpg", title: "Fractal Noise", alt: "Fractal noise shader experiment" },
+  { img: "/images/universe/breaktherules.png", title: "Break the rules", alt: "Controlled chaos experiment" },
 ];
 
 export default function InfiniteCarousel() {

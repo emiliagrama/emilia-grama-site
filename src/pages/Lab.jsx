@@ -8,13 +8,10 @@ import InfiniteCarousel from "../components/InfiniteCarousel";
 import ControlledChaos from "../components/lab/ControlledChaos";
 import VoltageButton from "../components/lab/VoltageButton";
 
-
-
-
 const SECTIONS = [
   { id: "player", label: "Audio Player" },
   { id: "carousel", label: "Infinite Carousel" },
-  { id: "cards", label: "Card System" },
+  { id: "cards", label: "Cards" },
   { id: "forms", label: "Form System" },
 ];
 
@@ -22,7 +19,7 @@ const LAB_SECTIONS = [
   {
     id: "controlled-chaos",
     label: "Controlled chaos",
-    navNode: <VoltageButton as="span">Controlled chaos</VoltageButton>
+    navNode: <VoltageButton as="span">Break the rules</VoltageButton>
   }
 ];
 export default function Experiments() {
@@ -76,8 +73,7 @@ export default function Experiments() {
     };
   }, [ids]);
 
-    
-
+  
   return (
     <main className="libPage">
       <div className="libShell">
@@ -178,11 +174,11 @@ export default function Experiments() {
               <h2>
                 Cards <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Content blocks, media surfaces, and interaction states.</p>
+              <p>Reusable content surfaces with visual, media, and interaction variants</p>
             </header>
 
             <div className="libPanel">
-              <p className="libGroupLabel">Styles</p>
+              <p className="libGroupLabel">Core variants</p>
 
               <div className="cardsGrid">
                 <Card
@@ -220,7 +216,7 @@ export default function Experiments() {
               </div>
 
               <p className="libGroupLabel" style={{ marginTop: 18 }}>
-                Media
+                Media & interaction
               </p>
 
               <div className="cardsGrid">
@@ -268,7 +264,7 @@ export default function Experiments() {
           <div className="libSection" id="forms">
             <header className="libSection__header">
               <h2>
-                Form fields <span className="libPulse" aria-hidden="true" />
+                Form System <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>Form structure, validation patterns, and input behavior.</p>
             </header>
