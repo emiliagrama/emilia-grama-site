@@ -1,28 +1,21 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import Button from "../components/Button";
+import { useEffect, useMemo } from "react";
+/* import Button from "../components/Button"; */
 import Card from "../components/Card";
 import Form from "../components/Form";
-import Navbar from "../components/Navbar";
+/* import Navbar from "../components/Navbar"; */
 import HugoPlayer from "../components/HugoPlayer";
+import InfiniteCarousel from "../components/InfiniteCarousel";
 import ControlledChaos from "../components/lab/ControlledChaos";
 import VoltageButton from "../components/lab/VoltageButton";
 
 
-const componentCards = [
-  { img: "/images/universe/buttons.jpg", title: "Buttons", alt: "Button experiments" },
-  { img: "/images/universe/cards.jpg", title: "Cards", alt: "Card experiments" },
-  { img: "/images/universe/form.jpg", title: "Forms", alt: "Form experiments" },
-  { img: "/images/universe/navbars.jpg", title: "Navbars", alt: "Navbar experiments" },
-  { img: "/images/universe/player.jpg", title: "Players", alt: "Player experiments" },
-  { img: "/images/universe/lab.jpg", title: "Lab", alt: "Lab" },
-];
+
 
 const SECTIONS = [
-  { id: "buttons", label: "Buttons" },
-  { id: "cards", label: "Cards" },
-  { id: "forms", label: "Form fields" },
-  { id: "nav", label: "Navbars" },
-  { id: "player", label: "Player" },
+  { id: "player", label: "Audio Player" },
+  { id: "carousel", label: "Infinite Carousel" },
+  { id: "cards", label: "Card System" },
+  { id: "forms", label: "Form System" },
 ];
 
 const LAB_SECTIONS = [
@@ -33,7 +26,7 @@ const LAB_SECTIONS = [
   }
 ];
 export default function Experiments() {
-  const [navPreview, setNavPreview] = useState("desktop"); // "desktop" | "mobile"
+  /* const [navPreview, setNavPreview] = useState("desktop"); // "desktop" | "mobile" */
   const ids = useMemo(
     () => [...SECTIONS, ...LAB_SECTIONS].map((s) => s.id),
     []
@@ -83,83 +76,14 @@ export default function Experiments() {
     };
   }, [ids]);
 
-    /* ===============================
-      EXPERIMENTS MARQUEE (NO JUMP)
-    =============================== */
-    const experimentsScrollRef = useRef(null);
-    const experimentsTrackRef = useRef(null);
-    const experimentsSetRef = useRef(null);
-
-    const rafId = useRef(null);
-    const offsetPx = useRef(0);
-    const pausedRef = useRef(false);
-    const startedRef = useRef(false);
-
-    useEffect(() => {
-      // Avoid double-start in dev / hot reload / StrictMode weirdness
-      if (startedRef.current) return;
-      startedRef.current = true;
-
-      const scrollEl = experimentsScrollRef.current;
-      const trackEl = experimentsTrackRef.current;
-      const setEl = experimentsSetRef.current;
-      if (!scrollEl || !trackEl || !setEl) return;
-
-      // Mobile: let native horizontal scroll handle it
-      if (window.matchMedia("(max-width: 860px)").matches) return;
-
-      const prefersReducedMotion =
-        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-      if (prefersReducedMotion) return;
-
-      const speed = 40; // px/sec
-      let distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
-      let last = performance.now();
-
-      const onEnter = () => { pausedRef.current = true; };
-      const onLeave = () => { pausedRef.current = false; last = performance.now(); };
-
-      scrollEl.addEventListener("mouseenter", onEnter);
-      scrollEl.addEventListener("mouseleave", onLeave);
-
-      const setDistanceSafely = () => {
-        distance = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
-        offsetPx.current = offsetPx.current % distance;
-      };
-
-      const ro = new ResizeObserver(() => requestAnimationFrame(setDistanceSafely));
-      ro.observe(setEl);
-
-      const tick = (t) => {
-        const dt = t - last;
-        last = t;
-
-        if (!pausedRef.current) {
-          offsetPx.current += (speed * dt) / 1000;
-          if (offsetPx.current >= distance) offsetPx.current -= distance;
-          trackEl.style.transform = `translate3d(${-Math.round(offsetPx.current)}px,0,0)`;
-        }
-
-        rafId.current = requestAnimationFrame(tick);
-      };
-
-      rafId.current = requestAnimationFrame(tick);
-
-      return () => {
-        if (rafId.current) cancelAnimationFrame(rafId.current);
-        ro.disconnect();
-        scrollEl.removeEventListener("mouseenter", onEnter);
-        scrollEl.removeEventListener("mouseleave", onLeave);
-        startedRef.current = false;
-      };
-    }, []);
+    
 
   return (
     <main className="libPage">
       <div className="libShell">
         <aside className="libSidebar" id="experiments-menu">
           <nav className="libNav">
-            <p className="libNavLabel uiLabel">System</p>
+            <p className="libNavLabel uiLabel">Controlled structure</p>
 
             {SECTIONS.map((s) => (
               <a key={s.id} className="libNav__link" href={`#${s.id}`}>
@@ -185,7 +109,6 @@ export default function Experiments() {
 
         <section className="libContent" id="top">
           <header className="expIntro">
-            <div className="expIntro__kicker uiLabel">UI LAB + CONTROLLED CHAOS</div>
             <h2 className="expIntro__title">
               Controlled structure.{" "}
               <span className="expIntro__edge">Unstable edge.</span>
@@ -193,50 +116,59 @@ export default function Experiments() {
             <p className="expIntro__lead">
              Reusable React components built for production use, extended with selected motion and interaction experiments.          
             </p>
+             <div className="beyondCodeStack" aria-label="Tech stack">
+                <span>React</span>
+                <span>GSAP</span>
+                <span>Three.js / WebGL</span>
+                <span>WaveSurfer</span>
+                
+            </div>
           </header>
 
-          {/* Buttons */}
-          <div className="libSection" id="buttons">
+          {/* Player */}
+          <div className="libSection" id="player">
             <header className="libSection__header">
               <h2>
-                Buttons <span className="libPulse" aria-hidden="true" />
+                 Audio Player <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>Variants for hierarchy, interaction, and emphasis.</p>
+              <p>WaveSurfer UI player.</p>
+            </header>
+
+            <div className="libPanel libPlayerDemo">
+              <HugoPlayer />
+
+              <p className="libFinePrint">
+                Original score by{" "}
+                <a
+                  href="https://www.hugofigueramusic.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="libInlineLink"
+                >
+                  Hugo Figuera ↗
+                </a>
+              </p>
+
+              <h4>
+                Custom React audio player built with WaveSurfer.js, with grouped playlists, waveform progress, and responsive playback controls.
+              </h4>
+            </div>
+          </div>
+
+          
+          {/* Infinite Carousel */}
+          <div className="libSection" id="carousel">
+            <header className="libSection__header">
+              <h2>
+                Infinite Carousel <span className="libPulse" aria-hidden="true" />
+              </h2>
+              <p>
+                Continuous looping interaction driven by requestAnimationFrame.
+              </p>
             </header>
 
             <div className="libPanel">
-              <p className="libGroupLabel">Styles</p>
-              <div className="libRow">
-                <Button variant="gold">Gold</Button>
-                <Button variant="outline" className="uiBtn--ring">
-                  Outline
-                </Button>
-                <Button variant="ghost">Ghost</Button>
-              </div>
-
-              <p className="libGroupLabel">Shapes</p>
-              <div className="libRow">
-                <Button shape="square">Square</Button>
-                <Button shape="cut">Cut</Button>
-                <Button shape="hex">Hex</Button>
-              </div>
-
-              <p className="libGroupLabel__lab">Lab</p>
-              <div className="libRow">
-                <Button variant="media" bgImage="/images/universe/leopard.png">
-                  Noise Pattern
-                </Button>
-                <Button
-                  variant="media"
-                  bgImage="/images/universe/intent-fill.jpg"
-                  bgPosition="50% 60%">
-                  Parallax Texture
-                </Button>
-                <Button variant="pulse" className="uiBtn--pulse">
-                  Pulse Motion
-                </Button>
-
-              </div>
+              <InfiniteCarousel />
             </div>
           </div>
 
@@ -331,6 +263,7 @@ export default function Experiments() {
             </div>
           </div>
 
+
           {/* Forms */}
           <div className="libSection" id="forms">
             <header className="libSection__header">
@@ -345,8 +278,25 @@ export default function Experiments() {
             </div>
           </div>
 
-          {/* Nav */}
-          <div className="libSection" id="nav">
+  
+
+
+
+        {/* Controlled chaos */}
+        <ControlledChaos />
+        </section>
+      </div>
+
+      <a
+        href="#experiments-menu"
+        className="mobileToMenu"
+        aria-label="Back to experiments menu"
+      >
+        ↑
+      </a>
+      
+        {/* Nav */}
+          {/* <div className="libSection" id="nav">
             <header className="libSection__header">
               <div className="navSectionHead">
                 <div>
@@ -436,118 +386,54 @@ export default function Experiments() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* Player */}
-          <div className="libSection" id="player">
+      {/* Buttons */}
+          {/* <div className="libSection" id="buttons">
             <header className="libSection__header">
               <h2>
-                Player <span className="libPulse" aria-hidden="true" />
+                Buttons <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>WaveSurfer UI player.</p>
+              <p>Variants for hierarchy, interaction, and emphasis.</p>
             </header>
 
-            <div className="libPanel libPlayerDemo">
-              <HugoPlayer />
-
-              <p className="libFinePrint">
-                Original score by{" "}
-                <a
-                  href="https://www.hugofigueramusic.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="libInlineLink"
-                >
-                  Hugo Figuera ↗
-                </a>
-              </p>
-
-              <h4>
-                Custom React audio player built with WaveSurfer.js, with grouped playlists, waveform progress, and responsive playback controls.
-              </h4>
-            </div>
-          </div>
-
-        {/* Controlled chaos */}
-        <ControlledChaos />
-        </section>
-      </div>
-
-      <a
-        href="#experiments-menu"
-        className="mobileToMenu"
-        aria-label="Back to experiments menu"
-      >
-        ↑
-      </a>
-
-      {/* ================= EXPERIMENTS ================= */}
-      <section className="experimentsSection" aria-label="UI Experiments">
-        <div className="container">
-
-          <header className="experimentsHeader">
-            <h2>UI Experiments</h2>
-            <p className="sectionLead">
-              Reusable UI system built in React. Component-driven architecture and interaction patterns.</p>
-          </header>
-
-          <div
-            ref={experimentsScrollRef}
-            className="experimentsScroll"
-            aria-label="Experiment carousel"
-          >
-            <div ref={experimentsTrackRef} className="experimentsTrack">
-              <div ref={experimentsSetRef} className="experimentsSet">
-                {/* ORIGINAL SET */}
-                {componentCards.map((c) => (
-                  <article className="componentCard" key={c.title}>
-                    <div className="componentPreview">
-                      <img
-                        src={c.img}
-                        alt={c.alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div className="componentCardContent">
-                      <h3>{c.title}</h3>
-                    </div>
-                  </article>
-                ))}
+            <div className="libPanel">
+              <p className="libGroupLabel">Styles</p>
+              <div className="libRow">
+                <Button variant="gold">Gold</Button>
+                <Button variant="outline" className="uiBtn--ring">
+                  Outline
+                </Button>
+                <Button variant="ghost">Ghost</Button>
               </div>
-              <div className="experimentsSet" aria-hidden="true">
-                {/* DUPLICATE SET (aria hidden) */}
-                {componentCards.map((c, idx) => (
-                  <article
-                    className="componentCard"
-                    key={`${c.title}-dup-${idx}`}
-                    aria-hidden="true"
-                  >
-                    <div className="componentPreview">
-                      <img
-                        src={c.img}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div className="componentCardContent">
-                      <h3>{c.title}</h3>
-                    </div>
-                  </article>
-                ))}
+
+              <p className="libGroupLabel">Shapes</p>
+              <div className="libRow">
+                <Button shape="square">Square</Button>
+                <Button shape="cut">Cut</Button>
+                <Button shape="hex">Hex</Button>
+              </div>
+
+              <p className="libGroupLabel__lab">Lab</p>
+              <div className="libRow">
+                <Button variant="media" bgImage="/images/universe/leopard.png">
+                  Noise Pattern
+                </Button>
+                <Button
+                  variant="media"
+                  bgImage="/images/universe/intent-fill.jpg"
+                  bgPosition="50% 60%">
+                  Parallax Texture
+                </Button>
+                <Button variant="pulse" className="uiBtn--pulse">
+                  Pulse Motion
+                </Button>
+
               </div>
             </div>
-              {/* 🔥 THIS MUST BE HERE */}
-            <div className="experimentsFog" aria-hidden="true" />
-            </div>
-            <div className="sectionCTA">
-              <a className="btn btnBlue" href="/contact">
-                get in touch →
-              </a>
-            </div>
-        </div>
-      </section>
+          </div> */}
+
+
     </main>
   );
 }

@@ -633,7 +633,7 @@
 }
 
 .beyondCodeTitle span {
-  color: #2899ad;
+  color: #267f8f;
 }
 
 .beyondCodeLead {
@@ -664,7 +664,7 @@
   bottom: -1px;
   width: 0;
   height: 1px;
-  background: #269bb5;
+  background: #1a6b7ee0;
   transition: width 450ms ease;
 }
 
@@ -756,7 +756,7 @@
 }
 
 .finalCtaCopy h2 span {
-  color: #269bb5;
+  color: #1f7b8fda;
 }
 
 .finalCtaCopy p {

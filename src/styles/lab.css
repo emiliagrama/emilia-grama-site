@@ -677,70 +677,104 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
 }
 
 /* =========================
-   Carousel viewport
+   Infinite Carousel
    ========================= */
-.experimentsScroll{
-  position: relative;
+
+/* Keep the wide carousel track contained inside the Lab layout */
+#carousel {
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
-   padding-left: 32px;
-  padding-right: 32px;
- -webkit-mask-image: linear-gradient(
+}
+
+#carousel .libPanel {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Carousel viewport */
+.experimentsScroll {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  padding-inline: 32px;
+
+  -webkit-mask-image: linear-gradient(
     to right,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,1) 8%,
-    rgba(0,0,0,1) 92%,
-    rgba(0,0,0,0) 100%
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
   );
+
   mask-image: linear-gradient(
     to right,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,1) 8%,
-    rgba(0,0,0,1) 92%,
-    rgba(0,0,0,0) 100%
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
   );
-
-  /* important: creates stable stacking for spotlight + cards + fog */
-  isolation: isolate;
 }
 
-/* spotlight behind cards (your current look) */
-.experimentsScroll::before{
-  content:"";
-  position:absolute;
-  inset:-40px 0 -60px 0;
-  pointer-events:none;
-  background: radial-gradient(900px 280px at 50% 55%, rgba(61,132,224,.10), transparent 65%);
+/* Background spotlight */
+.experimentsScroll::before {
+  content: "";
+  position: absolute;
+  inset: -40px 0 -60px;
+  pointer-events: none;
   z-index: 0;
+
+  background: radial-gradient(
+    900px 280px at 50% 55%,
+    rgba(61, 132, 224, 0.1),
+    transparent 65%
+  );
 }
 
-/* Track: rAF owns transform */
-.experimentsTrack{
+/* Moving track — transform is controlled by requestAnimationFrame */
+.experimentsTrack {
   position: relative;
-  z-index: 1; /* above spotlight */
+  z-index: 1;
+
   display: flex;
   width: max-content;
-  gap: 0; /* seam spacing handled by .experimentsSet padding-right */
+  gap: 0;
+
   will-change: transform;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
+
   animation: none !important;
   transition: none !important;
 }
 
-/* spacing inside each set */
-.experimentsSet{
+/* Each repeated carousel set */
+.experimentsSet {
   display: flex;
   flex-wrap: nowrap;
   gap: 24px;
-  padding-right: 24px; /* seam spacing between last and first */
+
+  padding-right: 24px;
   box-sizing: content-box;
 }
 
-/* optional tiny soft glow (very subtle, doesn’t change vibe) */
-.experimentsFog::after{
-  content:"";
-  position:absolute;
-  inset:-30px;
-  background: radial-gradient(820px 240px at 50% 55%, rgba(61,132,224,.22), transparent 65%);
+/* Soft foreground glow */
+.experimentsFog::after {
+  content: "";
+  position: absolute;
+  inset: -30px;
+
+  background: radial-gradient(
+    820px 240px at 50% 55%,
+    rgba(61, 132, 224, 0.22),
+    transparent 65%
+  );
+
   filter: blur(10px);
   opacity: 0.7;
 }

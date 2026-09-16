@@ -256,6 +256,7 @@ export default function Home() {
                 <span>JavaScript</span>
                 <span>PostgreSQL</span>
                 <span>APIs</span>
+                <span>Figma</span>
                 <span>Git</span>
                 <span>Heroku</span>
                 <span>Vercel</span>
