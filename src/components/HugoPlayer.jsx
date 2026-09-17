@@ -199,10 +199,7 @@ ws.on("error", (error) => {
   return (
     <section className="hf-player" id="showreel">
   
-      <p className="hf-player-text">
-        Short selection of dark sci-fi demos for cinematic and interactive
-        projects.
-      </p>
+      <p className="hf-player_text" aria-hidden="true" />
 
       {/* Static studio photo background */}
       <div className="hf-showreel-bg">

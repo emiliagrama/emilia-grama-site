@@ -4,12 +4,12 @@
 
 .cardsGrid {
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 74px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card {
-  grid-column: span 4;
+  position: relative;
   position: relative;
   overflow: hidden;
   border-radius: 18px;
@@ -74,7 +74,7 @@
 }
 
 .card__eyebrow {
-  margin-bottom: 6px;
+  margin-bottom: 9px;
   font-size: 12px;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -151,28 +151,6 @@ button.card__cta {
 /* =========================
    VARIANTS
    ========================= */
-
-/* DEFAULT */
-.card--default {
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.04),
-    rgba(255,255,255,0.02)
-  );
-}
-
-.card--default .card__title {
-  color: rgba(57, 192, 233, 0.603);
-  font-weight: 500;
-}
-
-.card--default .card__subtitle {
-  color: rgba(255,255,255,0.65);
-}
-
-.card--default .card__body {
-  color: rgba(114, 228, 213, 0.75);
-}
 
 /* GLASS */
 .card--glass {
@@ -312,7 +290,6 @@ button.card__cta {
   transform: scale(1.05);
 }
 
-.card--media_img .card__content,
 .card--media .card__content {
   padding-top: 160px;
 }

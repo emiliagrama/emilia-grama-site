@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function Card({
   variant = "default", // default | glass | glow | media | flip
@@ -9,13 +8,10 @@ export default function Card({
   icon,
   image,
   video,
-  href,
   ctaLabel = "View",
   align = "left", // left | center
   className = "",
 }) {
-const Root = "div";
-const baseProps = {};
 
   const cardClass = [
     "card",
@@ -79,10 +75,10 @@ const baseProps = {};
   // ALL other variants
   
   return (
-    <div className={cardClass}>
-      <Root {...baseProps}>
+    
+      <div className={cardClass}>
         {
-        (variant === "media" || variant === "media_img") && (image || video) && (
+        variant === "media"  && (image || video) && (
           <div className="cardMedia">
             {video ? (
               <video
@@ -125,9 +121,7 @@ const baseProps = {};
               </button>
             </div>
           )}
-
         </div>
-      </Root>
     </div>
   );
 }

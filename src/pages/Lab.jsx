@@ -127,7 +127,7 @@ export default function Experiments() {
               <h2>
                  Audio Player <span className="libPulse" aria-hidden="true" />
               </h2>
-              <p>WaveSurfer UI player.</p>
+              <p>Turning audio playback into an interactive visual experience.</p>
             </header>
 
             <div className="libPanel libPlayerDemo">
@@ -159,7 +159,7 @@ export default function Experiments() {
                 Infinite Carousel <span className="libPulse" aria-hidden="true" />
               </h2>
               <p>
-                Continuous looping interaction driven by requestAnimationFrame.
+                A seamless loop of interfaces, interactions, and visual experiments.
               </p>
             </header>
 
@@ -181,16 +181,7 @@ export default function Experiments() {
               <p className="libGroupLabel">Core variants</p>
 
               <div className="cardsGrid">
-                <Card
-                  variant="default"
-                  eyebrow="Default"
-                  title="Service overview"
-                  subtitle="Clean structure with CTA + hover lift."
-                  href="#"
-                  ctaLabel="Open"
-                >
-                  Designed for services, previews, and feature highlights.
-                </Card>
+
 
                 <Card
                   variant="glass"
@@ -215,7 +206,7 @@ export default function Experiments() {
                 </Card>
               </div>
 
-              <p className="libGroupLabel" style={{ marginTop: 18 }}>
+              <p className="libGroupLabel" style={{ marginTop: 38 }}>
                 Media & interaction
               </p>
 
@@ -232,17 +223,7 @@ export default function Experiments() {
                   Perfect for “worlds”, galleries, and visual portfolio items.
                 </Card>
 
-                <Card
-                  variant="media_img"
-                  eyebrow="Media"
-                  title="Parallax texture"
-                  subtitle="Works with any image you drop in."
-                  image="/images/universe/intent-fill.jpg"
-                  href="#"
-                  ctaLabel="Open"
-                >
-                  This gives you instant personality without heavy design work.
-                </Card>
+
 
                 <Card
                   variant="flip"

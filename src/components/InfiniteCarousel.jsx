@@ -7,7 +7,7 @@ const componentCards = [
   { img: "/images/universe/lesnoise.png", title: "LesNoise", alt: "LesNoise website review tool" },
   { img: "/images/universe/player.jpg", title: " Audio Player", alt: "Custom audio player" },
   { img: "/images/universe/lab.jpg", title: "Fractal Noise", alt: "Fractal noise shader experiment" },
-  { img: "/images/universe/breaktherules.png", title: "Break the rules", alt: "Controlled chaos experiment" },
+  { img: "/images/universe/breaktherules.png", title: "Voltage Button", alt: "Animated voltage button interaction" },
 ];
 
 export default function InfiniteCarousel() {
