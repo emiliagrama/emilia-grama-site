@@ -198,15 +198,29 @@ useEffect(() => {
     }
   }
 
+    function handleProjectSelect(value) {
+    setForm((prev) => ({
+      ...prev,
+      projectType: value,
+    }));
+
+    setProjectMenuOpen(false);
+  }
+
   return (
     <main className="contactPage" ref={pageRef}>
       <section className="contactHero">
         <div className="contactHero__inner" ref={heroRef}>
-          <h1>Let’s build something strong, clear, and well designed.</h1>
+          <p className="contactHeroEyebrow">START A CONVERSATION</p>
+
+          <h1>
+            Have something in mind?
+            <span> Make some noise.</span>
+          </h1>
+
           <p className="contactIntro">
-            Modern websites and applications, built with structure and precision.
-            Send me your idea, timeline, or project goals and I’ll take it from
-            there.
+            Tell me what you're building. I'll help turn the idea into something
+            clear, useful, and real.
           </p>
         </div>
       </section>
@@ -226,14 +240,14 @@ useEffect(() => {
 
             <div className="contactInfoBlock">
               <p className="contactLabel">Project types</p>
-              <ul className="contactList">
-                <li>Portfolio websites</li>
-                <li>Business websites</li>
-                <li>SaaS products</li>
-                <li>UI systems</li>
-                <li>Interactive frontend work</li>
-                <li>Custom web applications</li>
-              </ul>
+            <div className="contactServices">
+              <span>Portfolio websites</span>
+              <span>Business websites</span>
+              <span>SaaS products</span>
+              <span>UI systems</span>
+              <span>Interactive frontend</span>
+              <span>Custom web applications</span>
+            </div>
             </div>
 
             <div className="contactInfoBlock">
@@ -291,8 +305,8 @@ useEffect(() => {
                     )}
                   </div>
 
-                  <div className="contactField">
-                    <label htmlFor="projectTypeTrigger">Project type</label>
+               <div className="contactField">
+                    <label htmlFor="projectTypeTrigger">What can I help with?</label>
 
                     <input
                       type="hidden"
@@ -312,13 +326,11 @@ useEffect(() => {
                         aria-expanded={projectMenuOpen}
                       >
                         <span>
-                          {form.projectType === "portfolio" && "Portfolio"}
-                          {form.projectType === "business-site" &&
-                            "Business website"}
-                          {form.projectType === "ui-system" && "UI system"}
-                          {form.projectType === "interactive-frontend" &&
-                            "Interactive frontend"}
-                          {form.projectType === "web-app" && "Web application"}
+                          {form.projectType === "new-project" && "New website / application"}
+                          {form.projectType === "improvements" && "Improve an existing project"}
+                          {form.projectType === "debugging" && "Debugging"}
+                          {form.projectType === "maintenance" && "Maintenance"}
+                          {form.projectType === "advice" && "Technical advice"}
                           {form.projectType === "other" && "Other"}
                           {!form.projectType && "Select"}
                         </span>
@@ -331,88 +343,52 @@ useEffect(() => {
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "portfolio"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("new-project")}
                             >
-                              Portfolio
+                              New website / application
                             </button>
                           </li>
 
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "business-site"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("improvements")}
                             >
-                              Business website
+                              Improve an existing project
                             </button>
                           </li>
 
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "ui-system"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("debugging")}
                             >
-                              UI system
+                              Debugging
                             </button>
                           </li>
 
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "interactive-frontend"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("maintenance")}
                             >
-                              Interactive frontend
+                              Maintenance
                             </button>
                           </li>
 
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "web-app"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("advice")}
                             >
-                              Web application
+                              Technical advice
                             </button>
                           </li>
 
                           <li>
                             <button
                               type="button"
-                              onClick={() => {
-                                setForm((prev) => ({
-                                  ...prev,
-                                  projectType: "other"
-                                }));
-                                setProjectMenuOpen(false);
-                              }}
+                              onClick={() => handleProjectSelect("other")}
                             >
                               Other
                             </button>
@@ -428,7 +404,7 @@ useEffect(() => {
                   <textarea
                     id="message"
                     name="message"
-                    rows="7"
+                    rows="3"
                     spellCheck={false}
                     value={form.message}
                     onChange={handleChange}
@@ -443,6 +419,10 @@ useEffect(() => {
                 {serverError && <p className="contactError">{serverError}</p>}
 
                 <div className="contactActions">
+                  <p className="contactResponseTime">
+                    Usually replies within 24h.
+                  </p>
+
                   <button
                     type="submit"
                     className="btn btnBlue contactSubmitBtn"
@@ -450,8 +430,7 @@ useEffect(() => {
                   >
                     {isSending ? "Sending..." : "Start a project"}
                   </button>
-                </div>
-                <h4>I usually reply within 24h.</h4>
+              </div>
               </form>
             ) : (
               <div className="contactSuccess">
