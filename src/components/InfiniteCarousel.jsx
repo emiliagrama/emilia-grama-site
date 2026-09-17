@@ -26,7 +26,6 @@ export default function InfiniteCarousel() {
 
     if (!scrollEl || !trackEl || !setEl) return;
 
-    if (window.matchMedia("(max-width: 860px)").matches) return;
 
     const prefersReducedMotion =
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
@@ -50,8 +49,12 @@ export default function InfiniteCarousel() {
       last = performance.now();
     };
 
-    scrollEl.addEventListener("mouseenter", onEnter);
-    scrollEl.addEventListener("mouseleave", onLeave);
+    const canHover = window.matchMedia("(hover: hover)").matches;
+
+    if (canHover) {
+      scrollEl.addEventListener("mouseenter", onEnter);
+      scrollEl.addEventListener("mouseleave", onLeave);
+    }
 
     const setDistanceSafely = () => {
       distance = Math.max(
@@ -93,9 +96,12 @@ export default function InfiniteCarousel() {
         cancelAnimationFrame(rafId.current);
       }
 
-      ro.disconnect();
-      scrollEl.removeEventListener("mouseenter", onEnter);
-      scrollEl.removeEventListener("mouseleave", onLeave);
+ro.disconnect();
+
+if (canHover) {
+  scrollEl.removeEventListener("mouseenter", onEnter);
+  scrollEl.removeEventListener("mouseleave", onLeave);
+}
     };
   }, []);
 

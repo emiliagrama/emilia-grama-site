@@ -256,9 +256,6 @@ export default function Experiments() {
           </div>
 
   
-
-
-
         {/* Controlled chaos */}
         <ControlledChaos />
         </section>

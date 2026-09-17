@@ -167,10 +167,10 @@ export default function Form() {
         {/* Left */}
         <div className="formLibPanel">
           <div className="formLibHeader">
-            <div className="formLibKicker">FORM</div>
-            <h3 className="formLibTitle">Primary fields</h3>
+            <div className="formLibKicker">INTERACTIVE FORM</div>
+            <h3 className="formLibTitle">Booking logic</h3>
             <p className="formLibSub">
-              Focus, hover, disabled, helper text. UI logic: package rules + date range.
+              Package rules, date constraints, automatic checkout and validation.
             </p>
           </div>
 
@@ -314,9 +314,9 @@ export default function Form() {
         {/* Right */}
         <div className="formLibPanel formLibPanel--states">
           <div className="formLibHeader">
-            <div className="formLibKicker">STATES</div>
-            <h3 className="formLibTitle">Variants</h3>
-            <p className="formLibSub">Same sizing, consistent rhythm.</p>
+            <div className="formLibKicker">FIELD STATES</div>
+            <h3 className="formLibTitle">Validation & states</h3>
+            <p className="formLibSub">Common input states and responsive feedback.</p>
           </div>
 
           <div className="formLibField">

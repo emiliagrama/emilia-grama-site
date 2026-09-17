@@ -179,6 +179,15 @@
   }
 }
 
+/* Main Controlled Chaos heading */
+#controlled-chaos > h2 {
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.08;
+  margin: 0 0 8px;
+  font-weight: 620;
+  text-wrap: balance;
+}
+
 /*lab experiments*/
 
 .labExperimentTitle{
@@ -204,12 +213,7 @@
     border-radius: 14px;
   }
 }
-@media (max-width: 768px) {
-  .shaderPanel {
-    height: 260px;
-    border-radius: 14px;
-  }
-}
+
 
 /* shared panel*/
 .shaderPanel{

@@ -1,4 +1,3 @@
-
 import "../../styles/controlledChaos.css";
 import ShaderPanel from "./ShaderPanel";
 import WaveGridCard from "./WaveGridCard";
@@ -28,12 +27,13 @@ export default function ControlledChaos() {
         </div>
       
         <h3 className="labExperimentTitle">Surface & Depth Systems</h3>
+
         <div className="libPanel">
           <p className="labExperimentDesc">
             Interactive visual experiments exploring surface distortion and depth fields.
           </p>
+          
           <div className="labCardsRow">
-            
             <DepthBloomCard />
             <WaveGridCard />
           </div>

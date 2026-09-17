@@ -54,7 +54,7 @@
   opacity: .7;
   text-transform: uppercase;
 }
-.formLibTitle{ margin: 6px 0 4px; font-size: 18px; }
+.formLibTitle{ margin: 6px 0 4px; font-size: 18px; letter-spacing: 0.015em; }
 .formLibSub{ margin: 0; opacity: .75; font-size: 13px; line-height: 1.35; }
 
 /* =========================

@@ -77,11 +77,12 @@ function WaveGridPlane() {
     []
   );
 
-  useFrame(({ clock, size }) => {
-    if (!materialRef.current) return;
-    materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
-    materialRef.current.uniforms.uResolution.value.set(size.width, size.height);
-  });
+useFrame(({ size }) => {
+  if (!materialRef.current) return;
+
+  materialRef.current.uniforms.uTime.value = performance.now() / 1000;
+  materialRef.current.uniforms.uResolution.value.set(size.width, size.height);
+});
 
   return (
     <mesh>

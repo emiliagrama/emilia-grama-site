@@ -174,18 +174,18 @@ function ShaderPlane({ mouseRef, clickRef }) {
     []
   );
 
-  useFrame(({ clock, size }) => {
-    if (!materialRef.current) return;
+useFrame(({ size }) => {
+  if (!materialRef.current) return;
 
-    const { uniforms } = materialRef.current;
-    const now = clock.getElapsedTime();
+  const { uniforms } = materialRef.current;
+  const now = performance.now() / 1000;
 
     uniforms.uTime.value = now;
     uniforms.uResolution.value.set(size.width, size.height);
     uniforms.uMouse.value.set(mouseRef.current.x, mouseRef.current.y);
 
     uniforms.uMouseEase.value.lerp(
-      new THREE.Vector2(mouseRef.current.x, mouseRef.current.y),
+      uniforms.uMouse.value,
       0.06
     );
 
@@ -226,15 +226,14 @@ export default function ShaderPanel() {
     mouseRef.current = { x: 0.5, y: 0.5 };
   };
 
-  const startTimeRef = useRef(performance.now() / 1000);
+const handleClick = (e) => {
+  const pos = getLocalCoords(e);
 
-  const handleClick = (e) => {
-    const pos = getLocalCoords(e);
-    clickRef.current = {
-      ...pos,
-      time: performance.now() / 1000 - startTimeRef.current
-    };
+  clickRef.current = {
+    ...pos,
+    time: performance.now() / 1000
   };
+};
 
   return (
     <div
