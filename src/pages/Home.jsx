@@ -199,14 +199,14 @@ export default function Home() {
             </h2>
 
             <p className="beyondCodeLead">
-              Good products need clear decitions before launch — and attention after it.
+              Good products need clear decisions before launch — and attention after it.
             </p>
           </header>
 
           <div className="beyondCodelist">
 
             <article className="beyondCodeRow">
-              <span className="beyondCodeNumber" area-hidden="true">
+              <span className="beyondCodeNumber" aria-hidden="true">
                 01
               </span>
 
