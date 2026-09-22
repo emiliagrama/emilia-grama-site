@@ -524,3 +524,10 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .depthBloomParticle {
+    animation: none !important;
+    will-change: auto;
+  }
+}
