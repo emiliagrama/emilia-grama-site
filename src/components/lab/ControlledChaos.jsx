@@ -6,7 +6,7 @@ import DepthBloomCard from "./DepthBloomCard";
 
 export default function ControlledChaos() {
   const sectionRef = useRef(null);
-  const [shouldRender, setShouldRender] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -14,13 +14,10 @@ export default function ControlledChaos() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldRender(true);
-          observer.disconnect();
-        }
+        setIsVisible(entry.isIntersecting);
       },
       {
-        rootMargin: "300px 0px",
+        rootMargin: "100px 0px",
         threshold: 0,
       }
     );
@@ -53,7 +50,7 @@ export default function ControlledChaos() {
           Noise field warped by cursor interaction.
         </p>
 
-        {shouldRender && <ShaderPanel />}
+        <ShaderPanel isActive={isVisible} />
       </div>
 
       <h3 className="labExperimentTitle">
@@ -66,12 +63,8 @@ export default function ControlledChaos() {
         </p>
 
         <div className="labCardsRow">
-          {shouldRender && (
-            <>
-              <DepthBloomCard />
-              <WaveGridCard />
-            </>
-          )}
+          <DepthBloomCard isActive={isVisible} />
+          <WaveGridCard isActive={isVisible} />
         </div>
       </div>
     </section>
