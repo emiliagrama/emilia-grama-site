@@ -100,7 +100,7 @@ useFrame(({ size }) => {
 export default function WaveGridPanel() {
   return (
     <div className="waveGridPanel" aria-hidden="true">
-      <Canvas dpr={[1, 1.5]} gl={{ antialias: true }}>
+      <Canvas dpr={[1, 1.5]} gl={{ antialias: false }}>
         <WaveGridPlane />
       </Canvas>
     </div>

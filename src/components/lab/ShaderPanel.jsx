@@ -243,7 +243,7 @@ const handleClick = (e) => {
       onMouseLeave={handlePointerLeave}
       onClick={handleClick}
     >
-      <Canvas dpr={[1, 1.5]} gl={{ antialias: true }}>
+      <Canvas dpr={[1, 1.5]} gl={{ antialias: false }}>
         <ShaderPlane mouseRef={mouseRef} clickRef={clickRef} />
       </Canvas>
     </div>
