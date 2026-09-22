@@ -69,7 +69,7 @@ export default function ControlledChaos() {
           {shouldRender && (
             <>
               <DepthBloomCard />
-               {/* <DepthBloomCard /> */}
+              <WaveGridCard />
             </>
           )}
         </div>
