@@ -216,7 +216,7 @@ export default function Experiments() {
                   eyebrow="Media"
                   title="Universe card"
                   subtitle="Video header + overlay text."
-                  video="/images/universe/homepage-bg.mp4"
+                  image="/images/universe/hero-wave.jpg"
                   href="#"
                   ctaLabel="Visit"
                 >
