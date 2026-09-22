@@ -58,7 +58,7 @@ export default function Experiments() {
     if (initial && ids.includes(initial)) setActive(initial);
     else onScroll();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     window.addEventListener("hashchange", onScroll);
 
@@ -67,7 +67,7 @@ export default function Experiments() {
 
     return () => {
       clearTimeout(t);
-      window.removeEventListener("scroll", onScroll);
+      // window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       window.removeEventListener("hashchange", onScroll);
     };
