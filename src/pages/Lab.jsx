@@ -257,7 +257,7 @@ export default function Experiments() {
 
   
         {/* Controlled chaos */}
-        {/* <ControlledChaos /> */}
+        <ControlledChaos />
         </section>
       </div>
 
