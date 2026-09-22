@@ -84,7 +84,7 @@ export default function Card({
               <video
                 className="cardMedia_video"
                 src={video}
-                autoPlay
+               
                 muted
                 loop
                 playsInline
