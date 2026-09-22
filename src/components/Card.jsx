@@ -1,4 +1,4 @@
-
+import { useEffect, useRef } from "react";
 export default function Card({
   variant = "default", // default | glass | glow | media | flip
   title,
@@ -12,6 +12,34 @@ export default function Card({
   align = "left", // left | center
   className = "",
 }) {
+
+  const videoRef = useRef(null);
+
+useEffect(() => {
+  const videoEl = videoRef.current;
+
+  if (!videoEl) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        videoEl.play().catch(() => {});
+      } else {
+        videoEl.pause();
+      }
+    },
+    {
+      threshold: 0.4,
+    }
+  );
+
+  observer.observe(videoEl);
+
+  return () => {
+    observer.disconnect();
+    videoEl.pause();
+  };
+}, []);
 
   const cardClass = [
     "card",
@@ -81,15 +109,16 @@ export default function Card({
         variant === "media"  && (image || video) && (
           <div className="cardMedia">
             {video ? (
-              <video
-                className="cardMedia_video"
-                src={video}
-               
-                muted
-                loop
-                playsInline
-                aria-hidden="true"
-              />
+             <video
+              ref={videoRef}
+              className="cardMedia_video"
+              src={video}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            />
             ) : (
               <div
                 className="cardMedia_img"
