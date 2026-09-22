@@ -53,7 +53,7 @@ export default function ControlledChaos() {
           Noise field warped by cursor interaction.
         </p>
 
-        {/* {shouldRender && <ShaderPanel />} */}
+        {shouldRender && <ShaderPanel />}
       </div>
 
       <h3 className="labExperimentTitle">
@@ -68,7 +68,7 @@ export default function ControlledChaos() {
         <div className="labCardsRow">
           {shouldRender && (
             <>
-              <DepthBloomCard />
+                {/* <DepthBloomCard /> */}
               <WaveGridCard />
             </>
           )}
