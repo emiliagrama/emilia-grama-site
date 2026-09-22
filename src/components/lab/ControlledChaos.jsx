@@ -68,8 +68,8 @@ export default function ControlledChaos() {
         <div className="labCardsRow">
           {shouldRender && (
             <>
-                {/* <DepthBloomCard /> */}
-              <WaveGridCard />
+              <DepthBloomCard />
+               {/* <DepthBloomCard /> */}
             </>
           )}
         </div>
