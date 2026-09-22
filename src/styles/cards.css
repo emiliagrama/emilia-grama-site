@@ -453,14 +453,3 @@ button.card__cta {
   }
 }
 
-@media (max-width: 680px) {
-  .cardMedia_video {
-    display: none;
-  }
-
-  .cardMedia {
-    background-image: url("/images/universe/cards.jpg");
-    background-size: cover;
-    background-position: center;
-  }
-}
