@@ -4,38 +4,38 @@ import ShaderPanel from "./ShaderPanel";
 import WaveGridCard from "./WaveGridCard";
 import DepthBloomCard from "./DepthBloomCard";
 
-function LazyExperiment({ children, rootMargin = "150px 0px" }) {
-  const ref = useRef(null);
-  const [ready, setReady] = useState(false);
+export default function ControlledChaos() {
+  const sectionRef = useRef(null);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const section = sectionRef.current;
+    if (!section) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setReady(true);
+          setShouldRender(true);
           observer.disconnect();
         }
       },
       {
-        rootMargin,
+        rootMargin: "300px 0px",
         threshold: 0,
       }
     );
 
-    observer.observe(el);
+    observer.observe(section);
 
     return () => observer.disconnect();
-  }, [rootMargin]);
+  }, []);
 
-  return <div ref={ref}>{ready ? children : null}</div>;
-}
-
-export default function ControlledChaos() {
   return (
-    <section id="controlled-chaos" className="libSection">
+    <section
+      ref={sectionRef}
+      id="controlled-chaos"
+      className="libSection"
+    >
       <h2>
         Controlled chaos <span className="libPulse" aria-hidden="true" />
       </h2>
@@ -53,9 +53,7 @@ export default function ControlledChaos() {
           Noise field warped by cursor interaction.
         </p>
 
-        <LazyExperiment>
-          <ShaderPanel />
-        </LazyExperiment>
+        {shouldRender && <ShaderPanel />}
       </div>
 
       <h3 className="labExperimentTitle">
@@ -64,16 +62,17 @@ export default function ControlledChaos() {
 
       <div className="libPanel">
         <p className="labExperimentDesc">
-          Interactive visual experiments exploring surface distortion and depth
-          fields.
+          Interactive visual experiments exploring surface distortion and depth fields.
         </p>
 
-        <LazyExperiment>
-          <div className="labCardsRow">
-            <DepthBloomCard />
-            <WaveGridCard />
-          </div>
-        </LazyExperiment>
+        <div className="labCardsRow">
+          {shouldRender && (
+            <>
+              <DepthBloomCard />
+              <WaveGridCard />
+            </>
+          )}
+        </div>
       </div>
     </section>
   );
