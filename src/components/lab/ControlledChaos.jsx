@@ -20,7 +20,7 @@ export default function ControlledChaos() {
         }
       },
       {
-        rootMargin: "300px 0px",
+        rootMargin: "0px",
         threshold: 0,
       }
     );
