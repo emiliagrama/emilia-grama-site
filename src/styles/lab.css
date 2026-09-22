@@ -704,7 +704,7 @@ padding: clamp(14px, 1.8vw, 22px) clamp(18px, 2vw, 34px);  margin: 0 0 clamp(15p
   overflow: hidden;
 
   padding-inline: 32px;
-touch-action: pan-y;
+
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
