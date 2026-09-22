@@ -120,8 +120,8 @@ if (canHover) {
                 <img
                   src={c.img}
                   alt={c.alt}
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+decoding="async"
                 />
               </div>
 
@@ -143,7 +143,7 @@ if (canHover) {
                 <img
                   src={c.img}
                   alt=""
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                 />
               </div>
