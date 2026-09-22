@@ -137,7 +137,11 @@ void main() {
 
   float thin = smoothstep(0.72, 0.86, net);
   float thick = smoothstep(0.58, 0.78, r1) * 0.65;
-  float hot = smoothstep(0.84, 0.94, fbm(pp * 0.9 + 8.0 + drift * 0.7)) * 0.8;
+  float hot = smoothstep(
+    0.84,
+    0.94,
+    fbm(pp * 0.9 + 8.0 + drift * 0.7)
+  ) * 0.8;
 
   float lines = max(thin, thick * 0.75);
   lines += hot * thin * 0.35;
@@ -159,7 +163,7 @@ void main() {
 }
 `;
 
-function ShaderPlane({ mouseRef, clickRef }) {
+function ShaderPlane({ mouseRef, clickRef, isActive }) {
   const materialRef = useRef();
 
   const uniforms = useMemo(
@@ -169,33 +173,42 @@ function ShaderPlane({ mouseRef, clickRef }) {
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uMouseEase: { value: new THREE.Vector2(0.5, 0.5) },
       uClick: { value: new THREE.Vector2(0.5, 0.5) },
-      uClickTime: { value: -10 }
+      uClickTime: { value: -10 },
     }),
     []
   );
 
-useFrame(({ size }) => {
-  if (!materialRef.current) return;
+  useFrame(({ size }) => {
+    if (!isActive) return;
+    if (!materialRef.current) return;
 
-  const { uniforms } = materialRef.current;
-  const now = performance.now() / 1000;
+    const { uniforms } = materialRef.current;
+    const now = performance.now() / 1000;
 
     uniforms.uTime.value = now;
     uniforms.uResolution.value.set(size.width, size.height);
-    uniforms.uMouse.value.set(mouseRef.current.x, mouseRef.current.y);
+    uniforms.uMouse.value.set(
+      mouseRef.current.x,
+      mouseRef.current.y
+    );
 
     uniforms.uMouseEase.value.lerp(
       uniforms.uMouse.value,
       0.06
     );
 
-    uniforms.uClick.value.set(clickRef.current.x, clickRef.current.y);
+    uniforms.uClick.value.set(
+      clickRef.current.x,
+      clickRef.current.y
+    );
+
     uniforms.uClickTime.value = clickRef.current.time;
   });
 
   return (
     <mesh>
       <planeGeometry args={[2, 2]} />
+
       <shaderMaterial
         ref={materialRef}
         uniforms={uniforms}
@@ -206,15 +219,20 @@ useFrame(({ size }) => {
   );
 }
 
-export default function ShaderPanel() {
+export default function ShaderPanel({ isActive = true }) {
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
-  const clickRef = useRef({ x: 0.5, y: 0.5, time: -10 });
+  const clickRef = useRef({
+    x: 0.5,
+    y: 0.5,
+    time: -10,
+  });
 
   const getLocalCoords = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
+
     return {
       x: (e.clientX - rect.left) / rect.width,
-      y: 1 - (e.clientY - rect.top) / rect.height
+      y: 1 - (e.clientY - rect.top) / rect.height,
     };
   };
 
@@ -226,14 +244,14 @@ export default function ShaderPanel() {
     mouseRef.current = { x: 0.5, y: 0.5 };
   };
 
-const handleClick = (e) => {
-  const pos = getLocalCoords(e);
+  const handleClick = (e) => {
+    const pos = getLocalCoords(e);
 
-  clickRef.current = {
-    ...pos,
-    time: performance.now() / 1000
+    clickRef.current = {
+      ...pos,
+      time: performance.now() / 1000,
+    };
   };
-};
 
   return (
     <div
@@ -243,8 +261,15 @@ const handleClick = (e) => {
       onMouseLeave={handlePointerLeave}
       onClick={handleClick}
     >
-      <Canvas dpr={[1, 1.5]} gl={{ antialias: true }}>
-        <ShaderPlane mouseRef={mouseRef} clickRef={clickRef} />
+      <Canvas
+        dpr={[1, 1.5]}
+        gl={{ antialias: true }}
+      >
+        <ShaderPlane
+          mouseRef={mouseRef}
+          clickRef={clickRef}
+          isActive={isActive}
+        />
       </Canvas>
     </div>
   );
