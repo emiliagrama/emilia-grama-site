@@ -53,7 +53,7 @@ export default function ControlledChaos() {
           Noise field warped by cursor interaction.
         </p>
 
-        {shouldRender && <ShaderPanel isActive={shouldRender} />}
+        {shouldRender && <ShaderPanel />}
       </div>
 
       <h3 className="labExperimentTitle">

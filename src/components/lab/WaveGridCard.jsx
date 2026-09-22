@@ -29,34 +29,18 @@ export default function WaveGridCard() {
     const el = cardRef.current;
     if (!el) return;
 
-    el.style.setProperty("--rotateX", `0deg`);
-    el.style.setProperty("--rotateY", `0deg`);
-    el.style.setProperty("--glareX", `50%`);
-    el.style.setProperty("--glareY", `0%`);
-    el.style.setProperty("--lift", `0px`);
+    el.style.setProperty("--rotateX", "0deg");
+    el.style.setProperty("--rotateY", "0deg");
+    el.style.setProperty("--glareX", "50%");
+    el.style.setProperty("--glareY", "0%");
+    el.style.setProperty("--lift", "0px");
   }
 
   function handleMove(e) {
     updateTilt(e.clientX, e.clientY);
   }
 
-  function handleTouchStart(e) {
-    const touch = e.touches[0];
-    if (!touch) return;
-    updateTilt(touch.clientX, touch.clientY);
-  }
-
-  function handleTouchMove(e) {
-    const touch = e.touches[0];
-    if (!touch) return;
-    updateTilt(touch.clientX, touch.clientY);
-  }
-
   function handleLeave() {
-    resetTilt();
-  }
-
-  function handleTouchEnd() {
     resetTilt();
   }
 
@@ -67,9 +51,6 @@ export default function WaveGridCard() {
         className="waveCard"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
         <div className="waveCard__media">
           <WaveGridPanel />
