@@ -121,7 +121,7 @@ if (canHover) {
                   src={c.img}
                   alt={c.alt}
                   loading="eager"
-decoding="async"
+                  decoding="async"
                 />
               </div>
 
