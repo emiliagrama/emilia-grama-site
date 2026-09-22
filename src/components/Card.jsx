@@ -29,7 +29,8 @@ useEffect(() => {
       }
     },
     {
-      threshold: 0.4,
+      rootMargin: "300px 0px",
+      threshold: 0
     }
   );
 
